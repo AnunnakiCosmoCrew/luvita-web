@@ -1,12 +1,21 @@
 /**
- * In-house products shown as delivery-capability proof. Icons live in
- * src/assets/icons and go through astro:assets in ProductCard.
+ * In-house products shown as delivery-capability proof.
+ *
+ * `status` is load-bearing honesty: only 'live' products may claim to be
+ * shipped. Anything still in development says so on the card — this site is
+ * read by enterprise prospects, so no product may be implied to exist before
+ * it does.
+ *
+ * `icon` is optional; ProductCard falls back to a letter monogram rather than
+ * inventing a logo. Icons live in src/assets/icons (astro:assets).
  */
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n';
 import { APP_STORE } from '../lib/site';
 import slicefocusIcon from '../assets/icons/slicefocus.png';
 import lexipowerIcon from '../assets/icons/lexipower.png';
+
+export type ProductStatus = 'live' | 'in-development';
 
 export interface ProductCopy {
   tagline: string;
@@ -16,8 +25,10 @@ export interface ProductCopy {
 export interface Product {
   key: string;
   name: string;
-  icon: ImageMetadata;
-  appStoreUrl: string;
+  status: ProductStatus;
+  icon?: ImageMetadata;
+  /** Public link (App Store, site). Omitted while a product is unreleased. */
+  url?: string;
   copy: Record<Locale, ProductCopy>;
 }
 
@@ -25,8 +36,9 @@ export const products: Product[] = [
   {
     key: 'slicefocus',
     name: 'SliceFocus',
+    status: 'live',
     icon: slicefocusIcon,
-    appStoreUrl: APP_STORE.slicefocus,
+    url: APP_STORE.slicefocus,
     copy: {
       tr: {
         tagline: 'Dairesel 24 saat planlayıcı',
@@ -43,8 +55,9 @@ export const products: Product[] = [
   {
     key: 'lexipower',
     name: 'LexiPower',
+    status: 'live',
     icon: lexipowerIcon,
-    appStoreUrl: APP_STORE.lexipower,
+    url: APP_STORE.lexipower,
     copy: {
       tr: {
         tagline: 'Kelime defteri ve aralıklı tekrar',
@@ -55,6 +68,40 @@ export const products: Product[] = [
         tagline: 'Vocabulary notebook with spaced repetition',
         description:
           'A vocabulary learning app with an offline-first architecture and a spaced-repetition quiz engine. Live on the App Store.',
+      },
+    },
+  },
+  {
+    key: 'umay',
+    name: 'Umay',
+    status: 'in-development',
+    copy: {
+      tr: {
+        tagline: 'Türkçe öncelikli yapay zekâ çağrı platformu',
+        description:
+          'İşletmelerin telefonla gelen taleplerini doğal Türkçe konuşan yapay zekâ ajanlarıyla karşılayan, gerektiğinde insana devreden programlanabilir çağrı platformu. Randevu, sipariş ve talep akışları iş sistemlerinize bağlanır. Geliştirme aşamasında.',
+      },
+      en: {
+        tagline: 'Turkish-first AI voice platform',
+        description:
+          'A programmable voice platform where AI agents answer inbound calls in natural Turkish, act in your business systems for bookings, orders and tickets, and hand off to a human when needed. Currently in development.',
+      },
+    },
+  },
+  {
+    key: 'luvi-engine',
+    name: 'Luvi Engine',
+    status: 'in-development',
+    copy: {
+      tr: {
+        tagline: 'Saha keşif ve teklif motoru',
+        description:
+          'Enerji sistemleri kuran ekipler için, sahada internet olmadan çalışan bir keşif ve teklif uygulaması: saniyeler içinde aralık tahmini, dakikalar içinde iki dilli PDF teklif. Türkiye’ye özgü tarife ve teşvik kuralları hesap motoruna gömülüdür. Geliştirme aşamasında.',
+      },
+      en: {
+        tagline: 'Field survey & quotation engine',
+        description:
+          'An offline-first survey and quoting app for teams that install energy systems: a ballpark range in seconds, a firmed bilingual PDF quote in minutes. Türkiye-specific tariff and incentive rules are built into the calculation engine. Currently in development.',
       },
     },
   },

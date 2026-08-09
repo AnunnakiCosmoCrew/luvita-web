@@ -13,6 +13,10 @@ export const en: Dictionary = {
     switchLocale: 'Türkçe',
     switchLocaleLabel: 'View this page in Turkish',
   },
+  products: {
+    live: 'Live',
+    inDevelopment: 'In development',
+  },
   footer: {
     tagline: 'Custom software for enterprise systems.',
     nav: 'Footer',

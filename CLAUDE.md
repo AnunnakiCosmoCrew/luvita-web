@@ -10,6 +10,14 @@ GitHub Pages. See README.md for stack and the luvita.com.tr migration steps.
   presented under a separate brand elsewhere. The full trade name (contains
   "Enerji") may appear ONLY in the footer legal block (`src/lib/site.ts` →
   `LEGAL_NAME`). Never add solar services, imagery, or copy here (adr/0003).
+- **Never publish the registered street address.** It is a residential
+  address; the site shows city-level `LOCATION` only (`src/lib/site.ts`).
+  Restore a full address only when the company has an office or virtual-office
+  address.
+- **Product status must be truthful.** `src/data/products.ts` carries a
+  `status` field; only shipped products may be marked `'live'`, and
+  in-development ones must say so in the copy too. Never imply a product
+  exists before it does — banks read this page.
 - **Zero client-side JS, no external requests.** No analytics, no fonts, no
   CDN embeds. Privacy pages promise "no cookies, no tracking" — keep it true.
 - Every internal link goes through `withBase()` (`src/lib/url.ts`) or

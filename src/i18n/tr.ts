@@ -11,6 +11,10 @@ export interface Dictionary {
     switchLocale: string;
     switchLocaleLabel: string;
   };
+  products: {
+    live: string;
+    inDevelopment: string;
+  };
   footer: {
     tagline: string;
     nav: string;
@@ -43,6 +47,10 @@ export const tr: Dictionary = {
     primary: 'Ana gezinme',
     switchLocale: 'English',
     switchLocaleLabel: 'Bu sayfayı İngilizce görüntüle',
+  },
+  products: {
+    live: 'Yayında',
+    inDevelopment: 'Geliştiriliyor',
   },
   footer: {
     tagline: 'Kurumsal sistemler için özel yazılım.',

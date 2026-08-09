@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Button from '../../components/Button.astro';
-import { ADDRESS, CONTACT_EMAIL } from '../../lib/site';
+import { LOCATION, CONTACT_EMAIL } from '../../lib/site';
 ---
 
 <BaseLayout
@@ -28,8 +28,9 @@ import { ADDRESS, CONTACT_EMAIL } from '../../lib/site';
         <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
       </div>
       <div class="contact-card">
-        <h2>Address</h2>
-        <p>{ADDRESS}</p>
+        <h2>Location</h2>
+        <p>{LOCATION}</p>
+        <p class="contact-note">We meet online or at your office.</p>
       </div>
     </div>
   </section>
@@ -56,5 +57,11 @@ import { ADDRESS, CONTACT_EMAIL } from '../../lib/site';
 
   .contact-card p {
     color: var(--c-ink-soft);
+  }
+
+  .contact-note {
+    margin-top: var(--sp-2);
+    font-size: var(--fs-300);
+    color: var(--c-muted);
   }
 </style>

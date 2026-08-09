@@ -32,10 +32,11 @@ npm run build    # static build to dist/
   language switcher and `hreflang` alternates.
 - Shared chrome strings (nav, footer, 404): `src/i18n/tr.ts` + `en.ts`.
 - Services and products data: `src/data/services.ts`, `src/data/products.ts`.
-- Company identity constants (legal name, address, e-mail, MERSİS):
+- Company identity constants (legal name, location, e-mail, MERSİS):
   `src/lib/site.ts` — **update `MERSIS_NO` / `TRADE_REGISTRY_NO` there once
   registration completes**, and swap `CONTACT_EMAIL` when
-  `info@luvita.com.tr` is live.
+  `info@luvita.com.tr` is live. `LOCATION` is city-level on purpose: the
+  registered office is a home address and is not published here.
 
 ## Editorial rule
 
@@ -44,15 +45,29 @@ solar/GES line of business is deliberately absent from all body copy (see
 `adr/0003`); the full trade name (which contains "Enerji") appears only in
 the footer legal-identity block, as legally required.
 
-## Moving to luvita.com.tr
+## Custom domain
 
-When the domain is registered, change in `astro.config.mjs`:
+**Not yet chosen.** Checked 2026-08-09:
+
+| Domain | Status |
+| --- | --- |
+| `luvita.com.tr` | taken by a third party (parked, no DNS records) |
+| `luvita.com` | taken since 2006 (parked) |
+| `luvita.dev` | taken |
+| `luvita.tr` | unregistered — but direct `.tr` may still be in its priority allocation phase; confirm with a TR registrar |
+| `luvita.net.tr`, `luvitateknoloji.com.tr`, `luvitatech.com.tr`, `luvitasoft.com.tr`, `luvita.io`, `luvita.tech` | available |
+
+Since TRABİS went live (14.09.2022), `.com.tr` / `.net.tr` / `.org.tr` need
+**no company documents** — first come, first served through any accredited TR
+registrar.
+
+Once a domain is registered, change in `astro.config.mjs`:
 
 ```js
-site: 'https://luvita.com.tr',
+site: 'https://<domain>',
 base: '/',
 ```
 
-then add `public/CNAME` containing `luvita.com.tr`, update the Sitemap URL in
+then add `public/CNAME` containing that domain, update the Sitemap URL in
 `public/robots.txt`, and point DNS at GitHub Pages. All internal links go
 through `withBase()` / `localizedPath()`, so no template edits are needed.

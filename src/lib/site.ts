@@ -13,9 +13,17 @@ export const BRAND = 'Luvita';
 export const LEGAL_NAME =
   'Luvita Teknoloji Enerji Yazılım Sanayi ve Ticaret Limited Şirketi';
 
-/** Registered office address. */
-export const ADDRESS =
-  'Gündoğan Mah. Kızılburun Cad. Yalıkent Sitesi No: 69/25 Bodrum / Muğla';
+/**
+ * Public location, city level only.
+ *
+ * The registered office is currently a residential address, so the street
+ * detail is deliberately NOT published: on a site read by banks it reads as
+ * unprofessional, and it exposes a home. This is presentation, not secrecy —
+ * the registered address remains publicly available through the trade
+ * registry (Ticaret Sicil Gazetesi / MERSİS). Replace this with the full
+ * address once the company has an office or a virtual-office address.
+ */
+export const LOCATION = 'Bodrum, Muğla / Türkiye';
 
 /**
  * Public contact e-mail. Interim address until luvita.com.tr is registered

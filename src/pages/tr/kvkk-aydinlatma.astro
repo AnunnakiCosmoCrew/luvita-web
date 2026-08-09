@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Prose from '../../components/Prose.astro';
-import { LEGAL_NAME, ADDRESS, CONTACT_EMAIL } from '../../lib/site';
+import { LEGAL_NAME, LOCATION, CONTACT_EMAIL } from '../../lib/site';
 ---
 
 <BaseLayout
@@ -18,7 +18,10 @@ import { LEGAL_NAME, ADDRESS, CONTACT_EMAIL } from '../../lib/site';
       <p>
         Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu
         (“KVKK”) uyarınca, veri sorumlusu sıfatıyla
-        <strong>{LEGAL_NAME}</strong> ({ADDRESS}) tarafından hazırlanmıştır.
+        <strong>{LEGAL_NAME}</strong> ({LOCATION}) tarafından hazırlanmıştır.
+        Şirketin ticaret sicilinde tescilli açık adresi, Türkiye Ticaret
+        Sicili Gazetesi kayıtlarından erişilebilir; başvurularınızı aşağıdaki
+        e-posta adresine iletebilirsiniz.
       </p>
 
       <h2>Web sitesinde veri toplanmaz</h2>
