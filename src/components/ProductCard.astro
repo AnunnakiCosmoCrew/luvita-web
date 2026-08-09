@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import type { Product } from '../data/products';
+import type { Locale } from '../i18n';
+
+interface Props {
+  product: Product;
+  locale: Locale;
+}
+
+const { product, locale } = Astro.props;
+const copy = product.copy[locale];
+---
+
+<article class="product-card">
+  <div class="product-head">
+    <Image
+      src={product.icon}
+      alt=""
+      width="56"
+      height="56"
+      densities={[1, 2]}
+      class="product-icon"
+    />
+    <div>
+      <h3>
+        <a
+          class="product-link"
+          href={product.appStoreUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {product.name}
+        </a>
+      </h3>
+      <p class="product-tagline">{copy.tagline}</p>
+    </div>
+  </div>
+  <p class="product-desc">{copy.description}</p>
+</article>
+
+<style>
+  .product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    padding: var(--sp-5);
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    transition: border-color var(--dur) var(--ease);
+  }
+
+  .product-card:hover {
+    border-color: var(--c-accent);
+  }
+
+  .product-head {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+  }
+
+  .product-icon {
+    border-radius: var(--radius-sm);
+    flex: none;
+  }
+
+  h3 {
+    font-size: var(--fs-500);
+  }
+
+  /* Stretched link: the whole card is clickable. */
+  .product-link {
+    color: var(--c-ink);
+  }
+
+  .product-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .product-tagline {
+    font-size: var(--fs-300);
+    color: var(--c-muted);
+  }
+
+  .product-desc {
+    color: var(--c-ink-soft);
+  }
+</style>

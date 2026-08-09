@@ -1,0 +1,157 @@
+---
+import { localizedPath, t, type Locale } from '../i18n';
+import {
+  BRAND,
+  LEGAL_NAME,
+  ADDRESS,
+  CONTACT_EMAIL,
+  MERSIS_NO,
+  TRADE_REGISTRY_NO,
+  GITHUB_URL,
+} from '../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = t(locale);
+const year = new Date().getFullYear();
+
+const slugs: Record<Locale, Record<string, string>> = {
+  tr: {
+    services: 'hizmetler',
+    products: 'urunler',
+    about: 'hakkimizda',
+    contact: 'iletisim',
+    privacy: 'gizlilik',
+    kvkk: 'kvkk-aydinlatma',
+  },
+  en: {
+    services: 'services',
+    products: 'products',
+    about: 'about',
+    contact: 'contact',
+    privacy: 'privacy',
+    kvkk: 'privacy',
+  },
+};
+
+const links = (
+  locale === 'tr'
+    ? (['services', 'products', 'about', 'contact', 'privacy', 'kvkk'] as const)
+    : (['services', 'products', 'about', 'contact', 'privacy'] as const)
+).map((key) => ({
+  label: dict.footer[key],
+  href: localizedPath(locale, slugs[locale][key]),
+}));
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">{BRAND}</span>
+      <p>{dict.footer.tagline}</p>
+    </div>
+
+    <nav class="footer-nav" aria-label={dict.footer.nav}>
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+      <a href={GITHUB_URL} rel="noopener noreferrer" target="_blank">GitHub</a>
+      <a href={`mailto:${CONTACT_EMAIL}`}>{dict.footer.contact}</a>
+    </nav>
+  </div>
+
+  <div class="container footer-legal">
+    <p class="legal-name">{LEGAL_NAME}</p>
+    <p>{ADDRESS}</p>
+    <p>
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      {MERSIS_NO && <span> · {dict.footer.mersis}: {MERSIS_NO}</span>}
+      {
+        TRADE_REGISTRY_NO && (
+          <span> · {dict.footer.tradeRegistry}: {TRADE_REGISTRY_NO}</span>
+        )
+      }
+    </p>
+  </div>
+
+  <div class="container footer-base">
+    <p>&copy; {year} {BRAND}. {dict.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--sp-9);
+    border-top: 1px solid var(--c-border);
+    padding-block: var(--sp-7) var(--sp-6);
+    color: var(--c-ink-soft);
+    background-color: var(--c-surface);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-5) var(--sp-7);
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footer-name {
+    font-weight: 650;
+    color: var(--c-ink);
+  }
+
+  .footer-brand p {
+    margin-top: var(--sp-1);
+    font-size: var(--fs-300);
+    color: var(--c-muted);
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3) var(--sp-5);
+  }
+
+  .footer-nav a {
+    color: var(--c-ink-soft);
+    font-size: var(--fs-400);
+  }
+
+  .footer-nav a:hover {
+    color: var(--c-ink);
+  }
+
+  .footer-legal {
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--c-border);
+    font-size: var(--fs-300);
+    color: var(--c-muted);
+  }
+
+  .footer-legal p {
+    margin-bottom: var(--sp-1);
+  }
+
+  .footer-legal a {
+    color: var(--c-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-legal a:hover {
+    color: var(--c-ink);
+  }
+
+  .legal-name {
+    font-weight: 550;
+  }
+
+  .footer-base {
+    margin-top: var(--sp-5);
+    font-size: var(--fs-300);
+    color: var(--c-muted);
+  }
+</style>

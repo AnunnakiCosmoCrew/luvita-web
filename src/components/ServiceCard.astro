@@ -1,0 +1,59 @@
+---
+import type { ServiceCopy } from '../data/services';
+
+interface Props {
+  service: ServiceCopy;
+  /** Render the bullet-point list (services page); omit for summary cards. */
+  detailed?: boolean;
+}
+
+const { service, detailed = false } = Astro.props;
+---
+
+<article class="service-card">
+  <h3>{service.title}</h3>
+  <p>{service.summary}</p>
+  {
+    detailed && (
+      <ul>
+        {service.points.map((point) => (
+          <li>{point}</li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+  }
+
+  h3 {
+    font-size: var(--fs-500);
+  }
+
+  p {
+    color: var(--c-ink-soft);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: var(--sp-5);
+    color: var(--c-ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  li::marker {
+    color: var(--c-accent);
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+---
+
+<BaseLayout
+  locale="en"
+  title="About — Luvita"
+  description="Luvita is a software company based in Bodrum, Türkiye. We build custom software for enterprise clients and ship products of our own."
+  paths={{ tr: 'hakkimizda', en: 'about' }}
+>
+  <Hero
+    eyebrow="About"
+    title="We treat software as a craft"
+    lead="We are a software company based in Bodrum, Türkiye — building software designed to last, and maintained like it matters."
+  />
+
+  <section class="container">
+    <Prose>
+      <p>
+        Luvita is a technology company based in Bodrum, Muğla, building custom
+        software for enterprise clients. We work with the rigor that banking
+        and enterprise workflows demand: architecture decisions are
+        documented, testing and automation are set up from day one, and every
+        system we deliver stays under our care.
+      </p>
+      <p>
+        Our founder, <strong>Mert Yılmaz Ertuğrul</strong>, brings years of
+        engineering experience in banking and enterprise software. Java/Spring
+        Boot backend systems, cross-platform applications with Flutter, and
+        cloud architectures are the company's core competencies.
+      </p>
+      <p>
+        Alongside client work, we build our own products:
+        <strong>SliceFocus</strong> and <strong>LexiPower</strong> are live on
+        the App Store. Taking software from idea to store and keeping it alive
+        for years is the quality bar we bring to every engagement.
+      </p>
+      <h2>Our principles</h2>
+      <ul>
+        <li>
+          <strong>Transparency:</strong> scope, timeline and risks are shared
+          openly at every stage.
+        </li>
+        <li>
+          <strong>Longevity:</strong> code is written for the team that reads
+          it years later; docs and tests are first-class deliverables.
+        </li>
+        <li>
+          <strong>Ownership:</strong> delivery is not an ending — it is the
+          start of a long-term partnership.
+        </li>
+      </ul>
+    </Prose>
+  </section>
+</BaseLayout>

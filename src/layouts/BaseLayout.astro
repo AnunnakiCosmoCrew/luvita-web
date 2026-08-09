@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import BaseHead from '../components/BaseHead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { t, type Locale } from '../i18n';
+
+export interface PagePaths {
+  /** Path of this page in each locale, WITHOUT the locale prefix and without
+   * leading slash — e.g. { tr: 'hizmetler', en: 'services' }, '' for home. */
+  tr: string;
+  en: string;
+}
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Locale-specific slugs of this page, for hreflang + language switcher. */
+  paths: PagePaths;
+  ogImage?: string;
+}
+
+const { locale, title, description, paths, ogImage } = Astro.props;
+const dict = t(locale);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <BaseHead
+      locale={locale}
+      title={title}
+      description={description}
+      paths={paths}
+      ogImage={ogImage}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{dict.skipToContent}</a>
+    <Nav locale={locale} paths={paths} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Button from '../../components/Button.astro';
+import { ADDRESS, CONTACT_EMAIL } from '../../lib/site';
+---
+
+<BaseLayout
+  locale="tr"
+  title="İletişim — Luvita"
+  description="Luvita ile iletişime geçin: projenizi konuşmak için bize e-posta gönderin."
+  paths={{ tr: 'iletisim', en: 'contact' }}
+>
+  <Hero
+    eyebrow="İletişim"
+    title="Projenizi konuşalım"
+    lead="Kısa bir e-posta yeterli — ihtiyacınızı birkaç cümleyle anlatın, bir gün içinde dönüş yapalım."
+  >
+    <Fragment slot="actions">
+      <Button href={`mailto:${CONTACT_EMAIL}`}>E-posta gönderin</Button>
+    </Fragment>
+  </Hero>
+
+  <section class="container">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h2>E-posta</h2>
+        <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+      </div>
+      <div class="contact-card">
+        <h2>Adres</h2>
+        <p>{ADDRESS}</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    gap: var(--sp-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  }
+
+  .contact-card {
+    padding: var(--sp-5);
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+  }
+
+  .contact-card h2 {
+    font-size: var(--fs-500);
+    margin-bottom: var(--sp-2);
+  }
+
+  .contact-card p {
+    color: var(--c-ink-soft);
+  }
+</style>

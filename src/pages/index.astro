@@ -1,0 +1,21 @@
+---
+// Root redirect to the default locale. Astro's i18n `redirectToDefaultLocale`
+// requires a root index route to exist; this meta-refresh page is also the
+// static fallback GitHub Pages actually serves at `/`.
+import { localizedPath, DEFAULT_LOCALE } from '../i18n';
+
+const target = localizedPath(DEFAULT_LOCALE);
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Luvita</title>
+  </head>
+  <body>
+    <a href={target}>Luvita</a>
+  </body>
+</html>

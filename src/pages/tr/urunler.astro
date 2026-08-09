@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+---
+
+<BaseLayout
+  locale="tr"
+  title="Ürünler — Luvita"
+  description="Luvita'nın App Store'da yayında olan ürünleri: SliceFocus günlük planlayıcı ve LexiPower kelime öğrenme uygulaması."
+  paths={{ tr: 'urunler', en: 'products' }}
+>
+  <Hero
+    eyebrow="Ürünler"
+    title="Tasarlıyor, yayınlıyor, yaşatıyoruz"
+    lead="Kendi ürünlerimizi uçtan uca üretip App Store'da yaşatıyoruz. Müşterilerimize verdiğimiz sözün arkasında bu üretim pratiği var."
+  />
+
+  <section class="container">
+    <div class="product-grid">
+      {products.map((product) => <ProductCard product={product} locale="tr" />)}
+    </div>
+  </section>
+</BaseLayout>

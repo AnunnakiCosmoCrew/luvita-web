@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { localizedPath, t } from '../i18n';
+
+// Single 404 for both locales (GitHub Pages serves one /404.html); rendered
+// in the default locale with a secondary line in English.
+const dict = t('tr');
+const dictEn = t('en');
+---
+
+<BaseLayout
+  locale="tr"
+  title="404 — Luvita"
+  description={dict.notFound.lead}
+  paths={{ tr: '404', en: '404' }}
+>
+  <section class="container not-found">
+    <p class="eyebrow">404</p>
+    <h1>{dict.notFound.title}</h1>
+    <p class="lead">{dict.notFound.lead}</p>
+    <p class="lead en-line">{dictEn.notFound.title} — {dictEn.notFound.lead}</p>
+    <div class="actions">
+      <Button href={localizedPath('tr')}>{dict.notFound.back}</Button>
+      <Button href={localizedPath('en')} variant="secondary">
+        {dictEn.notFound.back}
+      </Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: var(--sp-8);
+  }
+
+  h1 {
+    margin-top: var(--sp-3);
+  }
+
+  .lead {
+    margin-top: var(--sp-4);
+  }
+
+  .en-line {
+    font-size: var(--fs-400);
+    color: var(--c-muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
+  }
+</style>

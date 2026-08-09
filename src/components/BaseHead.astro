@@ -1,0 +1,63 @@
+---
+import { absoluteUrl, withBase } from '../lib/url';
+import { BRAND } from '../lib/site';
+import { LOCALES, DEFAULT_LOCALE, bcp47, type Locale } from '../i18n';
+import type { PagePaths } from '../layouts/BaseLayout.astro';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  paths: PagePaths;
+  /** Optional social image path in public/, relative (no leading slash). */
+  ogImage?: string;
+}
+
+const { locale, title, description, paths, ogImage = 'og.png' } = Astro.props;
+
+function localePath(l: Locale): string {
+  return paths[l] === '' ? l : `${l}/${paths[l]}`;
+}
+
+const canonical = absoluteUrl(localePath(locale));
+const image = absoluteUrl(ogImage);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{
+  LOCALES.map((l) => (
+    <link rel="alternate" hreflang={bcp47(l)} href={absoluteUrl(localePath(l))} />
+  ))
+}
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={absoluteUrl(localePath(DEFAULT_LOCALE))}
+/>
+
+<link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+<meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0e0f13" media="(prefers-color-scheme: dark)" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={BRAND} />
+<meta property="og:locale" content={bcp47(locale).replace('-', '_')} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+<link rel="sitemap" href={withBase('sitemap-index.xml')} />

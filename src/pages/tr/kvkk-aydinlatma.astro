@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+import { LEGAL_NAME, ADDRESS, CONTACT_EMAIL } from '../../lib/site';
+---
+
+<BaseLayout
+  locale="tr"
+  title="KVKK Aydınlatma Metni — Luvita"
+  description="6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma metni."
+  paths={{ tr: 'kvkk-aydinlatma', en: 'privacy' }}
+>
+  <Hero eyebrow="Yasal" title="KVKK Aydınlatma Metni" />
+
+  <section class="container">
+    <Prose>
+      <p>
+        Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu
+        (“KVKK”) uyarınca, veri sorumlusu sıfatıyla
+        <strong>{LEGAL_NAME}</strong> ({ADDRESS}) tarafından hazırlanmıştır.
+      </p>
+
+      <h2>Web sitesinde veri toplanmaz</h2>
+      <p>
+        Bu web sitesi statik bir tanıtım sitesidir. Sitede çerez (cookie),
+        analitik aracı, takip teknolojisi veya form bulunmaz; siteyi ziyaret
+        etmeniz sırasında tarafımızca kişisel veri toplanmaz ve işlenmez.
+        Site, GitHub Pages altyapısında barındırılmaktadır; barındırma
+        sağlayıcısı erişim kayıtlarını kendi hizmet şartları çerçevesinde
+        tutabilir.
+      </p>
+
+      <h2>E-posta yoluyla iletişim</h2>
+      <p>
+        Bize e-posta gönderdiğinizde; ad-soyad, e-posta adresi ve mesajınızda
+        yer verdiğiniz diğer bilgiler, yalnızca talebinizi yanıtlamak ve iş
+        ilişkisi kurulması halinde bu ilişkinin yürütülmesi amacıyla, KVKK
+        m.5/2(c) (sözleşmenin kurulması/ifası) ve m.5/2(f) (meşru menfaat)
+        hukuki sebeplerine dayanılarak işlenir. Bu veriler üçüncü kişilerle
+        paylaşılmaz; e-posta altyapı sağlayıcısında hizmetin gerektirdiği
+        süre boyunca saklanır.
+      </p>
+
+      <h2>Haklarınız</h2>
+      <p>
+        KVKK m.11 kapsamında; kişisel verilerinizin işlenip işlenmediğini
+        öğrenme, işlenmişse bilgi talep etme, düzeltme, silme ve kanunda
+        öngörülen diğer haklarınızı kullanmak için
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> adresine
+        başvurabilirsiniz. Başvurunuz en geç 30 gün içinde yanıtlanır.
+      </p>
+    </Prose>
+  </section>
+</BaseLayout>

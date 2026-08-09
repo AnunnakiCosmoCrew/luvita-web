@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Button from '../../components/Button.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { localizedPath } from '../../i18n';
+import { services } from '../../data/services';
+import { products } from '../../data/products';
+---
+
+<BaseLayout
+  locale="en"
+  title="Luvita — Custom software for enterprise systems"
+  description="Luvita builds, integrates and maintains custom software for banking and enterprise workflows. A software company based in Bodrum, Türkiye."
+  paths={{ tr: '', en: '' }}
+>
+  <Hero
+    eyebrow="Luvita Teknoloji"
+    title="Dependable software for enterprise systems."
+    lead="We build custom software for banking and enterprise workflows, integrate it with your existing systems, and keep it running long after delivery."
+  >
+    <Fragment slot="actions">
+      <Button href={localizedPath('en', 'contact')}>Get in touch</Button>
+      <Button href={localizedPath('en', 'services')} variant="secondary">
+        Our services
+      </Button>
+    </Fragment>
+  </Hero>
+
+  <section class="container">
+    <div class="section-head">
+      <p class="eyebrow">Services</p>
+      <h2>End to end, from idea to production</h2>
+    </div>
+    <div class="product-grid">
+      {
+        services.map((service) => (
+          <ServiceCard service={service.copy.en} />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <p class="eyebrow">Products</p>
+      <h2>We ship products of our own</h2>
+      <p class="lead">
+        Our apps on the App Store are proof that we deliver software end to
+        end — from design to release and beyond.
+      </p>
+    </div>
+    <div class="product-grid">
+      {products.map((product) => <ProductCard product={product} locale="en" />)}
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-panel">
+      <h2>Have a project in mind?</h2>
+      <p class="lead">
+        Let's clarify what you need — we'll come back with a proposal that
+        lays out scope, approach and roadmap in plain terms.
+      </p>
+      <Button href={localizedPath('en', 'contact')}>Contact us</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cta-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-4);
+    padding: var(--sp-6);
+    background-color: var(--c-surface-2);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+---
+
+<BaseLayout
+  locale="tr"
+  title="Hakkımızda — Luvita"
+  description="Luvita, Bodrum merkezli bir yazılım şirketidir. Kurumsal müşteriler için özel yazılım geliştirir; kendi ürünlerini tasarlar ve yaşatır."
+  paths={{ tr: 'hakkimizda', en: 'about' }}
+>
+  <Hero
+    eyebrow="Hakkımızda"
+    title="Yazılımı zanaat gibi ele alıyoruz"
+    lead="Bodrum merkezli bir yazılım şirketiyiz; kalıcı olması için tasarlanmış, bakımı üstlenilmiş yazılımlar üretiyoruz."
+  />
+
+  <section class="container">
+    <Prose>
+      <p>
+        Luvita, kurumsal müşteriler için özel yazılım geliştiren, Muğla /
+        Bodrum merkezli bir teknoloji şirketidir. Bankacılık ve kurumsal iş
+        süreçlerinin gerektirdiği titizlikle çalışır: mimari kararları
+        belgeler, test ve otomasyonu baştan kurar, teslim ettiği her sistemin
+        bakımını üstlenir.
+      </p>
+      <p>
+        Kurucumuz <strong>Mert Yılmaz Ertuğrul</strong>, bankacılık ve
+        kurumsal yazılım alanında uzun yıllara dayanan mühendislik deneyimine
+        sahiptir. Java/Spring Boot arka uç sistemleri, Flutter ile çoklu
+        platform uygulamalar ve bulut mimarileri şirketin ana yetkinlik
+        alanlarıdır.
+      </p>
+      <p>
+        Hizmet işimizin yanında kendi ürünlerimizi de üretiyoruz:
+        <strong>SliceFocus</strong> ve <strong>LexiPower</strong> App Store’da
+        yayında. Bir yazılımı fikirden mağazaya taşıyıp yıllarca yaşatmak,
+        müşterilerimize taşıdığımız kalite çıtasının kendisidir.
+      </p>
+      <h2>İlkelerimiz</h2>
+      <ul>
+        <li>
+          <strong>Şeffaflık:</strong> Kapsam, takvim ve riskler her aşamada
+          açıkça paylaşılır.
+        </li>
+        <li>
+          <strong>Kalıcılık:</strong> Kod, onu yıllar sonra okuyacak ekip için
+          yazılır; belge ve test birinci sınıf üründür.
+        </li>
+        <li>
+          <strong>Sahiplik:</strong> Teslimat bir bitiş değil, uzun soluklu bir
+          ortaklığın başlangıcıdır.
+        </li>
+      </ul>
+    </Prose>
+  </section>
+</BaseLayout>

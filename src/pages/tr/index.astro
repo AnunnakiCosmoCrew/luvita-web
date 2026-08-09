@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Button from '../../components/Button.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { localizedPath } from '../../i18n';
+import { services } from '../../data/services';
+import { products } from '../../data/products';
+---
+
+<BaseLayout
+  locale="tr"
+  title="Luvita — Kurumsal sistemler için özel yazılım"
+  description="Luvita, bankacılık ve kurumsal iş süreçleri için özel yazılım geliştirir, entegre eder ve yaşatır. Bodrum merkezli yazılım şirketi."
+  paths={{ tr: '', en: '' }}
+>
+  <Hero
+    eyebrow="Luvita Teknoloji"
+    title="Kurumsal sistemler için güvenilir yazılım."
+    lead="Bankacılık ve kurumsal iş süreçleri için özel yazılım geliştiriyor, mevcut sistemlerinizle entegre ediyor ve teslimattan sonra da yaşatıyoruz."
+  >
+    <Fragment slot="actions">
+      <Button href={localizedPath('tr', 'iletisim')}>Bize ulaşın</Button>
+      <Button href={localizedPath('tr', 'hizmetler')} variant="secondary">
+        Hizmetlerimiz
+      </Button>
+    </Fragment>
+  </Hero>
+
+  <section class="container">
+    <div class="section-head">
+      <p class="eyebrow">Hizmetler</p>
+      <h2>Fikirden üretime, uçtan uca</h2>
+    </div>
+    <div class="product-grid">
+      {
+        services.map((service) => (
+          <ServiceCard service={service.copy.tr} />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <p class="eyebrow">Ürünler</p>
+      <h2>Kendi ürünlerimizi de üretiyoruz</h2>
+      <p class="lead">
+        App Store’da yayında olan ürünlerimiz, tasarımdan yayına uçtan uca
+        yazılım teslim edebildiğimizin kanıtı.
+      </p>
+    </div>
+    <div class="product-grid">
+      {products.map((product) => <ProductCard product={product} locale="tr" />)}
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-panel">
+      <h2>Bir projeniz mi var?</h2>
+      <p class="lead">
+        İhtiyacınızı birlikte netleştirelim; kapsamı, yaklaşımı ve yol
+        haritasını açıkça ortaya koyan bir teklifle dönelim.
+      </p>
+      <Button href={localizedPath('tr', 'iletisim')}>İletişime geçin</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cta-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-4);
+    padding: var(--sp-6);
+    background-color: var(--c-surface-2);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Button from '../../components/Button.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { localizedPath } from '../../i18n';
+import { services } from '../../data/services';
+---
+
+<BaseLayout
+  locale="en"
+  title="Services — Luvita"
+  description="Custom software development, system integration, technical consulting and maintenance. Production-grade delivery with Java/Spring Boot, Flutter and cloud architectures."
+  paths={{ tr: 'hizmetler', en: 'services' }}
+>
+  <Hero
+    eyebrow="Services"
+    title="End-to-end software services"
+    lead="From discovery and design to development, integration and long-term maintenance — we take on the full software lifecycle."
+  />
+
+  <section class="container">
+    <div class="product-grid">
+      {
+        services.map((service) => (
+          <ServiceCard service={service.copy.en} detailed />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <p class="eyebrow">How we work</p>
+      <h2>Transparent scope, measurable delivery</h2>
+    </div>
+    <ol class="process">
+      <li>
+        <h3>Discovery</h3>
+        <p>
+          We learn your business process and existing systems, and agree on
+          scope and success criteria together.
+        </p>
+      </li>
+      <li>
+        <h3>Design &amp; plan</h3>
+        <p>
+          We document architecture decisions with their rationale, and share
+          the roadmap and milestones up front.
+        </p>
+      </li>
+      <li>
+        <h3>Development</h3>
+        <p>
+          We build in short cycles on automated tests and CI/CD — progress is
+          visible at every step.
+        </p>
+      </li>
+      <li>
+        <h3>Delivery &amp; maintenance</h3>
+        <p>
+          Going live isn't the end: we keep your software healthy with
+          monitoring, security updates and contracted support.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="container">
+    <Button href={localizedPath('en', 'contact')}>
+      Let's talk about your project
+    </Button>
+  </section>
+</BaseLayout>
+
+<style>
+  .process {
+    display: grid;
+    gap: var(--sp-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .process li {
+    counter-increment: step;
+    padding: var(--sp-5);
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+  }
+
+  .process h3 {
+    font-size: var(--fs-500);
+    margin-bottom: var(--sp-2);
+  }
+
+  .process h3::before {
+    content: counter(step, decimal-leading-zero);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--fs-300);
+    color: var(--c-accent);
+    margin-bottom: var(--sp-2);
+  }
+
+  .process p {
+    color: var(--c-ink-soft);
+  }
+</style>

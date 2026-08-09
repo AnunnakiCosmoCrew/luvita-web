@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+import { LEGAL_NAME, ADDRESS, CONTACT_EMAIL } from '../../lib/site';
+---
+
+<BaseLayout
+  locale="en"
+  title="Privacy — Luvita"
+  description="Luvita website privacy policy: no cookies, no tracking, no forms — plus the KVKK (Turkish data protection law) notice."
+  paths={{ tr: 'gizlilik', en: 'privacy' }}
+>
+  <Hero eyebrow="Legal" title="Privacy Policy" />
+
+  <section class="container">
+    <Prose>
+      <p>We respect your privacy — in the simplest possible way:</p>
+      <ul>
+        <li>This site uses <strong>no cookies</strong>.</li>
+        <li>No analytics or tracking tools run here.</li>
+        <li>There are no forms; the site <strong>collects no personal data</strong>.</li>
+        <li>No third-party embeds; every page is fully static.</li>
+      </ul>
+
+      <h2>Contact by email</h2>
+      <p>
+        When you email us, your name, email address and the contents of your
+        message are processed solely to answer your enquiry and, if a business
+        relationship follows, to carry it out. This processing is based on
+        Article 5 of the Turkish Personal Data Protection Law No. 6698
+        (“KVKK”). Your data is not shared with third parties and is retained
+        only as long as the correspondence requires.
+      </p>
+
+      <h2>Data controller</h2>
+      <p>
+        The data controller is <strong>{LEGAL_NAME}</strong>, {ADDRESS}. To
+        exercise your rights under Article 11 of the KVKK (access,
+        rectification, erasure and others), contact
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Requests are
+        answered within 30 days.
+      </p>
+    </Prose>
+  </section>
+</BaseLayout>

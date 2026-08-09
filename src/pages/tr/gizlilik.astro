@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+import { localizedPath } from '../../i18n';
+import { CONTACT_EMAIL } from '../../lib/site';
+---
+
+<BaseLayout
+  locale="tr"
+  title="Gizlilik — Luvita"
+  description="Luvita web sitesi gizlilik politikası: çerez yok, takip yok, form yok."
+  paths={{ tr: 'gizlilik', en: 'privacy' }}
+>
+  <Hero eyebrow="Yasal" title="Gizlilik Politikası" />
+
+  <section class="container">
+    <Prose>
+      <p>Gizliliğinize saygı duyuyoruz — ve bunu en sade yoldan yapıyoruz:</p>
+      <ul>
+        <li>Bu sitede <strong>çerez kullanılmaz</strong>.</li>
+        <li>Analitik veya takip aracı <strong>çalıştırılmaz</strong>.</li>
+        <li>Form yoktur; sitede kişisel veri <strong>toplanmaz</strong>.</li>
+        <li>Üçüncü taraf içerik gömülmez; sayfalar tamamen statiktir.</li>
+      </ul>
+      <p>
+        Bizimle e-posta yoluyla iletişime geçtiğinizde verilerinizin nasıl
+        işlendiği <a href={localizedPath('tr', 'kvkk-aydinlatma')}>KVKK
+        Aydınlatma Metni</a>'nde açıklanmıştır. Sorularınız için:
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+    </Prose>
+  </section>
+</BaseLayout>
