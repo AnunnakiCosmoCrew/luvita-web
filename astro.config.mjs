@@ -7,21 +7,16 @@ import sitemap from '@astrojs/sitemap';
 // served from a sub-path:
 //   https://anunnakicosmocrew.github.io/luvita-web/
 //
-// The custom domain is still undecided: luvita.com.tr is already registered by
-// a third party (checked 2026-08-09, parked — no DNS records). Candidates are
-// luvita.tr (unregistered; direct .tr may still be in its priority phase) and
-// luvitateknoloji.com.tr. See README for the shortlist.
+// Served from the custom domain luvita.tr (registered 2026-08; luvita.com.tr
+// was already taken by a third party). `public/CNAME` carries the domain into
+// the Pages artifact; DNS points at GitHub Pages through Cloudflare.
 //
-// To move to whichever domain is registered, change two lines:
-//   site: 'https://<domain>',
-//   base: '/',
-// then add `public/CNAME` containing that domain and update the sitemap URL in
-// `public/robots.txt`. Every internal link is built with `withBase()`
-// (src/lib/url.ts), so nothing else needs to change.
+// Every internal link is built with `withBase()` (src/lib/url.ts) and
+// `localizedPath()` (src/i18n), so the base change needs no template edits.
 // -----------------------------------------------------------------------------
 export default defineConfig({
-  site: 'https://anunnakicosmocrew.github.io',
-  base: '/luvita-web',
+  site: 'https://luvita.tr',
+  base: '/',
   trailingSlash: 'ignore',
   output: 'static',
   i18n: {
