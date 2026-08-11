@@ -4,7 +4,7 @@ Corporate website for **Luvita** (Luvita Teknoloji Enerji Yazılım Sanayi ve
 Ticaret Limited Şirketi) — a software company based in Bodrum, Türkiye,
 building custom software for banking and enterprise clients.
 
-Live at: <https://anunnakicosmocrew.github.io/luvita-web/>
+Live at: <https://luvita.tr>
 
 ## Stack
 
@@ -47,27 +47,25 @@ the footer legal-identity block, as legally required.
 
 ## Custom domain
 
-**Not yet chosen.** Checked 2026-08-09:
+**`luvita.tr`** — registered 2026-08-09 through Natro. `luvita.com.tr` was
+already taken by a third party (parked, no DNS records), as were `luvita.com`
+(since 2006) and `luvita.dev`. Since TRABİS went live (14.09.2022), direct
+`.tr` and `.com.tr` need **no company documents** — first come, first served
+through any accredited TR registrar.
 
-| Domain | Status |
-| --- | --- |
-| `luvita.com.tr` | taken by a third party (parked, no DNS records) |
-| `luvita.com` | taken since 2006 (parked) |
-| `luvita.dev` | taken |
-| `luvita.tr` | unregistered — but direct `.tr` may still be in its priority allocation phase; confirm with a TR registrar |
-| `luvita.net.tr`, `luvitateknoloji.com.tr`, `luvitatech.com.tr`, `luvitasoft.com.tr`, `luvita.io`, `luvita.tech` | available |
+The domain is configured in three places: `site` + `base: '/'` in
+`astro.config.mjs`, `public/CNAME`, and the Sitemap URL in `public/robots.txt`.
+All internal links go through `withBase()` / `localizedPath()`, so the base
+change needs no template edits.
 
-Since TRABİS went live (14.09.2022), `.com.tr` / `.net.tr` / `.org.tr` need
-**no company documents** — first come, first served through any accredited TR
-registrar.
+### DNS
 
-Once a domain is registered, change in `astro.config.mjs`:
+Nameservers are delegated to Cloudflare; records point at GitHub Pages with the
+Cloudflare proxy **off** (grey cloud) so Pages can issue and renew its
+Let's Encrypt certificate:
 
-```js
-site: 'https://<domain>',
-base: '/',
-```
-
-then add `public/CNAME` containing that domain, update the Sitemap URL in
-`public/robots.txt`, and point DNS at GitHub Pages. All internal links go
-through `withBase()` / `localizedPath()`, so no template edits are needed.
+| Type | Name | Value |
+| --- | --- | --- |
+| A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` |
+| CNAME | `www` | `anunnakicosmocrew.github.io` |

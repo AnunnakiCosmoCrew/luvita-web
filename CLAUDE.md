@@ -2,7 +2,8 @@
 
 Public corporate site for **Luvita** (legal: Luvita Teknoloji Enerji Yazılım
 Sanayi ve Ticaret Limited Şirketi, Bodrum). Astro 7 static, TR/EN bilingual,
-GitHub Pages. See README.md for stack and the luvita.com.tr migration steps.
+GitHub Pages, served from **luvita.tr**. See README.md for stack, the domain
+configuration and the DNS records.
 
 ## Hard rules
 

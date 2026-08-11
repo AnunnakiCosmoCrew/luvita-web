@@ -26,9 +26,8 @@ export const LEGAL_NAME =
 export const LOCATION = 'Bodrum, Muğla / Türkiye';
 
 /**
- * Public contact e-mail. Interim address until luvita.com.tr is registered
- * and info@luvita.com.tr is routed (Cloudflare Email Routing) — then update
- * this single constant.
+ * Public contact e-mail. Interim address until info@luvita.tr has a mailbox
+ * (provider not yet chosen) — then update this single constant.
  */
 export const CONTACT_EMAIL = 'contact@cosmocrew.dev';
 
