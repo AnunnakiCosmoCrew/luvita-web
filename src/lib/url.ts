@@ -8,8 +8,8 @@
  *
  * `import.meta.env.BASE_URL` reflects the configured `base` (e.g. "/", or a
  * sub-path like "/some-repo"). Its trailing slash is not guaranteed across
- * versions, so we normalise it here. Moving to luvita.com.tr later needs no
- * changes to this file.
+ * versions, so we normalise it here — which is why the move from the project
+ * sub-path to luvita.tr needed no changes to this file.
  */
 
 // Normalised base with no trailing slash: "" when base is "/", or "/sub-path".

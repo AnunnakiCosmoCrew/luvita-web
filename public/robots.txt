@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Update to https://luvita.com.tr/sitemap-index.xml after the domain move.
-Sitemap: https://anunnakicosmocrew.github.io/luvita-web/sitemap-index.xml
+Sitemap: https://luvita.tr/sitemap-index.xml
