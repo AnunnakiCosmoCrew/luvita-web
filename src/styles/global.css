@@ -47,6 +47,15 @@ h4 {
   text-wrap: balance;
 }
 
+/* Editorial serif voice for the two display levels; serifs carry less weight
+   and no negative tracking. h3/h4 stay sans so dense card text stays crisp. */
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
 h1 {
   font-size: var(--fs-800);
 }
@@ -95,11 +104,14 @@ section + section {
 }
 
 .eyebrow {
+  display: inline-block;
   font-size: var(--fs-300);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--c-muted);
   font-weight: 600;
+  border-top: 2px solid var(--c-accent);
+  padding-top: var(--sp-2);
 }
 
 .lead {

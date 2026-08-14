@@ -27,13 +27,15 @@
   --fs-700: 1.728rem;
   --fs-800: 2.074rem;
   --fs-900: 2.488rem;
-  --fs-hero: clamp(2.3rem, 4vw + 1rem, 3.5rem);
+  --fs-hero: clamp(2.6rem, 4.5vw + 1rem, 4rem);
   --lh-tight: 1.15;
   --lh-body: 1.65;
 
   /* Fonts — fast system stack (no web-font download) */
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Nova', Palatino, 'Book Antiqua',
+    Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas,
     monospace;
 
