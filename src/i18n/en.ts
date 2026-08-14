@@ -18,7 +18,7 @@ export const en: Dictionary = {
     inDevelopment: 'In development',
   },
   footer: {
-    tagline: 'Custom software for enterprise systems.',
+    tagline: 'A software studio: our own products, and select projects end to end.',
     nav: 'Footer',
     services: 'Services',
     products: 'Products',

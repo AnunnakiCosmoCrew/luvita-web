@@ -11,41 +11,26 @@ import { products } from '../../data/products';
 
 <BaseLayout
   locale="en"
-  title="Luvita — Custom software for enterprise systems"
-  description="Luvita builds, integrates and maintains custom software for banking and enterprise workflows. A software company based in Bodrum, Türkiye."
+  title="Luvita — Software studio"
+  description="Luvita is a software studio. We build our own products and take on select projects end to end."
   paths={{ tr: '', en: '' }}
 >
   <Hero
-    eyebrow="Luvita Teknoloji"
-    title="Dependable software for enterprise systems."
-    lead="We build custom software for banking and enterprise workflows, integrate it with your existing systems, and keep it running long after delivery."
+    title="Luvita is a software studio."
+    lead="We build our own products and take on select projects end to end."
   >
     <Fragment slot="actions">
-      <Button href={localizedPath('en', 'contact')}>Get in touch</Button>
-      <Button href={localizedPath('en', 'services')} variant="secondary">
-        Our services
+      <Button href={localizedPath('en', 'products')}>See our products</Button>
+      <Button href={localizedPath('en', 'contact')} variant="secondary">
+        Let's talk about your project
       </Button>
     </Fragment>
   </Hero>
 
   <section class="container">
     <div class="section-head">
-      <p class="eyebrow">Services</p>
-      <h2>End to end, from idea to production</h2>
-    </div>
-    <div class="product-grid">
-      {
-        services.map((service) => (
-          <ServiceCard service={service.copy.en} />
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="section-head">
       <p class="eyebrow">Products</p>
-      <h2>We ship products of our own</h2>
+      <h2>Two products live, two in development</h2>
       <p class="lead">
         Our apps on the App Store are proof that we deliver software end to
         end — from design to release and beyond. What we are building next
@@ -54,6 +39,25 @@ import { products } from '../../data/products';
     </div>
     <div class="product-grid">
       {products.map((product) => <ProductCard product={product} locale="en" />)}
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <p class="eyebrow">Services</p>
+      <h2>The same practice, for your project</h2>
+      <p class="lead">
+        We bring the engineering practice behind our products to select client
+        projects: discovery through development, release and long-term
+        maintenance.
+      </p>
+    </div>
+    <div class="product-grid">
+      {
+        services.map((service) => (
+          <ServiceCard service={service.copy.en} />
+        ))
+      }
     </div>
   </section>
 

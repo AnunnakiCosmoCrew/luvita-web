@@ -25,11 +25,8 @@ export const LEGAL_NAME =
  */
 export const LOCATION = 'Bodrum, Muğla / Türkiye';
 
-/**
- * Public contact e-mail. Interim address until info@luvita.tr has a mailbox
- * (provider not yet chosen) — then update this single constant.
- */
-export const CONTACT_EMAIL = 'contact@cosmocrew.dev';
+/** Public contact e-mail (Zoho mailbox alias on the luvita.tr domain). */
+export const CONTACT_EMAIL = 'contact@luvita.tr';
 
 /**
  * Registry numbers — filled in after trade-registry registration completes.

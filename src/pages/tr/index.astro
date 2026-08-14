@@ -11,41 +11,26 @@ import { products } from '../../data/products';
 
 <BaseLayout
   locale="tr"
-  title="Luvita — Kurumsal sistemler için özel yazılım"
-  description="Luvita, bankacılık ve kurumsal iş süreçleri için özel yazılım geliştirir, entegre eder ve yaşatır. Bodrum merkezli yazılım şirketi."
+  title="Luvita — Yazılım stüdyosu"
+  description="Luvita, bir yazılım stüdyosudur. Kendi ürünlerini geliştirir; seçili projelerde yazılımı uçtan uca üstlenir."
   paths={{ tr: '', en: '' }}
 >
   <Hero
-    eyebrow="Luvita Teknoloji"
-    title="Kurumsal sistemler için güvenilir yazılım."
-    lead="Bankacılık ve kurumsal iş süreçleri için özel yazılım geliştiriyor, mevcut sistemlerinizle entegre ediyor ve teslimattan sonra da yaşatıyoruz."
+    title="Luvita, bir yazılım stüdyosudur."
+    lead="Kendi ürünlerimizi geliştiriyoruz; seçili projelerde yazılımı uçtan uca üstleniyoruz."
   >
     <Fragment slot="actions">
-      <Button href={localizedPath('tr', 'iletisim')}>Bize ulaşın</Button>
-      <Button href={localizedPath('tr', 'hizmetler')} variant="secondary">
-        Hizmetlerimiz
+      <Button href={localizedPath('tr', 'urunler')}>Ürünlerimizi görün</Button>
+      <Button href={localizedPath('tr', 'iletisim')} variant="secondary">
+        Projenizi konuşalım
       </Button>
     </Fragment>
   </Hero>
 
   <section class="container">
     <div class="section-head">
-      <p class="eyebrow">Hizmetler</p>
-      <h2>Fikirden üretime, uçtan uca</h2>
-    </div>
-    <div class="product-grid">
-      {
-        services.map((service) => (
-          <ServiceCard service={service.copy.tr} />
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="section-head">
       <p class="eyebrow">Ürünler</p>
-      <h2>Kendi ürünlerimizi de üretiyoruz</h2>
+      <h2>İki ürün yayında, iki ürün geliştirmede</h2>
       <p class="lead">
         App Store’da yayında olan ürünlerimiz, tasarımdan yayına uçtan uca
         yazılım teslim edebildiğimizin kanıtı; geliştirmekte olduklarımız ise
@@ -54,6 +39,24 @@ import { products } from '../../data/products';
     </div>
     <div class="product-grid">
       {products.map((product) => <ProductCard product={product} locale="tr" />)}
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <p class="eyebrow">Hizmetler</p>
+      <h2>Aynı pratik, sizin projeniz için</h2>
+      <p class="lead">
+        Ürünlerimizin arkasındaki mühendislik pratiğini seçili projelere
+        taşıyoruz: keşiften geliştirmeye, yayına ve uzun soluklu bakıma.
+      </p>
+    </div>
+    <div class="product-grid">
+      {
+        services.map((service) => (
+          <ServiceCard service={service.copy.tr} />
+        ))
+      }
     </div>
   </section>
 
