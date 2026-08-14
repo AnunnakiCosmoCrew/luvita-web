@@ -32,7 +32,28 @@ export interface Product {
   copy: Record<Locale, ProductCopy>;
 }
 
+/**
+ * Order is editorial, not chronological: Umay leads as the studio's flagship
+ * platform bet, followed by the shipped apps that evidence delivery.
+ */
 export const products: Product[] = [
+  {
+    key: 'umay',
+    name: 'Umay',
+    status: 'in-development',
+    copy: {
+      tr: {
+        tagline: 'Türkçe öncelikli yapay zekâ çağrı platformu',
+        description:
+          'İşletmelerin telefonla gelen taleplerini doğal Türkçe konuşan yapay zekâ ajanlarıyla karşılayan, gerektiğinde insana devreden programlanabilir çağrı platformu. Randevu, sipariş ve talep akışları iş sistemlerinize bağlanır. Geliştirme aşamasında.',
+      },
+      en: {
+        tagline: 'Turkish-first AI voice platform',
+        description:
+          'A programmable voice platform where AI agents answer inbound calls in natural Turkish, act in your business systems for bookings, orders and tickets, and hand off to a human when needed. Currently in development.',
+      },
+    },
+  },
   {
     key: 'slicefocus',
     name: 'SliceFocus',
@@ -68,23 +89,6 @@ export const products: Product[] = [
         tagline: 'Vocabulary notebook with spaced repetition',
         description:
           'A vocabulary learning app with an offline-first architecture and a spaced-repetition quiz engine. Live on the App Store.',
-      },
-    },
-  },
-  {
-    key: 'umay',
-    name: 'Umay',
-    status: 'in-development',
-    copy: {
-      tr: {
-        tagline: 'Türkçe öncelikli yapay zekâ çağrı platformu',
-        description:
-          'İşletmelerin telefonla gelen taleplerini doğal Türkçe konuşan yapay zekâ ajanlarıyla karşılayan, gerektiğinde insana devreden programlanabilir çağrı platformu. Randevu, sipariş ve talep akışları iş sistemlerinize bağlanır. Geliştirme aşamasında.',
-      },
-      en: {
-        tagline: 'Turkish-first AI voice platform',
-        description:
-          'A programmable voice platform where AI agents answer inbound calls in natural Turkish, act in your business systems for bookings, orders and tickets, and hand off to a human when needed. Currently in development.',
       },
     },
   },
