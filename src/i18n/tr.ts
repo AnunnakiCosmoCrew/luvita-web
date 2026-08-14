@@ -53,7 +53,7 @@ export const tr: Dictionary = {
     inDevelopment: 'Geliştiriliyor',
   },
   footer: {
-    tagline: 'Kurumsal sistemler için özel yazılım.',
+    tagline: 'Kendi ürünlerini geliştiren, seçili projeleri uçtan uca üstlenen yazılım stüdyosu.',
     nav: 'Alt gezinme',
     services: 'Hizmetler',
     products: 'Ürünler',

@@ -15,7 +15,7 @@ const slugs: Record<Locale, Record<string, string>> = {
   en: { services: 'services', products: 'products', about: 'about', contact: 'contact' },
 };
 
-const navItems = (['services', 'products', 'about', 'contact'] as const).map(
+const navItems = (['products', 'services', 'about', 'contact'] as const).map(
   (key) => ({ label: dict.nav[key], path: slugs[locale][key] })
 );
 
