@@ -11,7 +11,8 @@
  */
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n';
-import { APP_STORE } from '../lib/site';
+import { APP_STORE, UMAY_URL } from '../lib/site';
+import umayIcon from '../assets/icons/umay.png';
 import slicefocusIcon from '../assets/icons/slicefocus.png';
 import lexipowerIcon from '../assets/icons/lexipower.png';
 
@@ -27,7 +28,10 @@ export interface Product {
   name: string;
   status: ProductStatus;
   icon?: ImageMetadata;
-  /** Public link (App Store, site). Omitted while a product is unreleased. */
+  /**
+   * Public link (App Store, product site). A link does not imply 'live' — an
+   * in-development product may already have a site.
+   */
   url?: string;
   copy: Record<Locale, ProductCopy>;
 }
@@ -41,16 +45,18 @@ export const products: Product[] = [
     key: 'umay',
     name: 'Umay',
     status: 'in-development',
+    icon: umayIcon,
+    url: UMAY_URL,
     copy: {
       tr: {
         tagline: 'Türkçe öncelikli yapay zekâ çağrı platformu',
         description:
-          'İşletmelerin telefonla gelen taleplerini doğal Türkçe konuşan yapay zekâ ajanlarıyla karşılayan, gerektiğinde insana devreden programlanabilir çağrı platformu. Randevu, sipariş ve talep akışları iş sistemlerinize bağlanır. Geliştirme aşamasında.',
+          'İşletmelerin telefonla gelen taleplerini doğal Türkçe konuşan yapay zekâ ajanlarıyla karşılayan, gerektiğinde insana devreden programlanabilir çağrı platformu. Randevu, sipariş ve talep akışları iş sistemlerinize bağlanır. Geliştirme aşamasında; demo talep edilebilir.',
       },
       en: {
         tagline: 'Turkish-first AI voice platform',
         description:
-          'A programmable voice platform where AI agents answer inbound calls in natural Turkish, act in your business systems for bookings, orders and tickets, and hand off to a human when needed. Currently in development.',
+          'A programmable voice platform where AI agents answer inbound calls in natural Turkish, act in your business systems for bookings, orders and tickets, and hand off to a human when needed. Currently in development; demos available on request.',
       },
     },
   },

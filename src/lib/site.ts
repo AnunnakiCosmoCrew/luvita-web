@@ -37,6 +37,9 @@ export const TRADE_REGISTRY_NO = '';
 
 export const GITHUB_URL = 'https://github.com/AnunnakiCosmoCrew';
 
+/** Umay product site — the platform is still in development. */
+export const UMAY_URL = 'https://umayconnect.org/';
+
 export const APP_STORE = {
   slicefocus: 'https://apps.apple.com/app/id6761280632',
   lexipower: 'https://apps.apple.com/app/id6766093282',
