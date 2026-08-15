@@ -49,14 +49,14 @@ export const products: Product[] = [
     url: UMAY_URL,
     copy: {
       tr: {
-        tagline: 'Türkçe öncelikli yapay zekâ çağrı platformu',
+        tagline: 'Türkçe öncelikli yapay zekâ ajanı platformu',
         description:
-          'İşletmelerin telefonla gelen taleplerini doğal Türkçe konuşan yapay zekâ ajanlarıyla karşılayan, gerektiğinde insana devreden programlanabilir çağrı platformu. Randevu, sipariş ve talep akışları iş sistemlerinize bağlanır. Geliştirme aşamasında; demo talep edilebilir.',
+          'İşletmelerin müşterileriyle olan iletişimini doğal Türkçe konuşan yapay zekâ ajanlarıyla yürüten, gerektiğinde insana devreden programlanabilir bir platform. Randevu, sipariş ve talep akışları iş sistemlerinize bağlanır. Geliştirme aşamasında; demo talep edilebilir.',
       },
       en: {
-        tagline: 'Turkish-first AI voice platform',
+        tagline: 'Turkish-first AI agent platform',
         description:
-          'A programmable voice platform where AI agents answer inbound calls in natural Turkish, act in your business systems for bookings, orders and tickets, and hand off to a human when needed. Currently in development; demos available on request.',
+          'A programmable platform where AI agents handle your customer conversations in natural Turkish, act in your business systems for bookings, orders and tickets, and hand off to a human when needed. Currently in development; demos available on request.',
       },
     },
   },
