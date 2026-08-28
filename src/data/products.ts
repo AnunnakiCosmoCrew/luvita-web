@@ -11,10 +11,8 @@
  */
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n';
-import { APP_STORE, UMAY_URL } from '../lib/site';
+import { COSMOCREW_URL, UMAY_URL } from '../lib/site';
 import umayIcon from '../assets/icons/umay.png';
-import slicefocusIcon from '../assets/icons/slicefocus.png';
-import lexipowerIcon from '../assets/icons/lexipower.png';
 
 export type ProductStatus = 'live' | 'in-development';
 
@@ -38,7 +36,8 @@ export interface Product {
 
 /**
  * Order is editorial, not chronological: Umay leads as the studio's flagship
- * platform bet, followed by the shipped apps that evidence delivery.
+ * platform bet, followed by the CosmoCrew card — the consumer-apps brand whose
+ * shipped products evidence delivery — then in-development work.
  */
 export const products: Product[] = [
   {
@@ -61,40 +60,20 @@ export const products: Product[] = [
     },
   },
   {
-    key: 'slicefocus',
-    name: 'SliceFocus',
+    key: 'cosmocrew',
+    name: 'CosmoCrew',
     status: 'live',
-    icon: slicefocusIcon,
-    url: APP_STORE.slicefocus,
+    url: COSMOCREW_URL,
     copy: {
       tr: {
-        tagline: 'Dairesel 24 saat planlayıcı',
+        tagline: 'Tüketici uygulamaları markamız',
         description:
-          'Gerçek zamanlı senkronizasyon ve iOS Live Activity destekli günlük planlama ve odak uygulaması. iOS ve macOS App Store’da yayında.',
+          'Tüketici uygulamalarımız CosmoCrew markası altında yayınlanır: App Store’daki SliceFocus ve LexiPower ile web tabanlı gitar öğrenme aracı With Handlebars. Fikirden mağazaya taşınmış ve yıllardır yaşatılan ürünler.',
       },
       en: {
-        tagline: 'Radial 24-hour day planner',
+        tagline: 'Our consumer-apps brand',
         description:
-          'A daily planning and focus app with real-time sync and iOS Live Activity support. Live on the iOS and macOS App Stores.',
-      },
-    },
-  },
-  {
-    key: 'lexipower',
-    name: 'LexiPower',
-    status: 'live',
-    icon: lexipowerIcon,
-    url: APP_STORE.lexipower,
-    copy: {
-      tr: {
-        tagline: 'Kelime defteri ve aralıklı tekrar',
-        description:
-          'Yerel öncelikli (offline-first) mimariyle çalışan kelime öğrenme ve aralıklı tekrar uygulaması. App Store’da yayında.',
-      },
-      en: {
-        tagline: 'Vocabulary notebook with spaced repetition',
-        description:
-          'A vocabulary learning app with an offline-first architecture and a spaced-repetition quiz engine. Live on the App Store.',
+          'Our consumer apps ship under the CosmoCrew brand: SliceFocus and LexiPower on the App Store, and With Handlebars, a web-based guitar learning tool. Products taken from idea to store — and kept alive for years.',
       },
     },
   },
