@@ -6,13 +6,18 @@
  * read by enterprise prospects, so no product may be implied to exist before
  * it does.
  *
- * `icon` is optional; ProductCard falls back to a letter monogram rather than
- * inventing a logo. Icons live in src/assets/icons (astro:assets).
+ * Every product carries a mark: the real brand mark where one exists,
+ * otherwise a simple house-designed placeholder mark (full-bleed colored tile,
+ * like Umay's). Icons live in src/assets/icons (astro:assets); ProductCard
+ * still falls back to a letter monogram if `icon` is omitted.
  */
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n';
 import { COSMOCREW_URL, UMAY_URL } from '../lib/site';
 import umayIcon from '../assets/icons/umay.png';
+import cosmocrewIcon from '../assets/icons/cosmocrew.svg';
+import luviEngineIcon from '../assets/icons/luvi-engine.svg';
+import pelerinIcon from '../assets/icons/pelerin.svg';
 
 export type ProductStatus = 'live' | 'in-development';
 
@@ -63,6 +68,7 @@ export const products: Product[] = [
     key: 'cosmocrew',
     name: 'CosmoCrew',
     status: 'live',
+    icon: cosmocrewIcon,
     url: COSMOCREW_URL,
     copy: {
       tr: {
@@ -81,6 +87,7 @@ export const products: Product[] = [
     key: 'luvi-engine',
     name: 'Luvi Engine',
     status: 'in-development',
+    icon: luviEngineIcon,
     copy: {
       tr: {
         tagline: 'Saha keşif ve teklif motoru',
@@ -91,6 +98,26 @@ export const products: Product[] = [
         tagline: 'Field survey & quotation engine',
         description:
           'An offline-first survey and quoting app for teams that install energy systems: a ballpark range in seconds, a firmed bilingual PDF quote in minutes. Türkiye-specific tariff and incentive rules are built into the calculation engine. Currently in development.',
+      },
+    },
+  },
+  // Deliberately a teaser: what Pelerin does is not public yet, so the card
+  // names it and nothing more. Do not add domain hints anywhere on the site.
+  {
+    key: 'pelerin',
+    name: 'Pelerin',
+    status: 'in-development',
+    icon: pelerinIcon,
+    copy: {
+      tr: {
+        tagline: 'Yeni bir kurumsal ürün',
+        description:
+          'Henüz duyurmadığımız yeni bir kurumsal ürün üzerinde çalışıyoruz. Geliştirme aşamasında; detaylar yakında.',
+      },
+      en: {
+        tagline: 'A new enterprise product',
+        description:
+          'We are working on a new enterprise product we have not announced yet. Currently in development; details soon.',
       },
     },
   },
