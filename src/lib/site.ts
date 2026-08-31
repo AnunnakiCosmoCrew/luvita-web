@@ -31,8 +31,10 @@ export const CONTACT_EMAIL = 'contact@luvita.tr';
 /**
  * Registry numbers — filled in after trade-registry registration completes.
  * Leave empty ('') to hide the corresponding footer line.
+ * (VKN is the first 10 digits of the MERSİS number; not shown
+ * as a separate footer line by design.)
  */
-export const MERSIS_NO = '';
+export const MERSIS_NO = '0609147476900001';
 export const TRADE_REGISTRY_NO = '';
 
 export const GITHUB_URL = 'https://github.com/AnunnakiCosmoCrew';
