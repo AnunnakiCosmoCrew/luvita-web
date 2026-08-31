@@ -42,5 +42,5 @@ export const GITHUB_URL = 'https://github.com/AnunnakiCosmoCrew';
 /** Umay product site — the platform is still in development. */
 export const UMAY_URL = 'https://umayconnect.org/';
 
-/** The studio's consumer-apps brand — shipped products live under it. */
+/** The studio's apps brand — shipped products live under it. */
 export const COSMOCREW_URL = 'https://cosmocrew.dev/';
