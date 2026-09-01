@@ -31,8 +31,8 @@ export const CONTACT_EMAIL = 'contact@luvita.tr';
 /**
  * Registry numbers — filled in after trade-registry registration completes.
  * Leave empty ('') to hide the corresponding footer line.
- * (VKN is the first 10 digits of the MERSİS number; not shown
- * as a separate footer line by design.)
+ * (The MERSİS number is "0" + VKN + "00001", so VKN 6091474769 is
+ * digits 2–11; not shown as a separate footer line by design.)
  */
 export const MERSIS_NO = '0609147476900001';
 export const TRADE_REGISTRY_NO = '';
