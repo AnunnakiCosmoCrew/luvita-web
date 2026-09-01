@@ -35,7 +35,7 @@ export const CONTACT_EMAIL = 'contact@luvita.tr';
  * digits 2–11; not shown as a separate footer line by design.)
  */
 export const MERSIS_NO = '0609147476900001';
-export const TRADE_REGISTRY_NO = '';
+export const TRADE_REGISTRY_NO = '22756';
 
 export const GITHUB_URL = 'https://github.com/AnunnakiCosmoCrew';
 
