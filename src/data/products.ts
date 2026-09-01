@@ -41,8 +41,8 @@ export interface Product {
 
 /**
  * Order is editorial, not chronological: Umay leads as the studio's flagship
- * platform bet, followed by the CosmoCrew card — the consumer-apps brand whose
- * shipped products evidence delivery — then in-development work.
+ * platform bet, followed by the CosmoCrew card — the apps brand whose shipped
+ * products evidence delivery — then in-development work.
  */
 export const products: Product[] = [
   {
@@ -72,14 +72,14 @@ export const products: Product[] = [
     url: COSMOCREW_URL,
     copy: {
       tr: {
-        tagline: 'Tüketici uygulamaları markamız',
+        tagline: 'Uygulama markamız',
         description:
-          'Tüketici uygulamalarımız CosmoCrew markası altında yayınlanır: App Store’daki SliceFocus ve LexiPower ile web tabanlı gitar öğrenme aracı With Handlebars. Fikirden mağazaya taşınmış ve yıllardır yaşatılan ürünler.',
+          'Uygulamalarımız CosmoCrew markası altında yayınlanır: SliceFocus, LexiPower ve With Handlebars. Fikirden yayına taşınmış ve yıllardır yaşatılan ürünler.',
       },
       en: {
-        tagline: 'Our consumer-apps brand',
+        tagline: 'Our apps brand',
         description:
-          'Our consumer apps ship under the CosmoCrew brand: SliceFocus and LexiPower on the App Store, and With Handlebars, a web-based guitar learning tool. Products taken from idea to store — and kept alive for years.',
+          'Our apps ship under the CosmoCrew brand: SliceFocus, LexiPower and With Handlebars. Products taken from idea to launch — and kept alive for years.',
       },
     },
   },
