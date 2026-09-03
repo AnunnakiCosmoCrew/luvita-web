@@ -2,7 +2,6 @@ export interface Dictionary {
   siteName: string;
   skipToContent: string;
   nav: {
-    services: string;
     products: string;
     about: string;
     contact: string;
@@ -18,7 +17,6 @@ export interface Dictionary {
   footer: {
     tagline: string;
     nav: string;
-    services: string;
     products: string;
     about: string;
     contact: string;
@@ -39,7 +37,6 @@ export const tr: Dictionary = {
   siteName: 'Luvita',
   skipToContent: 'İçeriğe geç',
   nav: {
-    services: 'Hizmetler',
     products: 'Ürünler',
     about: 'Hakkımızda',
     contact: 'İletişim',
@@ -53,9 +50,8 @@ export const tr: Dictionary = {
     inDevelopment: 'Geliştiriliyor',
   },
   footer: {
-    tagline: 'Kendi ürünlerini geliştiren, seçili projeleri uçtan uca üstlenen yazılım stüdyosu.',
+    tagline: 'Kendi yazılım ürünlerini geliştiren bağımsız bir şirket.',
     nav: 'Alt gezinme',
-    services: 'Hizmetler',
     products: 'Ürünler',
     about: 'Hakkımızda',
     contact: 'İletişim',

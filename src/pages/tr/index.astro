@@ -2,27 +2,25 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Button from '../../components/Button.astro';
-import ServiceCard from '../../components/ServiceCard.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { localizedPath } from '../../i18n';
-import { services } from '../../data/services';
 import { products } from '../../data/products';
 ---
 
 <BaseLayout
   locale="tr"
-  title="Luvita — Yazılım stüdyosu"
-  description="Luvita, bir yazılım stüdyosudur. Kendi ürünlerini geliştirir; seçili projelerde yazılımı uçtan uca üstlenir."
+  title="Luvita — Yazılım ürünleri şirketi"
+  description="Luvita, kendi yazılım ürünlerini geliştiren bağımsız bir şirkettir. Ürünlerini tasarlar, yayınlar ve bakımını üstlenir; mühendislik pratiği bankacılık ve kurumsal sistemlerden gelir."
   paths={{ tr: '', en: '' }}
 >
   <Hero
-    title="Ürün geliştiriyoruz; proje üstleniyoruz."
-    lead="Luvita bir yazılım stüdyosudur: kendi ürünlerini tasarlar, yayınlar ve yaşatır; seçili projelerde aynı pratiği uçtan uca uygular."
+    title="Ürün geliştiriyoruz, yayında tutuyoruz."
+    lead="Bankacılık ve kurumsal sistemlerde şekillenen mühendislik pratiğimizi kendi ürünlerimize uyguluyoruz: tasarımdan yayına, yıllar süren bakıma."
   >
     <Fragment slot="actions">
       <Button href={localizedPath('tr', 'urunler')}>Ürünlerimizi görün</Button>
       <Button href={localizedPath('tr', 'iletisim')} variant="secondary">
-        Projenizi konuşalım
+        Bize ulaşın
       </Button>
     </Fragment>
   </Hero>
@@ -33,7 +31,7 @@ import { products } from '../../data/products';
       <h2>Dört ürün: biri yayında, üçü geliştirmede</h2>
       <p class="lead">
         App Store’da yayında olan ürünlerimiz, tasarımdan yayına uçtan uca
-        yazılım teslim edebildiğimizin kanıtı; geliştirmekte olduklarımız ise
+        yazılım üretebildiğimizin kanıtı; geliştirmekte olduklarımız ise
         nereye baktığımızı gösteriyor.
       </p>
     </div>
@@ -43,29 +41,11 @@ import { products } from '../../data/products';
   </section>
 
   <section class="container">
-    <div class="section-head">
-      <p class="eyebrow">Hizmetler</p>
-      <h2>Aynı pratik, sizin projeniz için</h2>
-      <p class="lead">
-        Ürünlerimizin arkasındaki mühendislik pratiğini seçili projelere
-        taşıyoruz: keşiften geliştirmeye, yayına ve uzun soluklu bakıma.
-      </p>
-    </div>
-    <div class="product-grid">
-      {
-        services.map((service) => (
-          <ServiceCard service={service.copy.tr} />
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="container">
     <div class="cta-panel">
-      <h2>Bir projeniz mi var?</h2>
+      <h2>Ürünlerimizi konuşalım</h2>
       <p class="lead">
-        İhtiyacınızı birlikte netleştirelim; kapsamı, yaklaşımı ve yol
-        haritasını açıkça ortaya koyan bir teklifle dönelim.
+        Ürünlerimizden birini kurumunuzda kullanmayı düşünüyor ya da yol
+        haritamızı merak ediyorsanız yazın; her e-postaya dönüş yapıyoruz.
       </p>
       <Button href={localizedPath('tr', 'iletisim')}>İletişime geçin</Button>
     </div>

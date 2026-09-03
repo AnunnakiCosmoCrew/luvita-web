@@ -27,11 +27,11 @@ npm run build    # static build to dist/
 ## Content model
 
 - Page copy lives inline in the parallel page trees `src/pages/tr/` and
-  `src/pages/en/`. Slugs are localized (`hizmetler` ↔ `services`); each page
+  `src/pages/en/`. Slugs are localized (`urunler` ↔ `products`); each page
   declares its slug pair via the layout's `paths` prop, which drives both the
   language switcher and `hreflang` alternates.
 - Shared chrome strings (nav, footer, 404): `src/i18n/tr.ts` + `en.ts`.
-- Services and products data: `src/data/services.ts`, `src/data/products.ts`.
+- Product data: `src/data/products.ts`.
 - Company identity constants (legal name, location, e-mail, MERSİS):
   `src/lib/site.ts` — **update `MERSIS_NO` / `TRADE_REGISTRY_NO` there once
   registration completes**, and swap `CONTACT_EMAIL` when

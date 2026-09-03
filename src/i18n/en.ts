@@ -4,7 +4,6 @@ export const en: Dictionary = {
   siteName: 'Luvita',
   skipToContent: 'Skip to content',
   nav: {
-    services: 'Services',
     products: 'Products',
     about: 'About',
     contact: 'Contact',
@@ -18,9 +17,8 @@ export const en: Dictionary = {
     inDevelopment: 'In development',
   },
   footer: {
-    tagline: 'A software studio: our own products, and select projects end to end.',
+    tagline: 'An independent company building software products of its own.',
     nav: 'Footer',
-    services: 'Services',
     products: 'Products',
     about: 'About',
     contact: 'Contact',

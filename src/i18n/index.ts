@@ -5,7 +5,7 @@
  * `src/pages/tr/` and `src/pages/en/` — only strings shared across pages are
  * extracted here. Each page declares its own path pair (see `PagePaths` in
  * BaseLayout) so the language switcher and hreflang alternates always point at
- * the true sibling page, even when slugs differ (hizmetler ↔ services).
+ * the true sibling page, even when slugs differ (urunler ↔ products).
  */
 import { tr, type Dictionary } from './tr';
 import { en } from './en';
@@ -24,7 +24,7 @@ export function t(locale: Locale): Dictionary {
 
 /**
  * Base-aware URL for a locale-prefixed internal path.
- * `localizedPath('tr', 'hizmetler')` → `<base>/tr/hizmetler/`;
+ * `localizedPath('tr', 'urunler')` → `<base>/tr/urunler/`;
  * an empty path returns the locale home.
  */
 export function localizedPath(locale: Locale, path = ''): string {

@@ -11,11 +11,11 @@ const { locale, paths } = Astro.props;
 const dict = t(locale);
 
 const slugs: Record<Locale, Record<string, string>> = {
-  tr: { services: 'hizmetler', products: 'urunler', about: 'hakkimizda', contact: 'iletisim' },
-  en: { services: 'services', products: 'products', about: 'about', contact: 'contact' },
+  tr: { products: 'urunler', about: 'hakkimizda', contact: 'iletisim' },
+  en: { products: 'products', about: 'about', contact: 'contact' },
 };
 
-const navItems = (['products', 'services', 'about', 'contact'] as const).map(
+const navItems = (['products', 'about', 'contact'] as const).map(
   (key) => ({ label: dict.nav[key], path: slugs[locale][key] })
 );
 
