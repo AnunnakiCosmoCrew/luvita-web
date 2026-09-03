@@ -19,13 +19,18 @@ configuration and the DNS records.
   `status` field; only shipped products may be marked `'live'`, and
   in-development ones must say so in the copy too. Never imply a product
   exists before it does — banks read this page.
+- **No services/consultancy surface.** The site presents Luvita as a product
+  company only (adr/0004). Never add a services page, a service menu, an
+  engagement-process band, or copy soliciting client projects — that framing
+  is what got the company misclassified as an agency. Turnkey work can still
+  be accepted; it is simply never advertised here.
 - **Zero client-side JS, no external requests.** No analytics, no fonts, no
   CDN embeds. Privacy pages promise "no cookies, no tracking" — keep it true.
 - Every internal link goes through `withBase()` (`src/lib/url.ts`) or
   `localizedPath()` (`src/i18n/index.ts`). Never hardcode `/luvita-web/` or a
   locale prefix in templates.
 - Every page passes its localized slug pair via the layout `paths` prop
-  (e.g. `{ tr: 'hizmetler', en: 'services' }`) — this drives hreflang and the
+  (e.g. `{ tr: 'urunler', en: 'products' }`) — this drives hreflang and the
   language switcher. When adding a page, add BOTH locale variants.
 
 ## Conventions

@@ -2,27 +2,25 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Button from '../../components/Button.astro';
-import ServiceCard from '../../components/ServiceCard.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { localizedPath } from '../../i18n';
-import { services } from '../../data/services';
 import { products } from '../../data/products';
 ---
 
 <BaseLayout
   locale="en"
-  title="Luvita — Software studio"
-  description="Luvita is a software studio. We build our own products and take on select projects end to end."
+  title="Luvita — Software product company"
+  description="Luvita is an independent software product company. We design, ship and maintain products of our own, with an engineering practice formed in banking and enterprise systems."
   paths={{ tr: '', en: '' }}
 >
   <Hero
-    title="We build products. We take on projects."
-    lead="Luvita is a software studio: we design, ship and run our own products, and bring the same practice to select projects end to end."
+    title="We build products and keep them running."
+    lead="The engineering practice we formed in banking and enterprise systems goes into products of our own — from design to release and years of upkeep."
   >
     <Fragment slot="actions">
       <Button href={localizedPath('en', 'products')}>See our products</Button>
       <Button href={localizedPath('en', 'contact')} variant="secondary">
-        Let's talk about your project
+        Get in touch
       </Button>
     </Fragment>
   </Hero>
@@ -32,9 +30,9 @@ import { products } from '../../data/products';
       <p class="eyebrow">Products</p>
       <h2>Four products: one live, three in development</h2>
       <p class="lead">
-        Our apps on the App Store are proof that we deliver software end to
-        end — from design to release and beyond. What we are building next
-        shows where we are headed.
+        Our apps on the App Store are proof that we take software all the way
+        from design to release and beyond. What we are building next shows
+        where we are headed.
       </p>
     </div>
     <div class="product-grid">
@@ -43,30 +41,11 @@ import { products } from '../../data/products';
   </section>
 
   <section class="container">
-    <div class="section-head">
-      <p class="eyebrow">Services</p>
-      <h2>The same practice, for your project</h2>
-      <p class="lead">
-        We bring the engineering practice behind our products to select client
-        projects: discovery through development, release and long-term
-        maintenance.
-      </p>
-    </div>
-    <div class="product-grid">
-      {
-        services.map((service) => (
-          <ServiceCard service={service.copy.en} />
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="container">
     <div class="cta-panel">
-      <h2>Have a project in mind?</h2>
+      <h2>Let's talk about our products</h2>
       <p class="lead">
-        Let's clarify what you need — we'll come back with a proposal that
-        lays out scope, approach and roadmap in plain terms.
+        Considering one of our products for your organisation, or curious
+        where the roadmap goes next? Write to us — we answer every email.
       </p>
       <Button href={localizedPath('en', 'contact')}>Contact us</Button>
     </div>

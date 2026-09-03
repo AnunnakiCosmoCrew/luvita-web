@@ -8,13 +8,13 @@ import { CONTACT_EMAIL } from '../../lib/site';
 <BaseLayout
   locale="tr"
   title="İletişim — Luvita"
-  description="Luvita ile iletişime geçin: projenizi konuşmak için bize e-posta gönderin."
+  description="Luvita ile iletişime geçin — bize e-posta gönderin, bir gün içinde dönüş yapalım."
   paths={{ tr: 'iletisim', en: 'contact' }}
 >
   <Hero
     eyebrow="İletişim"
-    title="Projenizi konuşalım"
-    lead="Kısa bir e-posta yeterli — ihtiyacınızı birkaç cümleyle anlatın, bir gün içinde dönüş yapalım."
+    title="Bize ulaşın"
+    lead="Kısa bir e-posta yeterli — aklınızdakini birkaç cümleyle yazın, bir gün içinde dönüş yapalım."
   >
     <Fragment slot="actions">
       <Button href={`mailto:${CONTACT_EMAIL}`}>E-posta gönderin</Button>
@@ -26,9 +26,7 @@ import { CONTACT_EMAIL } from '../../lib/site';
       <div class="contact-card">
         <h2>E-posta</h2>
         <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
-        <p class="contact-note">
-          Görüşmelerimizi çevrimiçi ya da sizin ofisinizde yapıyoruz.
-        </p>
+        <p class="contact-note">Bodrum’dan uzaktan çalışıyoruz.</p>
       </div>
     </div>
   </section>

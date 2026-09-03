@@ -19,7 +19,6 @@ const year = new Date().getFullYear();
 
 const slugs: Record<Locale, Record<string, string>> = {
   tr: {
-    services: 'hizmetler',
     products: 'urunler',
     about: 'hakkimizda',
     contact: 'iletisim',
@@ -27,7 +26,6 @@ const slugs: Record<Locale, Record<string, string>> = {
     kvkk: 'kvkk-aydinlatma',
   },
   en: {
-    services: 'services',
     products: 'products',
     about: 'about',
     contact: 'contact',
@@ -38,8 +36,8 @@ const slugs: Record<Locale, Record<string, string>> = {
 
 const links = (
   locale === 'tr'
-    ? (['services', 'products', 'about', 'contact', 'privacy', 'kvkk'] as const)
-    : (['services', 'products', 'about', 'contact', 'privacy'] as const)
+    ? (['products', 'about', 'contact', 'privacy', 'kvkk'] as const)
+    : (['products', 'about', 'contact', 'privacy'] as const)
 ).map((key) => ({
   label: dict.footer[key],
   href: localizedPath(locale, slugs[locale][key]),

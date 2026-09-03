@@ -8,13 +8,13 @@ import { CONTACT_EMAIL } from '../../lib/site';
 <BaseLayout
   locale="en"
   title="Contact — Luvita"
-  description="Get in touch with Luvita: send us an email to talk about your project."
+  description="Get in touch with Luvita — send us an email and we will reply within a day."
   paths={{ tr: 'iletisim', en: 'contact' }}
 >
   <Hero
     eyebrow="Contact"
-    title="Let's talk about your project"
-    lead="A short email is enough — describe what you need in a few sentences and we'll get back to you within a day."
+    title="Get in touch"
+    lead="A short email is enough — tell us what you have in mind in a few sentences and we'll get back to you within a day."
   >
     <Fragment slot="actions">
       <Button href={`mailto:${CONTACT_EMAIL}`}>Send an email</Button>
@@ -26,7 +26,7 @@ import { CONTACT_EMAIL } from '../../lib/site';
       <div class="contact-card">
         <h2>Email</h2>
         <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
-        <p class="contact-note">We meet online or at your office.</p>
+        <p class="contact-note">We work remotely from Bodrum, Türkiye.</p>
       </div>
     </div>
   </section>
