@@ -53,7 +53,9 @@ configuration and the DNS records.
 ## Conventions
 
 - Node ≥24 (`nvm use`), npm. `npm run check` + `npm run build` must pass
-  before pushing (CI runs both).
+  before pushing. `ci.yml` runs both on every pull request and `deploy.yml`
+  runs them again on `main` before publishing; both read the version from
+  `.nvmrc`. `main` is unprotected, so the PR run informs — read it.
 - Branch naming: `feature/lw-N-slug`; trunk-based, PRs to `main`; deploy on
   merge to main.
 - ADRs live in `adr/` in this repo (site-scoped decisions only).

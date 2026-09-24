@@ -1,0 +1,43 @@
+name: CI
+
+# The gate for pull requests. `deploy.yml` runs the same two commands, but only
+# after a merge to main — which is the wrong way round for the check that says
+# whether a change is safe to merge. This runs them on the PR instead.
+#
+# main has no branch protection, so this workflow informs rather than blocks.
+# Turn on "Require status checks to pass" for `build` in the repo's branch
+# settings to make it a real gate.
+
+on:
+  pull_request:
+    branches: [main]
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A new push to a PR supersedes the run in flight; nothing here is worth
+# finishing once the code it checked is gone.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # One source for the version, shared with deploy.yml and `nvm use`.
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check
+        run: npm run check
+      - name: Build
+        run: npm run build
