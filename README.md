@@ -1,8 +1,9 @@
 # luvita-web
 
 Corporate website for **Luvita** (Luvita Teknoloji Enerji Yazılım Sanayi ve
-Ticaret Limited Şirketi) — a software company based in Bodrum, Türkiye,
-building custom software for banking and enterprise clients.
+Ticaret Limited Şirketi) — an independent software product company based in
+Bodrum, Türkiye. Luvita designs, ships and maintains products of its own, with
+an engineering practice formed in banking and enterprise systems.
 
 Live at: <https://luvita.tr>
 
@@ -43,8 +44,14 @@ npm run build    # static build to dist/
 
 ## Editorial rule
 
-The site presents the company **exclusively as a software house**. The
-solar/GES line of business is deliberately absent from all body copy (see
+The site presents the company **exclusively as a software product company** —
+never as a services, consultancy or agency business (see `adr/0004`). The
+banking and enterprise background is the engineering *practice* behind the
+products, not an offer to build software for clients: no services menu, no
+engagement process, no copy soliciting client projects. Turnkey work can still
+be accepted; it is simply never advertised here.
+
+The solar/GES line of business is deliberately absent from all body copy (see
 `adr/0003`); the full trade name (which contains "Enerji") appears only in
 the footer legal-identity block, as legally required.
 
