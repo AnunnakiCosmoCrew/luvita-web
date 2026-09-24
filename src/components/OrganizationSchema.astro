@@ -7,6 +7,12 @@
  * this — "could not verify the company website", against a site whose legal
  * name was real but machine-invisible (see adr/0005).
  *
+ * `legalName` carries the full trade name, which contains "Enerji". That is
+ * inside adr/0003 as amended by adr/0005: this field exists so a verifier can
+ * match the site against a registered company, and it is machine-readable
+ * identity, not copy that positions the company. Page `description` metadata
+ * stays brand-based.
+ *
  * `address` carries locality, region and country but deliberately NO
  * `streetAddress`: the registered office is the founder's home (see
  * `LOCATION` in src/lib/site.ts). City level is what verifies the company

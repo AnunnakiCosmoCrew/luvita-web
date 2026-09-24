@@ -20,8 +20,8 @@ export default defineConfig({
   base: '/',
   trailingSlash: 'ignore',
   output: 'static',
-  // All page content lives under /tr/ and /en/ (adr/0002), but the root URL is
-  // NOT a redirect: `redirectToDefaultLocale: false` is what lets
+  // Localized content lives under /tr/ and /en/ (adr/0002); the root URL is a
+  // page of its own, NOT a redirect. `redirectToDefaultLocale: false` is what lets
   // `src/pages/index.astro` exist as a real home page outside the locale
   // structure. With it set to true, Astro emits a `noindex` meta-refresh stub
   // at `/` and silently ignores that page — which left the bare domain unable

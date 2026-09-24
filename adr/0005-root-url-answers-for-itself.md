@@ -50,6 +50,13 @@ each other and are ignored; `BaseHead` derives that from the page's own
 The JSON-LD renders on **every** page, from `BaseHead`, because we do not get
 to choose which URL a verifier lands on.
 
+This meets adr/0003 — "no GES/solar content", which had been written as "the
+full trade name appears only in the footer legal block" — on its own terms
+rather than around them. The trade name identifies the entity here; it does
+not position the company. The head metadata of the root page stays
+brand-based for that reason, and adr/0003 is amended to state the test as
+function rather than location.
+
 The street address stays off the page. The registered office is the founder's
 home; `address` in the JSON-LD carries locality, region and country and no
 `streetAddress`. City level is what verifies a company without publishing

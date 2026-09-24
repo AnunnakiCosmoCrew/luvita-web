@@ -43,3 +43,27 @@ install energy systems". This stays inside the decision above:
 - The sector is named in the third person — the site never says Luvita
   performs installations. What it claims is true: we build the software.
 - No solar hardware, panel, or installation-service copy anywhere.
+
+## Update 2026-09-24 — the trade name is legal identity, not a footer-only string
+
+The original decision said the full trade name appears "only in the footer
+legal-identity block". The constraint it was really drawing is about
+*function*, not location: the name that contains "Enerji" may identify the
+legal entity, and may never position the company.
+
+Two surfaces added in adr/0005 need it under that test, and now carry it:
+
+- the root entry page's identity block — the same legal block the footer
+  shows, on the one URL that has to answer for itself;
+- `legalName` in the Organization JSON-LD, whose entire purpose is to let a
+  verifier match the site against a registered company. It renders on every
+  page, and is machine-readable data, not display copy.
+
+What stays out, unchanged: headlines, leads, product and service copy, and
+`<meta name="description">` — the snippet a search result shows is how the
+company reads at a glance, which is exactly what this ADR protects. The short
+brand "Luvita" carries all of those.
+
+No solar services, imagery or copy anywhere; that part of the decision is
+untouched.
+

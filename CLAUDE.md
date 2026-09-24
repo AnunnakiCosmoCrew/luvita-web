@@ -8,9 +8,15 @@ configuration and the DNS records.
 ## Hard rules
 
 - **No GES/solar content in the site body.** The company's solar business is
-  presented under a separate brand elsewhere. The full trade name (contains
-  "Enerji") may appear ONLY in the footer legal block (`src/lib/site.ts` →
-  `LEGAL_NAME`). Never add solar services, imagery, or copy here (adr/0003).
+  presented under a separate brand elsewhere. Never add solar services,
+  imagery, or copy here (adr/0003).
+- **The full trade name (contains "Enerji") is legal identity, never copy**
+  (adr/0003, amended by adr/0005). `LEGAL_NAME` (`src/lib/site.ts`) may appear
+  only where it identifies the legal entity: the footer legal block, the root
+  entry page's identity block, and `legalName` in the Organization JSON-LD.
+  It must never appear in copy that positions the company — headlines, leads,
+  product or service text, or a `<meta name="description">`, which is the
+  snippet a search result shows. The short brand "Luvita" carries those.
 - **Never publish the registered street address.** It is a residential
   address; the site shows city-level `LOCATION` only (`src/lib/site.ts`).
   Restore a full address only when the company has an office or virtual-office
