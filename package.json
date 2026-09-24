@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Corporate website for Luvita Teknoloji — custom software for banking and enterprise.",
+  "description": "Corporate website for Luvita Teknoloji — an independent software product company, with an engineering practice formed in banking and enterprise systems.",
   "engines": {
     "node": ">=24"
   },
