@@ -26,6 +26,17 @@ configuration and the DNS records.
   be accepted; it is simply never advertised here.
 - **Zero client-side JS, no external requests.** No analytics, no fonts, no
   CDN embeds. Privacy pages promise "no cookies, no tracking" — keep it true.
+- **The root URL answers for itself** (adr/0005). `https://luvita.tr/` is a
+  real page — the bilingual identity card in `src/pages/index.astro` — and
+  never a redirect again. It carries the registered trade name,
+  `contact@luvita.tr`, the city, the registry numbers and Organization JSON-LD
+  **in the HTML the server sends**, because the reader it exists for is a
+  verifier running `curl`, not a browser: the previous stub bounced browsers
+  to `/tr/` and showed everything else a blank page, which is the failure mode
+  that cost a credit-programme round. Never set `redirectToDefaultLocale: true`
+  again — it makes Astro generate the root itself and silently ignore that
+  page. The JSON-LD ships from `BaseHead` on every page, since we do not get
+  to choose where a verifier lands.
 - Every internal link goes through `withBase()` (`src/lib/url.ts`) or
   `localizedPath()` (`src/i18n/index.ts`). Never hardcode `/luvita-web/` or a
   locale prefix in templates.

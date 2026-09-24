@@ -10,7 +10,9 @@ Live at: <https://luvita.tr>
 
 - [Astro 7](https://astro.build) static site — zero client JS, hand-written CSS
 - Bilingual (TR default + EN) via Astro's built-in i18n routing
-  (`/tr/…`, `/en/…`; `/` redirects to `/tr/`)
+  (`/tr/…`, `/en/…`). `/` is **not** a redirect: it serves a bilingual entry
+  page that names the company, its contact address and its registry numbers in
+  the served HTML, and links into both language trees (`adr/0005`)
 - Deployed to GitHub Pages via `.github/workflows/deploy.yml`
 - Node ≥ 24 (`.nvmrc` — run `nvm use`)
 
@@ -33,10 +35,11 @@ npm run build    # static build to dist/
 - Shared chrome strings (nav, footer, 404): `src/i18n/tr.ts` + `en.ts`.
 - Product data: `src/data/products.ts`.
 - Company identity constants (legal name, location, e-mail, MERSİS):
-  `src/lib/site.ts` — **update `MERSIS_NO` / `TRADE_REGISTRY_NO` there once
-  registration completes**, and swap `CONTACT_EMAIL` when
-  `info@luvita.com.tr` is live. `LOCATION` is city-level on purpose: the
-  registered office is a home address and is not published here.
+  `src/lib/site.ts` — the single source for the footer, the root entry page
+  and the `Organization` JSON-LD (`src/components/OrganizationSchema.astro`).
+  Swap `CONTACT_EMAIL` when `info@luvita.com.tr` is live. `LOCATION` is
+  city-level on purpose: the registered office is a home address and is not
+  published here.
 
 ## Editorial rule
 

@@ -1,0 +1,64 @@
+---
+/**
+ * Organization structured data (schema.org JSON-LD).
+ *
+ * Emitted on every page, because we cannot choose which URL a verifier lands
+ * on. The Google for Startups round lost in September 2026 failed on exactly
+ * this — "could not verify the company website", against a site whose legal
+ * name was real but machine-invisible (see adr/0005).
+ *
+ * `address` carries locality, region and country but deliberately NO
+ * `streetAddress`: the registered office is the founder's home (see
+ * `LOCATION` in src/lib/site.ts). City level is what verifies the company
+ * without publishing where someone lives.
+ */
+import { absoluteUrl } from '../lib/url';
+import {
+  BRAND,
+  LEGAL_NAME,
+  CONTACT_EMAIL,
+  MERSIS_NO,
+  TRADE_REGISTRY_NO,
+  GITHUB_URL,
+  COSMOCREW_URL,
+} from '../lib/site';
+
+const identifiers = [
+  MERSIS_NO && { '@type': 'PropertyValue', name: 'MERSİS', value: MERSIS_NO },
+  TRADE_REGISTRY_NO && {
+    '@type': 'PropertyValue',
+    name: 'Ticaret Sicil No',
+    value: TRADE_REGISTRY_NO,
+  },
+].filter(Boolean);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: BRAND,
+  legalName: LEGAL_NAME,
+  url: absoluteUrl(),
+  logo: absoluteUrl('favicon.svg'),
+  image: absoluteUrl('og.png'),
+  email: CONTACT_EMAIL,
+  foundingDate: '2026-08',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bodrum',
+    addressRegion: 'Muğla',
+    addressCountry: 'TR',
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      email: CONTACT_EMAIL,
+      availableLanguage: ['Turkish', 'English'],
+    },
+  ],
+  identifier: identifiers,
+  sameAs: [GITHUB_URL, COSMOCREW_URL],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />

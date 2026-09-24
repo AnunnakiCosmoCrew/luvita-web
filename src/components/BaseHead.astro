@@ -3,6 +3,7 @@ import { absoluteUrl, withBase } from '../lib/url';
 import { BRAND } from '../lib/site';
 import { LOCALES, DEFAULT_LOCALE, bcp47, type Locale } from '../i18n';
 import type { PagePaths } from '../layouts/BaseLayout.astro';
+import OrganizationSchema from './OrganizationSchema.astro';
 
 interface Props {
   locale: Locale;
@@ -11,15 +12,40 @@ interface Props {
   paths: PagePaths;
   /** Optional social image path in public/, relative (no leading slash). */
   ogImage?: string;
+  /**
+   * Absolute canonical URL, when this page is not the `paths[locale]` sibling
+   * of a locale pair. Only the root entry page (src/pages/index.astro) needs
+   * it: it sits outside the locale trees and is its own canonical.
+   */
+  canonicalUrl?: string;
 }
 
-const { locale, title, description, paths, ogImage = 'og.png' } = Astro.props;
+const {
+  locale,
+  title,
+  description,
+  paths,
+  ogImage = 'og.png',
+  canonicalUrl,
+} = Astro.props;
 
 function localePath(l: Locale): string {
   return paths[l] === '' ? l : `${l}/${paths[l]}`;
 }
 
-const canonical = absoluteUrl(localePath(locale));
+const canonical = canonicalUrl ?? absoluteUrl(localePath(locale));
+
+/**
+ * `x-default` is the URL that serves no single language. For the home cluster
+ * that is the site root — the entry page at `/` (adr/0005) — and all three
+ * pages in the cluster (`/`, `/tr/`, `/en/`) must name the same one, or the
+ * annotations contradict each other and get ignored. Every other cluster has
+ * no such page, so it falls back to the default-locale sibling.
+ */
+const isHome = paths.tr === '' && paths.en === '';
+const xDefault = isHome
+  ? absoluteUrl()
+  : absoluteUrl(localePath(DEFAULT_LOCALE));
 const image = absoluteUrl(ogImage);
 ---
 
@@ -35,11 +61,7 @@ const image = absoluteUrl(ogImage);
     <link rel="alternate" hreflang={bcp47(l)} href={absoluteUrl(localePath(l))} />
   ))
 }
-<link
-  rel="alternate"
-  hreflang="x-default"
-  href={absoluteUrl(localePath(DEFAULT_LOCALE))}
-/>
+<link rel="alternate" hreflang="x-default" href={xDefault} />
 
 <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
 <meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
@@ -61,3 +83,5 @@ const image = absoluteUrl(ogImage);
 <meta name="twitter:image" content={image} />
 
 <link rel="sitemap" href={withBase('sitemap-index.xml')} />
+
+<OrganizationSchema />
