@@ -8,9 +8,15 @@ configuration and the DNS records.
 ## Hard rules
 
 - **No GES/solar content in the site body.** The company's solar business is
-  presented under a separate brand elsewhere. The full trade name (contains
-  "Enerji") may appear ONLY in the footer legal block (`src/lib/site.ts` →
-  `LEGAL_NAME`). Never add solar services, imagery, or copy here (adr/0003).
+  presented under a separate brand elsewhere. Never add solar services,
+  imagery, or copy here (adr/0003).
+- **The full trade name (contains "Enerji") is legal identity, never copy**
+  (adr/0003, amended by adr/0005). `LEGAL_NAME` (`src/lib/site.ts`) may appear
+  only where it identifies the legal entity: the footer legal block, the root
+  entry page's identity block, and `legalName` in the Organization JSON-LD.
+  It must never appear in copy that positions the company — headlines, leads,
+  product or service text, or a `<meta name="description">`, which is the
+  snippet a search result shows. The short brand "Luvita" carries those.
 - **Never publish the registered street address.** It is a residential
   address; the site shows city-level `LOCATION` only (`src/lib/site.ts`).
   Restore a full address only when the company has an office or virtual-office
@@ -26,6 +32,17 @@ configuration and the DNS records.
   be accepted; it is simply never advertised here.
 - **Zero client-side JS, no external requests.** No analytics, no fonts, no
   CDN embeds. Privacy pages promise "no cookies, no tracking" — keep it true.
+- **The root URL answers for itself** (adr/0005). `https://luvita.tr/` is a
+  real page — the bilingual identity card in `src/pages/index.astro` — and
+  never a redirect again. It carries the registered trade name,
+  `contact@luvita.tr`, the city, the registry numbers and Organization JSON-LD
+  **in the HTML the server sends**, because the reader it exists for is a
+  verifier running `curl`, not a browser: the previous stub bounced browsers
+  to `/tr/` and showed everything else a blank page, which is the failure mode
+  that cost a credit-programme round. Never set `redirectToDefaultLocale: true`
+  again — it makes Astro generate the root itself and silently ignore that
+  page. The JSON-LD ships from `BaseHead` on every page, since we do not get
+  to choose where a verifier lands.
 - Every internal link goes through `withBase()` (`src/lib/url.ts`) or
   `localizedPath()` (`src/i18n/index.ts`). Never hardcode `/luvita-web/` or a
   locale prefix in templates.

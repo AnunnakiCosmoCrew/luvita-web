@@ -20,12 +20,18 @@ export default defineConfig({
   base: '/',
   trailingSlash: 'ignore',
   output: 'static',
+  // Localized content lives under /tr/ and /en/ (adr/0002); the root URL is a
+  // page of its own, NOT a redirect. `redirectToDefaultLocale: false` is what lets
+  // `src/pages/index.astro` exist as a real home page outside the locale
+  // structure. With it set to true, Astro emits a `noindex` meta-refresh stub
+  // at `/` and silently ignores that page — which left the bare domain unable
+  // to name the company to anything that does not run a refresh (adr/0005).
   i18n: {
     defaultLocale: 'tr',
     locales: ['tr', 'en'],
     routing: {
       prefixDefaultLocale: true,
-      redirectToDefaultLocale: true,
+      redirectToDefaultLocale: false,
     },
   },
   // Retired routes (LW-12). The Services page was removed when the site moved

@@ -32,3 +32,12 @@ slugs across locales, while we want localized slugs (`/tr/hizmetler/` ↔
   pair gets a wrong language-switcher link and wrong hreflang.
 - One shared 404 (GitHub Pages serves a single `/404.html`), rendered TR-first
   with an EN line.
+
+## Update 2026-09-24 — the root URL is a page, not a redirect
+
+`redirectToDefaultLocale` is now `false`: `/` serves a real bilingual entry
+page instead of redirecting to `/tr/`, because the redirect stub Astro emitted
+could not name the company to anything that did not execute a meta-refresh.
+See adr/0005. Everything else in this decision — parallel trees, localized
+slugs, the `paths` pair driving hreflang and the switcher — is unchanged; the
+root page simply sits outside the locale structure and is its own canonical.

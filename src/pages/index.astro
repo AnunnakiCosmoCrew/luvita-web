@@ -1,21 +1,233 @@
 ---
-// Root redirect to the default locale. Astro's i18n `redirectToDefaultLocale`
-// requires a root index route to exist; this meta-refresh page is also the
-// static fallback GitHub Pages actually serves at `/`.
-import { localizedPath, DEFAULT_LOCALE } from '../i18n';
+/**
+ * Root entry page — the one URL that has to answer for itself.
+ *
+ * `https://luvita.tr/` used to be a 272-byte meta-refresh stub to `/tr/`
+ * (Astro's `redirectToDefaultLocale` output, `noindex`, body "Redirecting
+ * to: /tr/"). Browsers followed it; anything that fetched the URL without
+ * running the refresh — a credit programme's verifier, a bank, a crawler
+ * that stops at the root — saw a blank page with no company name, no contact
+ * address and no structured data. That is the failure that cost the Google
+ * for Startups round on umayconnect.org. See adr/0005.
+ *
+ * So the root serves the company's identity card instead, in both languages,
+ * and choosing a language became a visible click rather than an automatic
+ * bounce. The page deliberately sits OUTSIDE the locale trees (adr/0002):
+ * it is its own canonical and carries `hreflang="x-default"`, which is
+ * exactly what x-default means — the URL that serves no single language.
+ *
+ * Everything identifying the company is in the HTML the server sends. The
+ * site ships zero client JS, so that holds by construction; keep it that way.
+ * The street address is NOT here and must not be added — the registered
+ * office is the founder's home (see `LOCATION` in src/lib/site.ts).
+ */
+import '../styles/global.css';
+import BaseHead from '../components/BaseHead.astro';
+import { absoluteUrl } from '../lib/url';
+import { localizedPath } from '../i18n';
+import {
+  BRAND,
+  LEGAL_NAME,
+  LOCATION,
+  CONTACT_EMAIL,
+  MERSIS_NO,
+  TRADE_REGISTRY_NO,
+} from '../lib/site';
 
-const target = localizedPath(DEFAULT_LOCALE);
+const canonical = absoluteUrl();
+const year = new Date().getFullYear();
+
+/**
+ * The head metadata stays brand-based. `LEGAL_NAME` contains "Enerji" and is
+ * legal identity, not copy (adr/0003 as amended by adr/0005): it belongs in
+ * the identity block below and in `legalName` in the JSON-LD, not in the
+ * snippet a search result shows.
+ */
+const title = `${BRAND} Teknoloji — yazılım ürünleri şirketi · software product company`;
+const description = `${BRAND}, Bodrum, Muğla merkezli bağımsız bir yazılım ürünleri şirketidir. ${BRAND} is an independent software product company based in Bodrum, Muğla, Türkiye. İletişim / contact: ${CONTACT_EMAIL}`;
 ---
 
 <!doctype html>
 <html lang="tr">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <link rel="canonical" href={target} />
-    <title>Luvita</title>
+    <BaseHead
+      locale="tr"
+      title={title}
+      description={description}
+      paths={{ tr: '', en: '' }}
+      canonicalUrl={canonical}
+    />
   </head>
   <body>
-    <a href={target}>Luvita</a>
+    <main id="main" class="container entry">
+      <p class="eyebrow">Bodrum, Muğla / Türkiye</p>
+      <h1>{BRAND}</h1>
+      <p class="legal-name">
+        <span class="legal-label">Tescilli unvan / Registered name</span>
+        {LEGAL_NAME}
+      </p>
+
+      <p class="lead" lang="tr">
+        Luvita, kendi yazılım ürünlerini geliştiren bağımsız bir şirkettir.
+        Ürünlerini tasarlar, yayınlar ve bakımını üstlenir; mühendislik
+        pratiği bankacılık ve kurumsal sistemlerden gelir.
+      </p>
+      <p class="lead" lang="en">
+        Luvita is an independent software product company. We design, ship and
+        maintain products of our own, with an engineering practice formed in
+        banking and enterprise systems.
+      </p>
+
+      <nav class="locale-choice" aria-label="Dil / Language">
+        <a class="locale-card" href={localizedPath('tr')} hreflang="tr" lang="tr">
+          <span class="locale-name">Türkçe</span>
+          <span class="locale-sub">Şirket, ürünler ve iletişim</span>
+        </a>
+        <a class="locale-card" href={localizedPath('en')} hreflang="en" lang="en">
+          <span class="locale-name">English</span>
+          <span class="locale-sub">Company, products and contact</span>
+        </a>
+      </nav>
+
+      <address class="identity">
+        <p class="identity-name">{LEGAL_NAME}</p>
+        <p>{LOCATION}</p>
+        <p>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </p>
+        <p>
+          {MERSIS_NO && <span>MERSİS No: {MERSIS_NO}</span>}
+          {
+            TRADE_REGISTRY_NO && (
+              <span>
+                {' '}· Ticaret Sicil No / Trade Registry No: {TRADE_REGISTRY_NO}
+              </span>
+            )
+          }
+        </p>
+      </address>
+    </main>
+
+    <footer class="container entry-base">
+      <p>
+        &copy; {year} {BRAND}. Tüm hakları saklıdır. / All rights reserved.
+      </p>
+    </footer>
   </body>
 </html>
+
+<style>
+  .entry {
+    max-width: var(--maxw-prose);
+    padding-block: var(--sp-8) var(--sp-7);
+  }
+
+  .entry h1 {
+    margin-top: var(--sp-4);
+    font-size: var(--fs-hero);
+  }
+
+  .legal-name {
+    margin-top: var(--sp-3);
+    font-size: var(--fs-400);
+    color: var(--c-ink-soft);
+    font-weight: 550;
+  }
+
+  .legal-label {
+    display: block;
+    font-size: var(--fs-300);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  .entry .lead {
+    margin-top: var(--sp-5);
+  }
+
+  .entry .lead[lang='en'] {
+    margin-top: var(--sp-4);
+    color: var(--c-muted);
+  }
+
+  .locale-choice {
+    display: grid;
+    gap: var(--sp-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    margin-top: var(--sp-7);
+  }
+
+  .locale-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+    padding: var(--sp-5);
+    color: var(--c-ink);
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    transition:
+      border-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+
+  .locale-card:hover {
+    color: var(--c-ink);
+    border-color: var(--c-accent);
+    transform: translateY(-2px);
+  }
+
+  .locale-name {
+    font-weight: 650;
+    color: var(--c-accent);
+  }
+
+  .locale-sub {
+    font-size: var(--fs-300);
+    color: var(--c-muted);
+  }
+
+  .identity {
+    margin-top: var(--sp-7);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--c-border);
+    font-style: normal;
+    font-size: var(--fs-300);
+    color: var(--c-muted);
+  }
+
+  .identity p {
+    margin-bottom: var(--sp-1);
+  }
+
+  .identity-name {
+    font-weight: 550;
+    color: var(--c-ink-soft);
+  }
+
+  .identity a {
+    color: var(--c-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .identity a:hover {
+    color: var(--c-ink);
+  }
+
+  .entry-base {
+    max-width: var(--maxw-prose);
+    padding-bottom: var(--sp-7);
+    font-size: var(--fs-300);
+    color: var(--c-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .locale-card:hover {
+      transform: none;
+    }
+  }
+</style>
