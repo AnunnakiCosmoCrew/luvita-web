@@ -64,7 +64,7 @@ const description = `${BRAND}, Bodrum, Muğla merkezli bağımsız bir yazılım
       paths={{ tr: '', en: '' }}
       canonicalUrl={canonical}
     />
-    <script is:inline define:vars={{ trHref, enHref }}>
+<script define:vars={{ trHref, enHref }}>
       // Progressive enhancement (adr/0006): forward JS browsers to their
       // language — Turkish PRIMARY preference → /tr/, everything else → /en/.
       // Keying on the single most-preferred language (not "Turkish appears
