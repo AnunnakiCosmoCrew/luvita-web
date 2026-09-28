@@ -17,10 +17,13 @@ configuration and the DNS records.
   It must never appear in copy that positions the company — headlines, leads,
   product or service text, or a `<meta name="description">`, which is the
   snippet a search result shows. The short brand "Luvita" carries those.
-- **Never publish the registered street address.** It is a residential
-  address; the site shows city-level `LOCATION` only (`src/lib/site.ts`).
-  Restore a full address only when the company has an office or virtual-office
-  address.
+- **No company address in visible copy — not even the city** (LW-17). The
+  registered office is a residential address, and as of LW-17 the city is kept
+  out of all rendered page text too (root eyebrow and identity block, the
+  KVKK/privacy "data controller" line). `LOCATION` (`src/lib/site.ts`) survives
+  only in the machine-readable JSON-LD (`OrganizationSchema.astro`), where a
+  bank/Google verifier reads it (adr/0005). Never render `LOCATION` in visible
+  copy; revisit only when the company has an office or virtual-office address.
 - **Product status must be truthful.** `src/data/products.ts` carries a
   `status` field; only shipped products may be marked `'live'`, and
   in-development ones must say so in the copy too. Never imply a product
@@ -32,17 +35,23 @@ configuration and the DNS records.
   be accepted; it is simply never advertised here.
 - **Zero client-side JS, no external requests.** No analytics, no fonts, no
   CDN embeds. Privacy pages promise "no cookies, no tracking" — keep it true.
-- **The root URL answers for itself** (adr/0005). `https://luvita.tr/` is a
-  real page — the bilingual identity card in `src/pages/index.astro` — and
-  never a redirect again. It carries the registered trade name,
-  `contact@luvita.tr`, the city, the registry numbers and Organization JSON-LD
-  **in the HTML the server sends**, because the reader it exists for is a
-  verifier running `curl`, not a browser: the previous stub bounced browsers
-  to `/tr/` and showed everything else a blank page, which is the failure mode
-  that cost a credit-programme round. Never set `redirectToDefaultLocale: true`
-  again — it makes Astro generate the root itself and silently ignore that
-  page. The JSON-LD ships from `BaseHead` on every page, since we do not get
-  to choose where a verifier lands.
+  The **one** sanctioned exception is the root page's inline locale-redirect
+  script (`src/pages/index.astro`, adr/0006): it sets no cookie, makes no
+  external request and loads no library. Every other page stays zero-JS — a
+  `<script>` emitted on any other page is a regression.
+- **The root URL answers for itself** (adr/0005, adr/0006). `https://luvita.tr/`
+  is a real page — the bilingual identity card in `src/pages/index.astro` — and
+  never a server-side redirect again. It carries the registered trade name,
+  `contact@luvita.tr`, the registry numbers and Organization JSON-LD **in the
+  HTML the server sends**, because the reader it exists for is a verifier
+  running `curl`, not a browser: the previous stub bounced browsers to `/tr/`
+  and showed everything else a blank page, which is the failure mode that cost a
+  credit-programme round. Never set `redirectToDefaultLocale: true` again — it
+  makes Astro generate the root itself and silently ignore that page. On top of
+  that served content, one inline script (adr/0006) forwards **JS browsers** to
+  their language (Turkish → `/tr/`, else → `/en/`); no-JS clients and crawlers
+  keep the identity card, so verification is untouched. The JSON-LD ships from
+  `BaseHead` on every page, since we do not get to choose where a verifier lands.
 - Every internal link goes through `withBase()` (`src/lib/url.ts`) or
   `localizedPath()` (`src/i18n/index.ts`). Never hardcode `/luvita-web/` or a
   locale prefix in templates.

@@ -14,14 +14,18 @@ export const LEGAL_NAME =
   'Luvita Teknoloji Enerji Yazılım Sanayi ve Ticaret Limited Şirketi';
 
 /**
- * Public location, city level only.
+ * Company locality, city level — for machine-readable verification ONLY, never
+ * visible copy.
  *
  * The registered office is currently a residential address, so the street
- * detail is deliberately NOT published: on a site read by banks it reads as
- * unprofessional, and it exposes a home. This is presentation, not secrecy —
- * the registered address remains publicly available through the trade
- * registry (Ticaret Sicil Gazetesi / MERSİS). Replace this with the full
- * address once the company has an office or a virtual-office address.
+ * detail is deliberately NOT published: on a site read by banks it exposes a
+ * home. As of LW-17 the city is also kept OUT of all visible page text; it
+ * survives only in the JSON-LD structured data (OrganizationSchema.astro),
+ * where a bank/Google verifier can match the site to the registered company
+ * (adr/0005) without any address showing on the page. The full registered
+ * address remains publicly available through the trade registry (Ticaret
+ * Sicil Gazetesi / MERSİS). Do not render this constant in visible copy;
+ * revisit only once the company has an office or virtual-office address.
  */
 export const LOCATION = 'Bodrum, Muğla / Türkiye';
 
