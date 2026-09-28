@@ -2,24 +2,28 @@
 /**
  * Root entry page — the one URL that has to answer for itself.
  *
- * `https://luvita.tr/` used to be a 272-byte meta-refresh stub to `/tr/`
- * (Astro's `redirectToDefaultLocale` output, `noindex`, body "Redirecting
- * to: /tr/"). Browsers followed it; anything that fetched the URL without
- * running the refresh — a credit programme's verifier, a bank, a crawler
- * that stops at the root — saw a blank page with no company name, no contact
- * address and no structured data. That is the failure that cost the Google
- * for Startups round on umayconnect.org. See adr/0005.
+ * `https://luvita.tr/` used to be a 272-byte meta-refresh stub to `/tr/`;
+ * anything that fetched the URL without running the refresh — a credit
+ * programme's verifier, a bank, a crawler that stops at the root — saw a
+ * blank page with no company name, no contact and no structured data. That
+ * failure cost the Google for Startups round on umayconnect.org. See adr/0005.
  *
- * So the root serves the company's identity card instead, in both languages,
- * and choosing a language became a visible click rather than an automatic
- * bounce. The page deliberately sits OUTSIDE the locale trees (adr/0002):
- * it is its own canonical and carries `hreflang="x-default"`, which is
- * exactly what x-default means — the URL that serves no single language.
+ * So the root SERVES the company's identity card as real HTML, in both
+ * languages, and sits OUTSIDE the locale trees (adr/0002): it is its own
+ * canonical and carries `hreflang="x-default"` — the URL that serves no
+ * single language.
  *
- * Everything identifying the company is in the HTML the server sends. The
- * site ships zero client JS, so that holds by construction; keep it that way.
- * The street address is NOT here and must not be added — the registered
- * office is the founder's home (see `LOCATION` in src/lib/site.ts).
+ * On top of that content, JS-capable browsers are forwarded to their language
+ * automatically (Turkish → /tr/, everything else → /en/) by the one inline
+ * script below — the single sanctioned exception to the site's zero-JS rule
+ * (adr/0006). It sets no cookies and makes no external request. No-JS clients
+ * and crawlers never run it, so they still get the full identity card and the
+ * JSON-LD: adr/0005's verification guarantee holds by construction.
+ *
+ * No street address appears here, and the visible copy no longer names the
+ * city either — the registered office is the founder's home. The city
+ * survives only in the machine-readable JSON-LD (OrganizationSchema), where a
+ * verifier reads it; see `LOCATION` in src/lib/site.ts.
  */
 import '../styles/global.css';
 import BaseHead from '../components/BaseHead.astro';
@@ -28,7 +32,6 @@ import { localizedPath } from '../i18n';
 import {
   BRAND,
   LEGAL_NAME,
-  LOCATION,
   CONTACT_EMAIL,
   MERSIS_NO,
   TRADE_REGISTRY_NO,
@@ -36,6 +39,10 @@ import {
 
 const canonical = absoluteUrl();
 const year = new Date().getFullYear();
+
+// Locale targets for the progressive-enhancement redirect (adr/0006).
+const trHref = localizedPath('tr');
+const enHref = localizedPath('en');
 
 /**
  * The head metadata stays brand-based. `LEGAL_NAME` contains "Enerji" and is
@@ -57,10 +64,25 @@ const description = `${BRAND}, Bodrum, Muğla merkezli bağımsız bir yazılım
       paths={{ tr: '', en: '' }}
       canonicalUrl={canonical}
     />
+<script define:vars={{ trHref, enHref }}>
+      // Progressive enhancement (adr/0006): forward JS browsers to their
+      // language — Turkish PRIMARY preference → /tr/, everything else → /en/.
+      // Keying on the single most-preferred language (not "Turkish appears
+      // anywhere") keeps an English-primary bilingual visitor on /en/. No-JS
+      // clients and crawlers keep the identity card below. No cookies, no
+      // external request. `replace` leaves no history entry (no back trap).
+      try {
+        var primary =
+          (navigator.languages && navigator.languages[0]) ||
+          navigator.language ||
+          '';
+        var prefersTr = /^tr\b/i.test(primary);
+        window.location.replace(prefersTr ? trHref : enHref);
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <main id="main" class="container entry">
-      <p class="eyebrow">Bodrum, Muğla / Türkiye</p>
       <h1>{BRAND}</h1>
       <p class="legal-name">
         <span class="legal-label">Tescilli unvan / Registered name</span>
@@ -91,7 +113,6 @@ const description = `${BRAND}, Bodrum, Muğla merkezli bağımsız bir yazılım
 
       <address class="identity">
         <p class="identity-name">{LEGAL_NAME}</p>
-        <p>{LOCATION}</p>
         <p>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
