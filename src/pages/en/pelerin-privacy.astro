@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+import { localizedPath } from '../../i18n';
+import { CONTACT_EMAIL } from '../../lib/site';
+---
+
+<BaseLayout
+  locale="en"
+  title="Pelerin privacy policy — Luvita"
+  description="Privacy policy of the Pelerin desktop app: it runs on your computer and sends nothing to Luvita."
+  paths={{ tr: 'pelerin-gizlilik', en: 'pelerin-privacy' }}
+>
+  <Hero eyebrow="Legal" title="Pelerin: privacy policy" />
+
+  <section class="container">
+    <Prose>
+      <p>Version 0.1 · Last updated: 5 October 2026</p>
+
+      <h2>1. Who we are</h2>
+      <p>
+        Pelerin is made by Luvita. Contact:
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+
+      <h2>2. What the app does</h2>
+      <p>
+        Pelerin runs on your own computer. You paste text into it. It finds
+        personal identifiers in that text (for example names, ID numbers, IBANs
+        and phone numbers) and replaces them with placeholders. You can copy the
+        masked text into another tool yourself. If you paste an answer back, the
+        app puts the original values back in, on your screen.
+      </p>
+
+      <h2>3. What we collect: nothing</h2>
+      <p>
+        We do not receive, copy, store or see the text you paste, the masked
+        text, the placeholders or the original values. The app has no account, no
+        sign-in, no analytics and no telemetry. It does not send anything to
+        Luvita.
+      </p>
+
+      <h2>4. Where your text goes</h2>
+      <ul>
+        <li>
+          <strong>The app's own engine, on your computer.</strong> The window you
+          see is served by an engine that runs on the same computer and listens
+          only on that computer's loopback address. Nothing outside your computer
+          can reach it. A new access code is created for every launch and is held
+          in memory only.
+        </li>
+        <li>
+          <strong>Nothing else.</strong> The app makes no connection to any AI
+          service, to Luvita or to any other server. It never sends your text
+          anywhere. Anything you do with the masked text afterwards, such as
+          pasting it into an AI tool, is your own act.
+        </li>
+        <li>
+          <strong>The original values live in memory only.</strong> The table that
+          links each placeholder to its original value is held in the engine's
+          memory and is gone when you close the app.
+        </li>
+      </ul>
+
+      <h2>5. What stays on your computer</h2>
+      <p>
+        The app writes a few files on your computer. They contain no text you
+        pasted and no original values.
+      </p>
+      <ul>
+        <li>
+          <strong>A record of placeholders</strong>
+          (<code>Pelerin\audit\…\records.jsonl</code>): one line for each
+          placeholder issued, with its placeholder code (for example a type name
+          and a number), the time, and technical hashes. It shows how many
+          identifiers of which types were found in a request. It never contains
+          the text or the original values.
+        </li>
+        <li>A small usage counter file next to it.</li>
+        <li>
+          Temporary working files of the engine, in a folder under
+          <code>C:\ProgramData</code> whose name starts with <code>pd</code>.
+        </li>
+        <li>
+          The window's browser profile (cache and settings of the Microsoft Edge
+          WebView2 component that draws the window), in
+          <code>%LOCALAPPDATA%\dev.cosmocrew.pelerin.desktop</code>.
+        </li>
+      </ul>
+      <p>
+        When you uninstall the app from the Microsoft Store, the app's own folder
+        is removed. The <code>C:\ProgramData\pd…</code> folder and the browser
+        profile folder can stay behind. You can delete them yourself at any time.
+        We do not read them.
+      </p>
+
+      <h2>6. Microsoft and Windows</h2>
+      <ul>
+        <li>
+          <strong>Microsoft Edge WebView2 Runtime.</strong> The app needs this
+          Windows component to draw its window (Windows 11 and updated Windows 10
+          already include it). It is a Microsoft product with its own behaviour
+          and may connect to Microsoft services. We do not control that.
+        </li>
+        <li>
+          <strong>Microsoft Store.</strong> Microsoft collects installation and
+          usage information about Store apps and gives us reports in aggregate,
+          such as how many people installed the app and failure counts with
+          technical stack traces. We use these reports only to keep the app
+          working. Microsoft's own privacy statement governs what Microsoft
+          collects.
+        </li>
+        <li>
+          <strong>Crash reports.</strong> If the app stops unexpectedly, Windows
+          Error Reporting may keep or send a crash report to Microsoft, depending
+          on your Windows diagnostic data settings. Such a report could include
+          information that was in the app's memory at that moment. If you handle
+          sensitive text, check your Windows diagnostic data settings.
+        </li>
+      </ul>
+
+      <h2>7. What you do with masked text</h2>
+      <p>
+        Pelerin keeps raw identifiers on your computer and materially reduces the
+        risk of re-identification, disclosure and breach in the text you send
+        onward. It does not mean that no personal data leaves your computer, and
+        it does not remove your own obligations. If you send masked text to a
+        service outside Türkiye, the legal basis for that transfer under Article
+        9 of the Turkish Personal Data Protection Law (KVKK, Law No. 6698) is
+        still yours to provide.
+      </p>
+
+      <h2>8. Security</h2>
+      <p>
+        The engine listens on your computer only, uses a per-launch access code
+        held in memory, and keeps the original values in memory only. No system is
+        perfectly secure, and the files listed in section 5 are protected only as
+        well as your own Windows account and disk.
+      </p>
+
+      <h2>9. Your rights</h2>
+      <p>
+        Because we do not receive or hold the text you handle with the app, we
+        hold no such personal data about you. If you write to us, we use your
+        message only to answer it; see our
+        <a href={localizedPath('en', 'privacy')}>website privacy policy</a>. For data Microsoft holds
+        about you, contact Microsoft. If you are in Türkiye you have the rights
+        listed in Article 11 of KVKK, and you can ask us about them at
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+
+      <h2>10. Children</h2>
+      <p>Pelerin is not made for children.</p>
+
+      <h2>11. Changes</h2>
+      <p>
+        We will publish changes to this policy at this address and change the
+        date above. A change that affects what the app does with your data will
+        come with a new version of the app.
+      </p>
+    </Prose>
+  </section>
+</BaseLayout>
