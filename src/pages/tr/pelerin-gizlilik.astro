@@ -9,19 +9,20 @@ import { CONTACT_EMAIL } from '../../lib/site';
 <BaseLayout
   locale="tr"
   title="Pelerin gizlilik politikası — Luvita"
-  description="Pelerin masaüstü uygulamasının gizlilik politikası: bilgisayarınızda çalışır ve Luvita'ya hiçbir şey göndermez."
+  description="Pelerin masaüstü uygulamasının gizlilik politikası: metni bilgisayarınızda maskeler, Luvita'ya hesabınızı, planınızı ve sayıları gönderir, metninizi asla."
   paths={{ tr: 'pelerin-gizlilik', en: 'pelerin-privacy' }}
 >
   <Hero eyebrow="Yasal" title="Pelerin: gizlilik politikası" />
 
   <section class="container">
     <Prose>
-      <p>Sürüm 0.1 · Son güncelleme: 5 Ekim 2026</p>
+      <p>Sürüm 0.2 · Son güncelleme: 6 Ekim 2026</p>
 
       <h2>1. Biz kimiz</h2>
       <p>
         Pelerin'i Luvita geliştirir. İletişim:
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. 5. bölümdeki hesap
+        verileri bakımından Luvita veri sorumlusudur (KVKK m. 3).
       </p>
 
       <h2>2. Uygulama ne yapar</h2>
@@ -31,15 +32,49 @@ import { CONTACT_EMAIL } from '../../lib/site';
         numarası, IBAN, telefon) bulur ve yerlerine yer tutucular koyar.
         Maskelenmiş metni başka bir araca kendiniz kopyalayabilirsiniz. Bir
         yanıtı geri yapıştırırsanız uygulama özgün değerleri ekranınızda yerlerine
-        koyar.
+        koyar. Kullanmak için, Luvita'nın ofisiniz için açtığı bir hesapla giriş
+        yaparsınız.
       </p>
 
-      <h2>3. Ne topluyoruz: hiçbir şey</h2>
+      <h2>3. Neler alırız, neleri asla almayız</h2>
       <p>
-        Yapıştırdığınız metni, maskelenmiş metni, yer tutucuları veya özgün
-        değerleri almayız, kopyalamayız, saklamayız ve görmeyiz. Uygulamada hesap,
-        oturum açma, analitik veya telemetri yoktur. Luvita'ya hiçbir şey
-        göndermez.
+        <strong>Pelerin'in Luvita'ya gönderdikleri:</strong> hesap kimliğiniz,
+        planınız ve kaç maskeleme yaptığınıza dair tür ve sonuç bazında sayılar.
+      </p>
+      <p>
+        <strong>Asla göndermedikleri:</strong> metniniz, maskelenmiş metin, yer
+        tutucular ile özgün değerler arasındaki eşleme veya başlatma kimlik
+        bilginiz.
+      </p>
+      <p>
+        Ayrıntıyla, Pelerin'in Luvita'ya yaptığı tek bağlantı bir lisans
+        kontrolüdür; HTTPS üzerinden, yazı yazdığınız pencere tarafından değil
+        uygulamanın kabuğu tarafından yapılır:
+      </p>
+      <ul>
+        <li>
+          <strong>Giriş yaptığınızda, bir kez:</strong> ofis kodunuz, kullanıcı
+          adınız ve parolanız ile işletim sisteminizin adı ve dört rastgele
+          karakterden oluşan bir cihaz etiketi (bilgisayarınızın adı asla
+          gönderilmez). Parolayı uygulama saklamaz; biz yalnızca tek yönlü bir
+          özet olarak saklarız.
+        </li>
+        <li>
+          <strong>Açılışta, uygulama çalışırken yaklaşık günde bir kez ve giriş
+          veya çıkış yaptıktan sonra:</strong> girişte uygulamanın aldığı bir
+          cihaz kimlik bilgisi, uygulamanın sürüm numarası ve sayılar. Bir sayı,
+          örneğin 12 telefon numarasının ve 3 IBAN'ın maskelendiğini, 2 değerin
+          geri yüklendiğini söyler. Hangi değerler olduğunu veya hangi metinden
+          geldiğini asla söylemez.
+        </li>
+        <li>
+          <strong>Geri gelen:</strong> hangi planda olduğunuzu ve plan sınırlıysa
+          günlük sınırınızı bildiren imzalı bir lisans.
+        </li>
+      </ul>
+      <p>
+        Uygulama kendi başına başka bir dış bağlantı yapmaz. Hiçbir yapay zekâ
+        hizmetine bağlanmaz.
       </p>
 
       <h2>4. Metniniz nereye gider</h2>
@@ -52,10 +87,10 @@ import { CONTACT_EMAIL } from '../../lib/site';
           üretilir ve yalnızca bellekte tutulur.
         </li>
         <li>
-          <strong>Başka hiçbir yere.</strong> Uygulama herhangi bir yapay zekâ
-          hizmetine, Luvita'ya veya başka bir sunucuya bağlanmaz. Metninizi hiçbir
-          yere göndermez. Maskelenmiş metinle sonrasında yaptığınız her şey
-          (örneğin bir yapay zekâ aracına yapıştırmak) sizin kendi eyleminizdir.
+          <strong>Luvita'ya ve herhangi bir yapay zekâ hizmetine değil.</strong>
+          Metniniz, maskelenmiş metin ve yer tutucular Pelerin aracılığıyla
+          bilgisayarınızdan çıkmaz. Maskelenmiş metinle sonrasında yaptığınız her
+          şey (örneğin bir yapay zekâ aracına yapıştırmak) sizin kendi eyleminizdir.
         </li>
         <li>
           <strong>Özgün değerler yalnızca bellekte durur.</strong> Her yer
@@ -64,7 +99,53 @@ import { CONTACT_EMAIL } from '../../lib/site';
         </li>
       </ul>
 
-      <h2>5. Bilgisayarınızda ne kalır</h2>
+      <h2>5. Hesabınız ve planınız: ne tutarız, neden, nerede, ne kadar süre</h2>
+      <ul>
+        <li>
+          <strong>Ne tutarız.</strong> Ofis kodunuz; kullanıcı adınız; parolanız
+          tek yönlü bir özet (argon2id) olarak, parolanın kendisi asla değil;
+          davet e-postayla yapıldıysa yöneticinizin verdiği e-posta adresi;
+          rolünüz; ofisinizin planı (deneme, ücretsiz günlük sınır veya ücretli
+          dönem); giriş yaptığınız her bilgisayar için bir kayıt (etiketi,
+          oluşturulma zamanı, bitiş zamanı); 3. bölümde anlatılan günlük sayılar;
+          ve en çok 90 gün tutulan bir giriş denemesi kaydı (hangi hesap, başarılı
+          veya başarısız ve zaman).
+        </li>
+        <li>
+          <strong>Neden.</strong> Girişinizi sağlamak, ofisinize planını vermek,
+          biri ayrıldığında veya bir bilgisayar kaybolduğunda erişimi
+          sonlandırmak, hizmetin güvenliğini sağlamak ve pilotun nasıl
+          kullanıldığını anlamak için. Hukuki dayanak, bunun ofisinizle yapılan
+          lisans sözleşmesinin ifası için gerekli olmasıdır (KVKK m. 5/2-c).
+        </li>
+        <li>
+          <strong>Kimler görür.</strong> Luvita ve ofisinizin yöneticisi;
+          yönetici ofisinizin bilgisayarlarını listeleyip sonlandırabilir. Luvita
+          sayıları gün, tür ve sonuç bazında görür. Hiçbir metni göremeyiz, çünkü
+          hiçbirini almayız.
+        </li>
+        <li>
+          <strong>Nerede.</strong> Avrupa Birliği'ndeki sunucularda, yani Türkiye
+          dışında (hesap hizmetimiz Almanya'nın Frankfurt kentinde çalışır). Yani
+          bu hesap verileri yurt dışında işlenir. Uygulamayla işlediğiniz hiçbir
+          metin buna dahil değildir.
+        </li>
+        <li>
+          <strong>Ne kadar süre.</strong> Bir bilgisayarın kaydı, giriş yapılı
+          olduğu sürece ve çıkış yaptıktan veya süresi dolduktan sonra 30 gün
+          tutulur, sonra silinir. Giriş denemeleri en çok 90 gün tutulur.
+          Hesabınız ve günlük sayılar, ofisinizin bizde hesabı olduğu sürece
+          tutulur; verilerinizin silinmesini veya düzeltilmesini istediğiniz zaman
+          isteyebilirsiniz (10. bölüm).
+        </li>
+        <li>
+          <strong>Çıkış.</strong> Uygulamada çıkış yapmak, o bilgisayarın erişimini
+          bizim tarafımızda sonlandırır ve kimlik bilgisini bilgisayarınızdan
+          siler. Yöneticiniz de sonlandırabilir.
+        </li>
+      </ul>
+
+      <h2>6. Bilgisayarınızda ne kalır</h2>
       <p>
         Uygulama bilgisayarınıza birkaç dosya yazar. Bunlar yapıştırdığınız metni
         veya özgün değerleri içermez.
@@ -72,12 +153,23 @@ import { CONTACT_EMAIL } from '../../lib/site';
       <ul>
         <li>
           <strong>Yer tutucu kaydı</strong>
-          (<code>Pelerin\audit\…\records.jsonl</code>): verilen her yer tutucu için
-          bir satır; yer tutucu kodu (örneğin bir tür adı ve bir sayı), zaman ve
-          teknik özetler. Bir istekte hangi türden kaç tanımlayıcı bulunduğunu
+          (<code>Pelerin\audit\…\records.jsonl</code>): verilen her yer tutucu
+          için bir satır; yer tutucu kodu (örneğin bir tür adı ve bir sayı), zaman
+          ve teknik özetler. Bir istekte hangi türden kaç tanımlayıcı bulunduğunu
           gösterir. Metni veya özgün değerleri asla içermez.
         </li>
-        <li>Yanında küçük bir kullanım sayacı dosyası.</li>
+        <li>
+          Yanında küçük bir kullanım sayacı dosyası. 3. bölümdeki sayılar bu
+          dosyadan okunur.
+        </li>
+        <li>
+          <strong>Girişiniz, Windows Kimlik Bilgisi Yöneticisi'nde:</strong> cihaz
+          kimlik bilgisi ve son imzalı lisans, uygulamanın kendi girdisi altında.
+          İşletim sisteminin kimlik bilgisi deposunda tutulur, hiçbir zaman bir
+          dosyada değil. Çıkış yapmak bunları siler; çıkış yapmadan kaldırırsanız
+          geride kalabilirler ve yöneticiniz bilgisayarın erişimini
+          sonlandırabilir.
+        </li>
         <li>
           Motorun geçici çalışma dosyaları: <code>C:\ProgramData</code> altında
           adı <code>pd</code> ile başlayan bir klasör.
@@ -95,14 +187,13 @@ import { CONTACT_EMAIL } from '../../lib/site';
         bunları okumayız.
       </p>
 
-      <h2>6. Microsoft ve Windows</h2>
+      <h2>7. Microsoft ve Windows</h2>
       <ul>
         <li>
           <strong>Microsoft Edge WebView2 Runtime.</strong> Uygulama penceresini
           çizmek için bu Windows bileşenine ihtiyaç duyar (Windows 11 ve güncel
-          Windows 10'da zaten vardır). Kendi davranışı olan bir Microsoft
-          ürünüdür ve Microsoft hizmetlerine bağlanabilir. Bunu biz kontrol
-          etmeyiz.
+          Windows 10'da zaten vardır). Kendi davranışı olan bir Microsoft ürünüdür
+          ve Microsoft hizmetlerine bağlanabilir. Bunu biz kontrol etmeyiz.
         </li>
         <li>
           <strong>Microsoft Store.</strong> Microsoft, Store uygulamaları hakkında
@@ -122,46 +213,50 @@ import { CONTACT_EMAIL } from '../../lib/site';
         </li>
       </ul>
 
-      <h2>7. Maskelenmiş metinle ne yaptığınız</h2>
+      <h2>8. Maskelenmiş metinle ne yaptığınız</h2>
       <p>
         Pelerin ham tanımlayıcıları bilgisayarınızda tutar ve dışarıya
         gönderdiğiniz metinde yeniden belirleme, ifşa ve ihlal riskini önemli
         ölçüde azaltır. Kişisel verinin bilgisayarınızdan hiç çıkmadığı anlamına
         gelmez ve sizin kendi yükümlülüklerinizi ortadan kaldırmaz. Maskelenmiş
-        metni Türkiye dışındaki bir hizmete gönderirseniz, bu aktarımın 6698 sayılı
-        Kişisel Verilerin Korunması Kanunu (KVKK) m. 9 kapsamındaki hukuki
+        metni Türkiye dışındaki bir hizmete gönderirseniz, bu aktarımın 6698
+        sayılı Kişisel Verilerin Korunması Kanunu (KVKK) m. 9 kapsamındaki hukuki
         zeminini sağlamak yine size aittir.
       </p>
 
-      <h2>8. Güvenlik</h2>
+      <h2>9. Güvenlik</h2>
       <p>
         Motor yalnızca bilgisayarınızda dinler, her açılışta bellekte tutulan bir
-        erişim kodu kullanır ve özgün değerleri yalnızca bellekte tutar. Hiçbir
-        sistem tamamen güvenli değildir; 5. bölümdeki dosyalar yalnızca kendi
-        Windows hesabınızın ve diskinizin sağladığı kadar korunur.
+        erişim kodu kullanır ve özgün değerleri yalnızca bellekte tutar. Lisans
+        kontrolü HTTPS kullanır ve uygulama yalnızca Luvita'nın, uygulamanın
+        içine gömülü anahtarıyla imzalanmış lisanslara güvenir. Hiçbir sistem
+        tamamen güvenli değildir; 6. bölümdeki dosyalar yalnızca kendi Windows
+        hesabınızın ve diskinizin sağladığı kadar korunur.
       </p>
 
-      <h2>9. Haklarınız</h2>
+      <h2>10. Haklarınız</h2>
       <p>
-        Uygulamayla işlediğiniz metni almadığımız ve tutmadığımız için sizinle
-        ilgili böyle bir kişisel veriyi tutmuyoruz. Bize yazarsanız mesajınızı
-        yalnızca yanıtlamak için kullanırız; ayrıntılar için
-        <a href={localizedPath('tr', 'gizlilik')}>web sitesi gizlilik politikamıza</a> bakın.
+        5. bölümdeki hesap verileri bakımından KVKK m. 11'de sayılan haklara
+        sahipsiniz; bunlar arasında verilerinizin işlenip işlenmediğini öğrenme,
+        düzeltilmesini veya silinmesini isteme ve itiraz etme vardır.
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> adresine yazın;
+        yasanın belirlediği süre içinde yanıtlarız. Uygulamayla işlediğiniz metni
+        hiçbir zaman almadığımız için ne tutarız ne de size verebiliriz.
         Microsoft'un sizinle ilgili tuttuğu veriler için Microsoft ile iletişime
-        geçin. Türkiye'deyseniz KVKK m. 11'de sayılan haklara sahipsiniz; bunlar
-        hakkında
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> adresinden bize
-        sorabilirsiniz.
+        geçin. Bize yazarsanız mesajınızı yalnızca yanıtlamak için kullanırız;
+        <a href={localizedPath('tr', 'gizlilik')}>web sitesi gizlilik politikamıza</a>
+        bakın.
       </p>
 
-      <h2>10. Çocuklar</h2>
+      <h2>11. Çocuklar</h2>
       <p>Pelerin çocuklar için yapılmamıştır.</p>
 
-      <h2>11. Değişiklikler</h2>
+      <h2>12. Değişiklikler</h2>
       <p>
         Bu politikadaki değişiklikleri bu adreste yayımlar ve yukarıdaki tarihi
-        güncelleriz. Uygulamanın verilerinizle ne yaptığını etkileyen bir
-        değişiklik, uygulamanın yeni bir sürümüyle birlikte gelir.
+        güncelleriz. Uygulamanın neler gönderdiğini veya verilerinizle ne
+        yaptığını etkileyen bir değişiklik, uygulamanın yeni bir sürümüyle birlikte
+        gelir.
       </p>
     </Prose>
   </section>

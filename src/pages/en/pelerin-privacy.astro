@@ -9,19 +9,20 @@ import { CONTACT_EMAIL } from '../../lib/site';
 <BaseLayout
   locale="en"
   title="Pelerin privacy policy — Luvita"
-  description="Privacy policy of the Pelerin desktop app: it runs on your computer and sends nothing to Luvita."
+  description="Privacy policy of the Pelerin desktop app: it masks text on your computer and sends Luvita your account, plan and counts, never your text."
   paths={{ tr: 'pelerin-gizlilik', en: 'pelerin-privacy' }}
 >
   <Hero eyebrow="Legal" title="Pelerin: privacy policy" />
 
   <section class="container">
     <Prose>
-      <p>Version 0.1 · Last updated: 5 October 2026</p>
+      <p>Version 0.2 · Last updated: 6 October 2026</p>
 
       <h2>1. Who we are</h2>
       <p>
         Pelerin is made by Luvita. Contact:
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. For the account
+        data in section 5, Luvita is the data controller (KVKK, Article 3).
       </p>
 
       <h2>2. What the app does</h2>
@@ -30,15 +31,48 @@ import { CONTACT_EMAIL } from '../../lib/site';
         personal identifiers in that text (for example names, ID numbers, IBANs
         and phone numbers) and replaces them with placeholders. You can copy the
         masked text into another tool yourself. If you paste an answer back, the
-        app puts the original values back in, on your screen.
+        app puts the original values back in, on your screen. To use it you sign
+        in with an account that Luvita created for your office.
       </p>
 
-      <h2>3. What we collect: nothing</h2>
+      <h2>3. What we receive, and what we never receive</h2>
       <p>
-        We do not receive, copy, store or see the text you paste, the masked
-        text, the placeholders or the original values. The app has no account, no
-        sign-in, no analytics and no telemetry. It does not send anything to
-        Luvita.
+        <strong>What Pelerin sends to Luvita:</strong> your account identity,
+        your plan and counts of how many maskings you made by type and outcome.
+      </p>
+      <p>
+        <strong>What it never sends:</strong> your text, the masked text, the
+        mapping between placeholders and original values, or your launch
+        credential.
+      </p>
+      <p>
+        In detail, the only connection Pelerin makes to Luvita is a licence
+        check, made over HTTPS by the app's shell (not by the window you type
+        in):
+      </p>
+      <ul>
+        <li>
+          <strong>When you sign in, once:</strong> your office code, your login
+          and your password, and a device label made of the name of your
+          operating system and four random characters (never the name of your
+          computer). The password is not kept by the app; we keep it only as a
+          one-way hash.
+        </li>
+        <li>
+          <strong>At launch, about once a day while the app runs, and after you
+          sign in or out:</strong> a device credential the app received when you
+          signed in, the app's version number, and counts. A count says, for
+          example, that 12 phone numbers and 3 IBANs were masked and 2 values
+          restored. It never says which values, or from which text.
+        </li>
+        <li>
+          <strong>What comes back:</strong> a signed licence that says which plan
+          you are on, and your daily limit if the plan has one.
+        </li>
+      </ul>
+      <p>
+        The app makes no other outside connection of its own. It makes no
+        connection to any AI service.
       </p>
 
       <h2>4. Where your text goes</h2>
@@ -51,9 +85,9 @@ import { CONTACT_EMAIL } from '../../lib/site';
           in memory only.
         </li>
         <li>
-          <strong>Nothing else.</strong> The app makes no connection to any AI
-          service, to Luvita or to any other server. It never sends your text
-          anywhere. Anything you do with the masked text afterwards, such as
+          <strong>Not to Luvita and not to any AI service.</strong> Your text, the
+          masked text and the placeholders never leave your computer through
+          Pelerin. Anything you do with the masked text afterwards, such as
           pasting it into an AI tool, is your own act.
         </li>
         <li>
@@ -63,7 +97,52 @@ import { CONTACT_EMAIL } from '../../lib/site';
         </li>
       </ul>
 
-      <h2>5. What stays on your computer</h2>
+      <h2>5. Your account and plan: what we keep, why, where and for how long</h2>
+      <ul>
+        <li>
+          <strong>What we hold.</strong> Your office code; your login; your
+          password as a one-way hash (argon2id), never the password itself; the
+          email address your administrator gave if you were invited by email; your
+          role; your office's plan (a trial, the free daily limit, or a paid
+          period); one record for each computer you signed in on (its label, when
+          it was created, when it ends); the daily counts described in section 3;
+          and a record of sign-in attempts (which account, success or failure,
+          and the time) kept for up to 90 days.
+        </li>
+        <li>
+          <strong>Why.</strong> To let you sign in, to give your office the plan
+          it has, to end access when someone leaves or a computer is lost, to keep
+          the service secure and to understand how the pilot is used. The legal
+          basis is that this is necessary to perform the licence contract with
+          your office (KVKK Article 5(2)(c)).
+        </li>
+        <li>
+          <strong>Who sees it.</strong> Luvita, and the administrator of your
+          office, who can list and end your office's computers. Luvita sees the
+          counts, by day, type and outcome. We cannot see any text, because we
+          never receive any.
+        </li>
+        <li>
+          <strong>Where.</strong> On servers in the European Union, outside
+          Türkiye (our account service runs in Frankfurt, Germany). This means
+          this account data is processed abroad. It does not include any text you
+          handle with the app.
+        </li>
+        <li>
+          <strong>How long.</strong> A computer's record is kept while it is
+          signed in and for 30 days after you sign out or it expires, then
+          deleted. Sign-in attempts are kept for up to 90 days. Your account and
+          the daily counts are kept while your office has an account with us; you
+          can ask us to delete or correct your data at any time (section 10).
+        </li>
+        <li>
+          <strong>Sign out.</strong> Signing out in the app ends that computer's
+          access on our side and deletes the credential from your computer. Your
+          administrator can also end it.
+        </li>
+      </ul>
+
+      <h2>6. What stays on your computer</h2>
       <p>
         The app writes a few files on your computer. They contain no text you
         pasted and no original values.
@@ -77,7 +156,18 @@ import { CONTACT_EMAIL } from '../../lib/site';
           identifiers of which types were found in a request. It never contains
           the text or the original values.
         </li>
-        <li>A small usage counter file next to it.</li>
+        <li>
+          A small usage counter file next to it. This is the file the counts in
+          section 3 are read from.
+        </li>
+        <li>
+          <strong>Your sign-in, in Windows Credential Manager:</strong> the
+          device credential and the latest signed licence, under the app's own
+          entry. They are kept in the operating system's credential store, never
+          in a file. Signing out deletes them; if you uninstall without signing
+          out they can stay behind, and your administrator can end the computer's
+          access.
+        </li>
         <li>
           Temporary working files of the engine, in a folder under
           <code>C:\ProgramData</code> whose name starts with <code>pd</code>.
@@ -95,7 +185,7 @@ import { CONTACT_EMAIL } from '../../lib/site';
         We do not read them.
       </p>
 
-      <h2>6. Microsoft and Windows</h2>
+      <h2>7. Microsoft and Windows</h2>
       <ul>
         <li>
           <strong>Microsoft Edge WebView2 Runtime.</strong> The app needs this
@@ -120,7 +210,7 @@ import { CONTACT_EMAIL } from '../../lib/site';
         </li>
       </ul>
 
-      <h2>7. What you do with masked text</h2>
+      <h2>8. What you do with masked text</h2>
       <p>
         Pelerin keeps raw identifiers on your computer and materially reduces the
         risk of re-identification, disclosure and breach in the text you send
@@ -131,33 +221,37 @@ import { CONTACT_EMAIL } from '../../lib/site';
         still yours to provide.
       </p>
 
-      <h2>8. Security</h2>
+      <h2>9. Security</h2>
       <p>
         The engine listens on your computer only, uses a per-launch access code
-        held in memory, and keeps the original values in memory only. No system is
-        perfectly secure, and the files listed in section 5 are protected only as
-        well as your own Windows account and disk.
+        held in memory, and keeps the original values in memory only. The licence
+        check uses HTTPS, and the app trusts only licences signed with Luvita's
+        key, which is built into the app. No system is perfectly secure, and the
+        files listed in section 6 are protected only as well as your own Windows
+        account and disk.
       </p>
 
-      <h2>9. Your rights</h2>
+      <h2>10. Your rights</h2>
       <p>
-        Because we do not receive or hold the text you handle with the app, we
-        hold no such personal data about you. If you write to us, we use your
+        For the account data in section 5, you have the rights listed in Article
+        11 of KVKK, including to learn whether we process your data, to ask for it
+        to be corrected or deleted, and to object. Write to
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; we answer within
+        the time the law sets. We do not hold, and cannot give you, text you
+        handled with the app, because we never receive it. For data Microsoft
+        holds about you, contact Microsoft. If you write to us, we use your
         message only to answer it; see our
-        <a href={localizedPath('en', 'privacy')}>website privacy policy</a>. For data Microsoft holds
-        about you, contact Microsoft. If you are in Türkiye you have the rights
-        listed in Article 11 of KVKK, and you can ask us about them at
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        <a href={localizedPath('en', 'privacy')}>website privacy policy</a>.
       </p>
 
-      <h2>10. Children</h2>
+      <h2>11. Children</h2>
       <p>Pelerin is not made for children.</p>
 
-      <h2>11. Changes</h2>
+      <h2>12. Changes</h2>
       <p>
         We will publish changes to this policy at this address and change the
-        date above. A change that affects what the app does with your data will
-        come with a new version of the app.
+        date above. A change that affects what the app sends or does with your
+        data will come with a new version of the app.
       </p>
     </Prose>
   </section>
