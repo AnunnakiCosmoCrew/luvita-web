@@ -225,8 +225,10 @@ import { CONTACT_EMAIL } from '../../lib/site';
       <p>
         The engine listens on your computer only, uses a per-launch access code
         held in memory, and keeps the original values in memory only. The licence
-        check uses HTTPS, and the app trusts only licences signed with Luvita's
-        key, which is built into the app. No system is perfectly secure, and the
+        check uses HTTPS, and the app trusts only licences signed by Luvita. It
+        checks the signature with a public verification key built into the app;
+        the signing key itself is never in the app. No system is perfectly
+        secure, and the
         files listed in section 6 are protected only as well as your own Windows
         account and disk.
       </p>
