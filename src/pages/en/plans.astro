@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+import PlansTable from '../../components/PlansTable.astro';
+import { localizedPath } from '../../i18n';
+import { CONTACT_EMAIL } from '../../lib/site';
+import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans';
+---
+
+<BaseLayout
+  locale="en"
+  title={`${PLANS_DRAFT ? 'DRAFT · ' : ''}Pelerin Desktop plans — Luvita`}
+  description="Pelerin Desktop plans and prices: a 14-day free trial, then 15 free masking requests a day; yearly and monthly plans per office."
+  paths={{ tr: 'planlar', en: 'plans' }}
+>
+  <Hero
+    eyebrow="Pelerin Desktop"
+    title="Choose the Pelerin Desktop plan that fits your office"
+  />
+
+  <section class="container">
+    <Prose>
+      {
+        PLANS_DRAFT && (
+          <p>
+            <strong>DRAFT.</strong> This page is not published; the prices are
+            an unpublished proposal.
+          </p>
+        )
+      }
+
+      <p>
+        Pelerin Desktop masks identifiers and contact details <strong>on your own
+        computer</strong> before you paste text into an AI tool, and writes the
+        real values back when you paste the answer in. Raw identifiers stay on
+        your computer; the risk in the text that goes to the AI tool drops
+        materially.
+      </p>
+      <p>
+        Your own legal basis under KVKK Article 9 remains your responsibility. No
+        method finds everything: read the masked text before you send it.
+      </p>
+
+      <h2>Every plan includes</h2>
+      <ul>
+        <li>
+          Masking of Turkish identifiers and contact details: TC Kimlik number,
+          IBAN, phone, address, plate, policy number and names
+        </li>
+        <li>
+          Names are found when the app's language model has been verified and
+          loaded on your computer; if it cannot be loaded, the app keeps working
+          with its rules and names may not be masked
+        </li>
+        <li>Restoring the real values into the AI tool's answer</li>
+        <li>
+          The AI tool is your choice; you copy the masked text yourself
+        </li>
+        <li>Installation on Windows</li>
+      </ul>
+
+      <h2>Try it first</h2>
+      <ul>
+        <li>
+          <strong>{TRIAL_DAYS} days</strong>, every feature, unlimited use. No
+          card needed.
+        </li>
+        <li>
+          After the trial, <strong>{FREE_DAILY_CAP} masking requests a day</strong>
+          stay free. A request is one text masked, whatever its length. Restoring
+          is always unlimited.
+        </li>
+      </ul>
+
+      <h2>Plans</h2>
+      <p>
+        Per office. Paying a year in advance is 20% less than paying monthly. The
+        price is fixed for the period you pay for; a renewal follows the list in
+        force that day.
+      </p>
+    </Prose>
+
+    <PlansTable
+      locale="en"
+      rowNames={['1 user', 'Up to 5 users', 'Up to 20 users']}
+      labels={{
+        caption: 'Pelerin Desktop plans, per office',
+        plan: 'Plan',
+        yearlyNet: 'Yearly (excluding KDV)',
+        yearlyGross: 'Yearly (including KDV)',
+        monthlyNet: 'Monthly (excluding KDV)',
+        monthlyGross: 'Monthly (including KDV)',
+        vat: 'KDV',
+      }}
+    />
+
+    <Prose>
+      <p>
+        To buy, write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>;
+        you pay by bank transfer against an invoice and your plan is set on your
+        account. You can cancel the monthly plan in any month.
+      </p>
+
+      <h2>For companies</h2>
+      <p>
+        More than 20 users? Want Pelerin inside your own network or your own
+        software, with central rules and an audit record? Let's agree a price for
+        your company: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+
+      <h2>What is sent to Luvita?</h2>
+      <p>
+        Pelerin sends Luvita your account identity, your plan and counts of how
+        many maskings you made, by type. Your text, the masked text and the
+        mapping are never sent to Luvita. Details are in the
+        <a href={localizedPath('en', 'pelerin-privacy')}>privacy policy</a>.
+      </p>
+    </Prose>
+  </section>
+</BaseLayout>
