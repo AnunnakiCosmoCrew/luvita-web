@@ -92,8 +92,7 @@
       "paths": [
         "dist/**/*.html"
       ],
-      "severity": "warn",
-      "why": "LUVITA.md: luvita.tr shows no city at all (LW-17). The root page's description / og:description / twitter:description still say \"Bodrum, Muğla\"; reported as a warning until the founder decides (luvita-docs#9)."
+      "why": "LUVITA.md: luvita.tr shows no city at all (LW-17), and that includes the snippet a search result or a link preview shows: no description / og:description / twitter:description names Bodrum or Muğla. Founder decision 2026-10-07 (luvita-docs#9); the root page's description was reworded in the same PR. The city survives only in the JSON-LD address block (no-city-in-visible-copy)."
     },
     {
       "id": "trade-name-legal-blocks-only",
