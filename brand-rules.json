@@ -1,0 +1,213 @@
+{
+  "$comment": "Brand-and-claim rules for luvita.tr (luvita-docs#9, EmirErs W7). Run after `npm run build`: python3 .github/scripts/brand-check.py. Schema: https://github.com/AnunnakiCosmoCrew/project-templates/tree/main/actions/brand-claim-check",
+  "root": ".",
+  "ignore": [],
+  "rules": [
+    {
+      "id": "root-page-exists",
+      "kind": "file-required",
+      "paths": [
+        "/dist/index.html"
+      ],
+      "why": "adr/0005: https://luvita.tr/ is a real identity page, never a redirect; the previous stub cost a credit-programme round."
+    },
+    {
+      "id": "root-has-trade-name",
+      "kind": "required",
+      "pattern": "Luvita Teknoloji Enerji Yazılım Sanayi ve Ticaret Limited Şirketi",
+      "paths": [
+        "/dist/index.html"
+      ],
+      "why": "adr/0005: the root identity card carries the registered trade name in the HTML the server sends."
+    },
+    {
+      "id": "root-has-mersis",
+      "kind": "required",
+      "pattern": "0609147476900001",
+      "paths": [
+        "/dist/index.html"
+      ],
+      "why": "adr/0005: the root page carries the MERSİS number for a verifier running curl (LUVITA.md, Legal entity)."
+    },
+    {
+      "id": "root-has-contact",
+      "kind": "required",
+      "pattern": "contact@luvita\\.tr",
+      "paths": [
+        "/dist/index.html"
+      ],
+      "why": "adr/0005: the root page carries contact@luvita.tr in server-sent HTML."
+    },
+    {
+      "id": "jsonld-on-every-page",
+      "kind": "required",
+      "pattern": "<script type=\"application/ld\\+json\">\\{[^<]*\"legalName\":\"Luvita Teknoloji Enerji Yazılım Sanayi ve Ticaret Limited Şirketi\"",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "exclude": [
+        "/dist/en/services/index.html",
+        "/dist/tr/hizmetler/index.html"
+      ],
+      "why": "adr/0005: Organization JSON-LD ships from BaseHead on every page because we do not choose where a verifier lands. The two retired-route stubs (LW-12 redirects) are excluded."
+    },
+    {
+      "id": "no-redirect-to-default-locale",
+      "kind": "banned",
+      "pattern": "redirectToDefaultLocale:\\s*true",
+      "paths": [
+        "/astro.config.mjs",
+        "/astro.config.ts",
+        "/astro.config.js"
+      ],
+      "why": "CLAUDE.md / adr/0006: never set redirectToDefaultLocale: true again; Astro would generate the root itself and ignore the identity page."
+    },
+    {
+      "id": "no-street-address",
+      "kind": "banned",
+      "pattern": "yal[ıi]kent|\\b69\\s*/\\s*25\\b|g[üu]ndo[ğg]an\\s+mah",
+      "paths": [
+        "dist/**/*.html",
+        "dist/**/*.xml",
+        "dist/**/*.txt"
+      ],
+      "why": "LUVITA.md, Legal entity: the registered office is the founder's home; the street address is never published on our own surfaces (rule inventory 54/118)."
+    },
+    {
+      "id": "no-city-in-visible-copy",
+      "kind": "banned",
+      "pattern": ">[^<]*\\b(Bodrum|Muğla|Mugla)\\b",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "allow": [
+        "\"addressLocality\":\"Bodrum\",\"addressRegion\":\"Muğla\",\"addressCountry\":\"TR\""
+      ],
+      "why": "CLAUDE.md (LW-17): no company address in rendered page text, not even the city; LOCATION survives only in the JSON-LD address block. Matches text nodes only."
+    },
+    {
+      "id": "no-city-in-meta",
+      "kind": "banned",
+      "pattern": "<meta[^>]+content=\"[^\"]*\\b(Bodrum|Muğla|Mugla)\\b",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "severity": "warn",
+      "why": "LUVITA.md: luvita.tr shows no city at all (LW-17). The root page's description / og:description / twitter:description still say \"Bodrum, Muğla\"; reported as a warning until the founder decides (luvita-docs#9)."
+    },
+    {
+      "id": "trade-name-legal-blocks-only",
+      "kind": "banned",
+      "pattern": "Luvita Teknoloji Enerji|Teknoloji Enerji Yazılım|LUVİTA TEKNOLOJİ ENERJİ",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "allow": [
+        "\"legalName\":\"Luvita Teknoloji Enerji Yazılım Sanayi ve Ticaret Limited Şirketi\"",
+        ">Luvita Teknoloji Enerji Yazılım Sanayi ve Ticaret Limited Şirketi</p>",
+        "<strong>Luvita Teknoloji Enerji Yazılım Sanayi ve Ticaret Limited Şirketi</strong>"
+      ],
+      "why": "CLAUDE.md / adr/0003 (amended by adr/0005): the full trade name is legal identity, never copy; only the exact registered form, in the footer legal block, the root identity block and JSON-LD legalName. Allowed only in context: the JSON-LD legalName, a whole <p> (footer legal block, root identity block) or the <strong> data-controller line of the legal pages; the name inside a headline, a lead or any other element is caught."
+    },
+    {
+      "id": "no-trade-name-in-meta-description",
+      "kind": "banned",
+      "pattern": "<meta(?=[^>]*\\b(name|property)=\"(description|og:description|twitter:description)\")(?=[^>]*\\bcontent=\"[^\"]*Enerji)[^>]*>",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "why": "CLAUDE.md: the trade name must never appear in a description meta tag (name=description, og:description, twitter:description), the snippet a search result or a link preview shows (rule inventory 56). Attribute order does not matter."
+    },
+    {
+      "id": "no-solar-brand",
+      "kind": "banned",
+      "pattern": "Luvita Enerji|Luvi Energy|luvitaenerji",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "why": "adr/0003: the consumer solar brand never appears on luvita.tr; the vitrines stay separate (LUVITA.md, Brands)."
+    },
+    {
+      "id": "no-solar-content",
+      "kind": "banned",
+      "pattern": "\\bGES\\b|güneş|solar|fotovoltaik|photovoltaic|\\bPV\\b",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "why": "adr/0003: no GES/solar content in the site body; the guard the ADR asked for (`GES|güneş|solar` outside the legal constants)."
+    },
+    {
+      "id": "no-script-outside-root",
+      "kind": "banned",
+      "pattern": "<script(?![^>]*application/ld\\+json)|\\son[a-z]+\\s*=|href\\s*=\\s*[\"']?\\s*javascript:",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "exclude": [
+        "/dist/index.html"
+      ],
+      "why": "CLAUDE.md / adr/0006: zero client-side JS; a <script>, an inline on* handler or a javascript: URL on any page but the root is a regression. JSON-LD is data, not script."
+    },
+    {
+      "id": "root-script-is-the-sanctioned-redirect",
+      "kind": "banned",
+      "pattern": "<script(?![^>]*application/ld\\+json)(?:(?!</script>).)*</script>|\\son[a-z]+\\s*=|href\\s*=\\s*[\"']?\\s*javascript:",
+      "flags": "is",
+      "paths": [
+        "/dist/index.html"
+      ],
+      "allow": [
+        "<script>(function(){const trHref = \"/tr/\";\nconst enHref = \"/en/\";\n\n      // Progressive enhancement (adr/0006): forward JS browsers to their\n      // language — Turkish PRIMARY preference → /tr/, everything else → /en/.\n      // Keying on the single most-preferred language (not \"Turkish appears\n      // anywhere\") keeps an English-primary bilingual visitor on /en/. No-JS\n      // clients and crawlers keep the identity card below. No cookies, no\n      // external request. `replace` leaves no history entry (no back trap).\n      try {\n        var primary =\n          (navigator.languages && navigator.languages[0]) ||\n          navigator.language ||\n          '';\n        var prefersTr = /^tr\\b/i.test(primary);\n        window.location.replace(prefersTr ? trHref : enHref);\n      } catch (e) {}\n    })();</script>"
+      ],
+      "why": "adr/0006: the root page carries exactly one inline script, the locale redirect, allow-listed here verbatim as built; any other script, a changed redirect, an inline handler or a javascript: URL on the root is caught. Editing src/pages/index.astro's script means updating the allow entry in the same PR."
+    },
+    {
+      "id": "no-external-script",
+      "kind": "banned",
+      "pattern": "<script[^>]*\\ssrc=",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "why": "CLAUDE.md: no external requests; the root redirect is inline and loads no library."
+    },
+    {
+      "id": "no-external-resources",
+      "kind": "banned",
+      "pattern": "<(script|link|img|iframe|source|video|audio|object|embed|form)\\b(?![^>]*\\brel=\"(canonical|alternate)\")[^>]*\\s(src|href|action)\\s*=\\s*[\"']?(https?:)?//|url\\(\\s*[\"']?(https?:)?//|@import\\s+[\"'(]*\\s*(https?:)?//",
+      "paths": [
+        "dist/**/*.html",
+        "dist/**/*.css"
+      ],
+      "why": "CLAUDE.md: no external requests at all, not just no known trackers: every resource-bearing element and CSS url()/@import must be same-origin. <link rel=canonical|alternate> are non-fetching SEO links and stay allowed."
+    },
+    {
+      "id": "no-tracking-or-cdn",
+      "kind": "banned",
+      "pattern": "googletagmanager|google-analytics|gtag\\(|plausible\\.io|fonts\\.googleapis|fonts\\.gstatic|cdn\\.jsdelivr|unpkg\\.com|cdnjs\\.cloudflare",
+      "paths": [
+        "dist/**/*.html",
+        "dist/**/*.css"
+      ],
+      "why": "CLAUDE.md: no analytics, no fonts, no CDN embeds; the privacy pages promise no cookies and no tracking."
+    },
+    {
+      "id": "no-internal-product-names",
+      "kind": "banned",
+      "pattern": "WordPower|\\bYaren\\b",
+      "paths": [
+        "dist/**/*.html",
+        "dist/**/*.xml"
+      ],
+      "why": "LUVITA.md, Brands: LexiPower never \"WordPower\", Umay never \"Yaren\" in public (rule inventory 58)."
+    },
+    {
+      "id": "no-services-surface",
+      "kind": "banned",
+      "pattern": "<a[^>]+href=\"[^\"]*/(hizmetler|services)/\"",
+      "paths": [
+        "dist/**/*.html"
+      ],
+      "why": "adr/0004: product company only; the Services page was retired (LW-12) and nothing may link to it again."
+    }
+  ]
+}
