@@ -101,8 +101,13 @@ export const products: Product[] = [
       },
     },
   },
-  // Deliberately a teaser: what Pelerin does is not public yet, so the card
-  // names it and nothing more. Do not add domain hints anywhere on the site.
+  // Pelerin Desktop is in pilot, so the card says what it does and that it is
+  // still in development (status stays 'in-development'; only a general
+  // release makes it 'live'). The claim floor binds every word: raw identifiers
+  // stay on the user's computer and the risk in what is sent drops materially;
+  // the customer's own KVKK Art. 9 basis is still required. No speed figures.
+  // HELD (luvita-web#39, Pelerin-docs#251): do not merge before the founder
+  // releases the plans page; the card and the plans page go live together.
   {
     key: 'pelerin',
     name: 'Pelerin',
@@ -110,14 +115,14 @@ export const products: Product[] = [
     icon: pelerinIcon,
     copy: {
       tr: {
-        tagline: 'Yeni bir kurumsal ürün',
+        tagline: 'Türkçe kişisel verileri bilgisayarınızda maskeler',
         description:
-          'Henüz duyurmadığımız yeni bir kurumsal ürün üzerinde çalışıyoruz. Geliştirme aşamasında; detaylar yakında.',
+          'Pelerin Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki TC Kimlik numarası, IBAN, telefon ve adres gibi bilgileri kendi bilgisayarınızda maskeler; cevabı geri yapıştırdığınızda gerçek değerleri yerine koyar. Ham kimlik bilgileri bilgisayarınızda kalır, gönderdiğiniz metindeki risk belirgin biçimde azalır; KVKK 9. madde kapsamındaki hukuki dayanağınız yine sizindir. Windows için pilot aşamasında; 14 günlük denemeyle başlar.',
       },
       en: {
-        tagline: 'A new enterprise product',
+        tagline: 'Masks Turkish personal data on your own computer',
         description:
-          'We are working on a new enterprise product we have not announced yet. Currently in development; details soon.',
+          'Pelerin Desktop masks identifiers such as TC Kimlik numbers, IBANs, phone numbers and addresses in text you paste, on your own computer, before you use an AI tool, and restores the real values when you paste the answer back. Raw identifiers stay on your computer and the risk in the text you send drops materially; your own legal basis under KVKK Article 9 remains yours. In pilot on Windows; starts with a 14-day trial.',
       },
     },
   },

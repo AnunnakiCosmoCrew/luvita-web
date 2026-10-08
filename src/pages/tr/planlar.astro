@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+import PlansTable from '../../components/PlansTable.astro';
+import { localizedPath } from '../../i18n';
+import { CONTACT_EMAIL } from '../../lib/site';
+import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans';
+---
+
+<BaseLayout
+  locale="tr"
+  title={`${PLANS_DRAFT ? 'TASLAK · ' : ''}Pelerin Masaüstü planları — Luvita`}
+  description="Pelerin Masaüstü planları ve fiyatları: 14 gün ücretsiz deneme, ardından günde 15 ücretsiz maskeleme isteği; ofis başına yıllık ve aylık planlar."
+  paths={{ tr: 'planlar', en: 'plans' }}
+>
+  <Hero
+    eyebrow="Pelerin Masaüstü"
+    title="Ofisinizin boyutuna uygun Pelerin Masaüstü planını seçin"
+  />
+
+  <section class="container">
+    <Prose>
+      {
+        PLANS_DRAFT && (
+          <p>
+            <strong>TASLAK.</strong> Bu sayfa yayımlanmamıştır; fiyatlar henüz
+            açıklanmamış bir öneridir.
+          </p>
+        )
+      }
+
+      <p>
+        Pelerin Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki kimlik ve
+        iletişim bilgilerini <strong>kendi bilgisayarınızda</strong> maskeler.
+        Cevabı geri yapıştırdığınızda gerçek değerleri yerlerine koyar. Ham
+        kimlik bilgileri bilgisayarınızda kalır; yapay zekâ aracına giden
+        metindeki risk belirgin biçimde azalır.
+      </p>
+      <p>
+        KVKK 9. madde kapsamındaki kendi hukuki dayanağınız her zaman sizin
+        sorumluluğunuzda kalır. Hiçbir yöntem her bilgiyi bulamaz: maskelenmiş
+        metni göndermeden önce gözden geçirin.
+      </p>
+
+      <h2>Her planda</h2>
+      <ul>
+        <li>
+          Türkçe kimlik ve iletişim bilgilerinin maskelenmesi: TC Kimlik numarası,
+          IBAN, telefon, adres, plaka, poliçe numarası ve adlar
+        </li>
+        <li>
+          Adlar, uygulamanın dil modeli bilgisayarınızda doğrulanıp yüklendiğinde
+          bulunur; model yüklenemezse uygulama kurallarla çalışmayı sürdürür ve
+          adlar maskelenmeyebilir
+        </li>
+        <li>Yapay zekâ cevabında yer tutucuları gerçek değerlerle geri yazma</li>
+        <li>
+          Kullandığınız yapay zekâ aracını siz seçersiniz; maskelenmiş metni siz
+          kopyalarsınız
+        </li>
+        <li>Windows için kurulum</li>
+      </ul>
+
+      <h2>Önce deneyin</h2>
+      <ul>
+        <li>
+          <strong>{TRIAL_DAYS} gün</strong>, tüm özellikler, sınırsız kullanım.
+          Kart bilgisi gerekmez.
+        </li>
+        <li>
+          Deneme bittikten sonra <strong>günde {FREE_DAILY_CAP} maskeleme
+          isteği</strong> ücretsiz kalır. Bir istek, uzunluğundan bağımsız olarak
+          bir metnin maskelenmesidir. Geri yükleme her zaman sınırsızdır.
+        </li>
+      </ul>
+
+      <h2>Planlar</h2>
+      <p>
+        Ofis başına. Yıllık peşin ödemede aylık ödemeye göre %20 daha uygun. Fiyat
+        ödenen dönem boyunca sabittir; yenilemede o gün geçerli liste uygulanır.
+      </p>
+    </Prose>
+
+    <PlansTable
+      locale="tr"
+      rowNames={['1 kullanıcı', '5 kullanıcıya kadar', '20 kullanıcıya kadar']}
+      labels={{
+        caption: 'Pelerin Masaüstü planları, ofis başına',
+        plan: 'Plan',
+        yearlyNet: 'Yıllık (KDV hariç)',
+        yearlyGross: 'Yıllık (KDV dahil)',
+        monthlyNet: 'Aylık (KDV hariç)',
+        monthlyGross: 'Aylık (KDV dahil)',
+        vat: 'KDV',
+      }}
+    />
+
+    <Prose>
+      <p>
+        Satın almak için <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        adresine yazın; fatura karşılığı havale/EFT ile ödersiniz ve planınız
+        hesabınıza tanımlanır. Aylık planı istediğiniz ay iptal edebilirsiniz.
+      </p>
+
+      <h2>Kurumsal</h2>
+      <p>
+        20'den fazla kullanıcınız mı var? Pelerin'i kendi ağınızda ya da kendi
+        yazılımınızın içinde çalıştırmak, merkezi kurallar ve denetim kaydı mı
+        istiyorsunuz? Ofisiniz için özel fiyat belirleyelim:
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+
+      <h2>Luvita'ya ne gönderilir?</h2>
+      <p>
+        Pelerin, Luvita'ya hesap kimliğinizi, planınızı ve türe göre maskeleme
+        sayılarını gönderir. Metniniz, maskelenmiş metin ve eşleme tablosu
+        Luvita'ya hiçbir zaman gönderilmez. Ayrıntılar için
+        <a href={localizedPath('tr', 'pelerin-gizlilik')}>gizlilik politikasına</a>
+        bakın.
+      </p>
+    </Prose>
+  </section>
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+// Pelerin plan table, shared by the TR and EN plans pages so the two cannot
+// drift apart. Figures are the founder's working prices (Pelerin-docs#251),
+// not final until released in chat; see src/lib/pelerin-plans.ts.
+import type { Locale } from '../i18n';
+import { PLAN_ROWS, formatLira } from '../lib/pelerin-plans';
+
+interface Props {
+  locale: Locale;
+  labels: {
+    caption: string;
+    plan: string;
+    yearlyNet: string;
+    yearlyGross: string;
+    monthlyNet: string;
+    monthlyGross: string;
+    vat: string;
+  };
+  rowNames: [string, string, string];
+}
+
+const { locale, labels, rowNames } = Astro.props;
+---
+
+<div class="table-wrap">
+  <table>
+    <caption>{labels.caption}</caption>
+    <thead>
+      <tr>
+        <th scope="col">{labels.plan}</th>
+        <th scope="col">{labels.yearlyNet}</th>
+        <th scope="col">{labels.yearlyGross}</th>
+        <th scope="col">{labels.monthlyNet}</th>
+        <th scope="col">{labels.monthlyGross}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        PLAN_ROWS.map((row, i) => (
+          <tr>
+            <th scope="row">{rowNames[i]}</th>
+            <td>{formatLira(row.yearlyNet, locale)} + {labels.vat}</td>
+            <td>{formatLira(row.yearlyNet * 1.2, locale)}</td>
+            <td>{formatLira(row.monthlyNet, locale)} + {labels.vat}</td>
+            <td>{formatLira(row.monthlyNet * 1.2, locale)}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: var(--sp-5);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-400);
+  }
+  caption {
+    text-align: left;
+    color: var(--c-muted);
+    padding-bottom: var(--sp-2);
+  }
+  th,
+  td {
+    text-align: left;
+    padding: var(--sp-3) var(--sp-3) var(--sp-3) 0;
+    border-bottom: 1px solid var(--c-border);
+    white-space: nowrap;
+  }
+  thead th {
+    color: var(--c-ink);
+    font-weight: 650;
+  }
+</style>
