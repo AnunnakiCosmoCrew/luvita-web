@@ -41,3 +41,8 @@ jobs:
         run: npm run check
       - name: Build
         run: npm run build
+      # Brand-and-claim check over the built site (luvita-docs#9). Rules and their
+      # reasons: brand-rules.json; the script is vendored from
+      # project-templates/actions/brand-claim-check.
+      - name: Brand and claim check
+        run: python3 .github/scripts/brand-check.py --rules brand-rules.json
