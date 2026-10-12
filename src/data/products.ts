@@ -101,11 +101,11 @@ export const products: Product[] = [
       },
     },
   },
-  // Deliberately a teaser: what Pelerin does is not public yet, so the card
+  // Deliberately a teaser: what Nesili does is not public yet, so the card
   // names it and nothing more. Do not add domain hints anywhere on the site.
   {
     key: 'pelerin',
-    name: 'Pelerin',
+    name: 'Nesili',
     status: 'in-development',
     icon: pelerinIcon,
     copy: {
