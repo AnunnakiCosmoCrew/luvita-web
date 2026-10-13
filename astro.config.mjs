@@ -43,6 +43,10 @@ export default defineConfig({
   redirects: {
     '/en/services': '/en/products/',
     '/tr/hizmetler': '/tr/urunler/',
+    // LW-48: the product is now Nesili; Pelerin-web and the desktop app still
+    // link the old privacy slugs, so they keep resolving.
+    '/en/pelerin-privacy': '/en/nesili-privacy/',
+    '/tr/pelerin-gizlilik': '/tr/nesili-gizlilik/',
   },
   integrations: [sitemap()],
 });

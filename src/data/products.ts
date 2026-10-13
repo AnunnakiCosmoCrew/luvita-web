@@ -101,7 +101,7 @@ export const products: Product[] = [
       },
     },
   },
-  // Pelerin Desktop is in pilot, so the card says what it does and that it is
+  // Nesili Desktop (formerly Pelerin Desktop) is in pilot, so the card says what it does and that it is
   // still in development (status stays 'in-development'; only a general
   // release makes it 'live'). The claim floor binds every word: raw identifiers
   // stay on the user's computer and the risk in what is sent drops materially;
@@ -110,19 +110,19 @@ export const products: Product[] = [
   // releases the plans page; the card and the plans page go live together.
   {
     key: 'pelerin',
-    name: 'Pelerin',
+    name: 'Nesili',
     status: 'in-development',
     icon: pelerinIcon,
     copy: {
       tr: {
         tagline: 'Türkçe kişisel verileri bilgisayarınızda maskeler',
         description:
-          'Pelerin Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki TC Kimlik numarası, IBAN, telefon ve adres gibi bilgileri kendi bilgisayarınızda maskeler; cevabı geri yapıştırdığınızda gerçek değerleri yerine koyar. Ham kimlik bilgileri bilgisayarınızda kalır, gönderdiğiniz metindeki risk belirgin biçimde azalır; KVKK 9. madde kapsamındaki hukuki dayanağınız yine sizindir. Windows için pilot aşamasında; 14 günlük denemeyle başlar.',
+          'Nesili Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki TC Kimlik numarası, IBAN, telefon ve adres gibi bilgileri kendi bilgisayarınızda maskeler; cevabı geri yapıştırdığınızda gerçek değerleri yerine koyar. Ham kimlik bilgileri bilgisayarınızda kalır, gönderdiğiniz metindeki risk belirgin biçimde azalır; KVKK 9. madde kapsamındaki hukuki dayanağınız yine sizindir. Windows için pilot aşamasında; 14 günlük denemeyle başlar.',
       },
       en: {
         tagline: 'Masks Turkish personal data on your own computer',
         description:
-          'Pelerin Desktop masks identifiers such as TC Kimlik numbers, IBANs, phone numbers and addresses in text you paste, on your own computer, before you use an AI tool, and restores the real values when you paste the answer back. Raw identifiers stay on your computer and the risk in the text you send drops materially; your own legal basis under KVKK Article 9 remains yours. In pilot on Windows; starts with a 14-day trial.',
+          'Nesili Desktop masks identifiers such as TC Kimlik numbers, IBANs, phone numbers and addresses in text you paste, on your own computer, before you use an AI tool, and restores the real values when you paste the answer back. Raw identifiers stay on your computer and the risk in the text you send drops materially; your own legal basis under KVKK Article 9 remains yours. In pilot on Windows; starts with a 14-day trial.',
       },
     },
   },

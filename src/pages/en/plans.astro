@@ -10,13 +10,13 @@ import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans
 
 <BaseLayout
   locale="en"
-  title={`${PLANS_DRAFT ? 'DRAFT · ' : ''}Pelerin Desktop plans — Luvita`}
-  description="Pelerin Desktop plans and prices: a 14-day free trial, then 15 free masking requests a day; yearly and monthly plans per office."
+  title={`${PLANS_DRAFT ? 'DRAFT · ' : ''}Nesili Desktop plans — Luvita`}
+  description="Nesili Desktop plans and prices: a 14-day free trial, then 15 free masking requests a day; yearly and monthly plans per office."
   paths={{ tr: 'planlar', en: 'plans' }}
 >
   <Hero
-    eyebrow="Pelerin Desktop"
-    title="Choose the Pelerin Desktop plan that fits your office"
+    eyebrow="Nesili Desktop"
+    title="Choose the Nesili Desktop plan that fits your office"
   />
 
   <section class="container">
@@ -31,7 +31,7 @@ import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans
       }
 
       <p>
-        Pelerin Desktop masks identifiers and contact details <strong>on your own
+        Nesili Desktop masks identifiers and contact details <strong>on your own
         computer</strong> before you paste text into an AI tool, and writes the
         real values back when you paste the answer in. Raw identifiers stay on
         your computer; the risk in the text that goes to the AI tool drops
@@ -85,7 +85,7 @@ import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans
       locale="en"
       rowNames={['1 user', 'Up to 5 users', 'Up to 20 users']}
       labels={{
-        caption: 'Pelerin Desktop plans, per office',
+        caption: 'Nesili Desktop plans, per office',
         plan: 'Plan',
         yearlyNet: 'Yearly (excluding KDV)',
         yearlyGross: 'Yearly (including KDV)',
@@ -104,17 +104,17 @@ import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans
 
       <h2>For companies</h2>
       <p>
-        More than 20 users? Want Pelerin inside your own network or your own
+        More than 20 users? Want Nesili inside your own network or your own
         software, with central rules and an audit record? Let's agree a price for
         your company: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
       </p>
 
       <h2>What is sent to Luvita?</h2>
       <p>
-        Pelerin sends Luvita your account identity, your plan and counts of how
+        Nesili sends Luvita your account identity, your plan and counts of how
         many maskings you made, by type. Your text, the masked text and the
         mapping are never sent to Luvita. Details are in the
-        <a href={localizedPath('en', 'pelerin-privacy')}>privacy policy</a>.
+        <a href={localizedPath('en', 'nesili-privacy')}>privacy policy</a>.
       </p>
     </Prose>
   </section>

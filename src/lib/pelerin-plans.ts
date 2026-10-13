@@ -1,5 +1,5 @@
 /**
- * Pelerin Desktop price list: the founder's WORKING prices, accepted
+ * Nesili Desktop (formerly Pelerin Desktop) price list: the founder's WORKING prices, accepted
  * 2026-10-07 and not published (Pelerin-docs#251, luvita-web#39). Nothing here
  * is a published price until the founder confirms the figures in chat, the
  * pilot answers are in, and `PLANS_DRAFT` below is set to false.

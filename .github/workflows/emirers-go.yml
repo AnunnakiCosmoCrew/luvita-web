@@ -1,0 +1,44 @@
+# EmirErs /go (EM-53): the stub every routine repo carries. Rendered by emirers
+# scripts/go-workflow.py; the only per-repo values are the two inputs below. The logic is the
+# reusable workflow AnunnakiCosmoCrew/project-templates/.github/workflows/emirers-go.yml, and
+# a change there is live here the moment it merges (`@main`). Edit the logic there, never here.
+#
+# The founder's `/go` comment on an issue fires this repo's claude.ai routine at once and always
+# answers on the comment (🚀 fired, 😕 refused or failed, 👀 one already fired in the last 45 min).
+# The `if` below skips every other comment before the shared workflow is even fetched. Because
+# every routine repo runs the shared workflow `@main` with its fire token, project-templates `main`
+# must require a PR and the `actions-test` check (`go-workflow.py --check` verifies it).
+name: EmirErs go
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  go:
+    # `/go` alone, or followed by a space, a tab or a line break (what the shared workflow's
+    # `^/go([[:space:]]|$)` accepts): `/gone` or `/goal` never start a runner or reach the fire
+    # token. fromJSON('"\n"') is how an expression spells a newline.
+    if: >-
+      github.event.comment.user.login == 'mertyertugrul' &&
+      (github.event.comment.body == '/go' ||
+       startsWith(github.event.comment.body, '/go ') ||
+       startsWith(github.event.comment.body, format('/go{0}', fromJSON('"\n"'))) ||
+       startsWith(github.event.comment.body, format('/go{0}', fromJSON('"\r"'))) ||
+       startsWith(github.event.comment.body, format('/go{0}', fromJSON('"\t"'))))
+    # Job level, so it is evaluated after `if`: a skipped run (any other comment) never joins the
+    # group and so never replaces a queued `/go`.
+    concurrency:
+      group: emirers-go-${{ github.event.issue.number }}
+      cancel-in-progress: false
+    uses: AnunnakiCosmoCrew/project-templates/.github/workflows/emirers-go.yml@main
+    with:
+      routine_id: "trig_017qF66BmfLE9iEaXjCuX3XX"
+      branch_prefix: "feature/lw-"
+    secrets:
+      fire_token: ${{ secrets.EMIRERS_FIRE_TOKEN }}
