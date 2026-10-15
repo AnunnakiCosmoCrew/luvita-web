@@ -14,6 +14,7 @@
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n';
 import { COSMOCREW_URL, UMAY_URL } from '../lib/site';
+import { TRIAL_DAYS } from '../lib/pelerin-plans';
 import umayIcon from '../assets/icons/umay.png';
 import cosmocrewIcon from '../assets/icons/cosmocrew.svg';
 import luviEngineIcon from '../assets/icons/luvi-engine.svg';
@@ -117,12 +118,12 @@ export const products: Product[] = [
       tr: {
         tagline: 'Türkçe kişisel verileri bilgisayarınızda maskeler',
         description:
-          'Nesili Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki TC Kimlik numarası, IBAN, telefon ve adres gibi bilgileri kendi bilgisayarınızda maskeler; cevabı geri yapıştırdığınızda gerçek değerleri yerine koyar. Ham kimlik bilgileri bilgisayarınızda kalır, gönderdiğiniz metindeki risk belirgin biçimde azalır; KVKK 9. madde kapsamındaki hukuki dayanağınız yine sizindir. Windows için pilot aşamasında; 14 günlük denemeyle başlar.',
+          `Nesili Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki TC Kimlik numarası, IBAN, telefon ve adres gibi bilgileri kendi bilgisayarınızda maskeler; cevabı geri yapıştırdığınızda gerçek değerleri yerine koyar. Ham kimlik bilgileri bilgisayarınızda kalır, gönderdiğiniz metindeki risk belirgin biçimde azalır; KVKK 9. madde kapsamındaki hukuki dayanağınız yine sizindir. Windows için pilot aşamasında; ${TRIAL_DAYS} günlük denemeyle başlar.`,
       },
       en: {
         tagline: 'Masks Turkish personal data on your own computer',
         description:
-          'Nesili Desktop masks identifiers such as TC Kimlik numbers, IBANs, phone numbers and addresses in text you paste, on your own computer, before you use an AI tool, and restores the real values when you paste the answer back. Raw identifiers stay on your computer and the risk in the text you send drops materially; your own legal basis under KVKK Article 9 remains yours. In pilot on Windows; starts with a 14-day trial.',
+          `Nesili Desktop masks identifiers such as TC Kimlik numbers, IBANs, phone numbers and addresses in text you paste, on your own computer, before you use an AI tool, and restores the real values when you paste the answer back. Raw identifiers stay on your computer and the risk in the text you send drops materially; your own legal basis under KVKK Article 9 remains yours. In pilot on Windows; starts with a ${TRIAL_DAYS}-day trial.`,
       },
     },
   },

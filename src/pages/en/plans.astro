@@ -11,7 +11,7 @@ import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans
 <BaseLayout
   locale="en"
   title={`${PLANS_DRAFT ? 'DRAFT · ' : ''}Nesili Desktop plans — Luvita`}
-  description="Nesili Desktop plans and prices: a 14-day free trial, then 15 free masking requests a day; yearly and monthly plans per office."
+  description={`Nesili Desktop plans and prices: a ${TRIAL_DAYS}-day free trial, then ${FREE_DAILY_CAP} free masking requests a day; yearly and monthly plans per office.`}
   paths={{ tr: 'planlar', en: 'plans' }}
 >
   <Hero
@@ -104,9 +104,8 @@ import { PLANS_DRAFT, TRIAL_DAYS, FREE_DAILY_CAP } from '../../lib/pelerin-plans
 
       <h2>For companies</h2>
       <p>
-        More than 20 users? Want Nesili inside your own network or your own
-        software, with central rules and an audit record? Let's agree a price for
-        your company: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        Nesili for organisations with more than 20 users: contact us for
+        licensing at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
       </p>
 
       <h2>What is sent to Luvita?</h2>
