@@ -20,10 +20,11 @@
  * and crawlers never run it, so they still get the full identity card and the
  * JSON-LD: adr/0005's verification guarantee holds by construction.
  *
- * No street address appears here, and the visible copy no longer names the
- * city either — the registered office is the founder's home. The city
- * survives only in the machine-readable JSON-LD (OrganizationSchema), where a
- * verifier reads it; see `LOCATION` in src/lib/site.ts.
+ * No street address appears here, and neither the visible copy nor the head
+ * metadata (description / og:description / twitter:description) names the
+ * city — the registered office is the founder's home. The city survives only
+ * in the machine-readable JSON-LD (OrganizationSchema), where a verifier
+ * reads it; see `LOCATION` in src/lib/site.ts.
  */
 import '../styles/global.css';
 import BaseHead from '../components/BaseHead.astro';
@@ -48,10 +49,12 @@ const enHref = localizedPath('en');
  * The head metadata stays brand-based. `LEGAL_NAME` contains "Enerji" and is
  * legal identity, not copy (adr/0003 as amended by adr/0005): it belongs in
  * the identity block below and in `legalName` in the JSON-LD, not in the
- * snippet a search result shows.
+ * snippet a search result shows. The same snippet names no city (LW-17,
+ * LUVITA.md): country level at most. brand-rules.json's `no-city-in-meta`
+ * fails the build otherwise.
  */
 const title = `${BRAND} Teknoloji — yazılım ürünleri şirketi · software product company`;
-const description = `${BRAND}, Bodrum, Muğla merkezli bağımsız bir yazılım ürünleri şirketidir. ${BRAND} is an independent software product company based in Bodrum, Muğla, Türkiye. İletişim / contact: ${CONTACT_EMAIL}`;
+const description = `${BRAND}, Türkiye merkezli bağımsız bir yazılım ürünleri şirketidir. ${BRAND} is an independent software product company based in Türkiye. İletişim / contact: ${CONTACT_EMAIL}`;
 ---
 
 <!doctype html>
