@@ -16,7 +16,7 @@ import { CONTACT_EMAIL } from '../../lib/site';
 
   <section class="container">
     <Prose>
-      <p>Version 0.2 · Last updated: 6 October 2026</p>
+      <p>Version 0.3 · Last updated: 19 October 2026</p>
 
       <h2>1. Who we are</h2>
       <p>
@@ -145,8 +145,10 @@ import { CONTACT_EMAIL } from '../../lib/site';
       <h2>6. What stays on your computer</h2>
       <p>
         The app writes a few files on your computer. They contain no text you
-        pasted and no original values.
+        pasted and no original values. Where they are depends on your system:
+        Windows first, then Mac.
       </p>
+      <h3>On Windows</h3>
       <ul>
         <li>
           <strong>A record of placeholders</strong>
@@ -185,7 +187,48 @@ import { CONTACT_EMAIL } from '../../lib/site';
         We do not read them.
       </p>
 
-      <h2>7. Microsoft and Windows</h2>
+      <h3>On a Mac</h3>
+      <ul>
+        <li>
+          <strong>The record of placeholders and the usage counter</strong>
+          in <code>~/Library/Application Support/Pelerin/audit/</code>: the
+          record is <code>…/audit/&lt;account folder&gt;/records.jsonl</code> and
+          the usage counter is <code>…/audit/usage/counters.json</code>. They
+          hold the same things as described above. The folder can be read only
+          by your own user account.
+        </li>
+        <li>
+          <strong>Your sign-in, in the macOS Keychain:</strong> the device
+          credential and the latest signed licence, as two items under the name
+          <code>dev.cosmocrew.pelerin.desktop</code>. They are kept in the
+          Keychain, not in the app's own data files. Signing out deletes them;
+          if you remove the app without signing out they can stay behind, and
+          your administrator can end the computer's access.
+        </li>
+        <li>
+          Temporary working files, in your Mac's temporary folder: a folder
+          whose name starts with <code>pd</code>. The app removes it when you
+          close it; if the app stops unexpectedly it can stay until macOS
+          clears the temporary folder.
+        </li>
+        <li>
+          The window's browser data (cache and settings of the WebKit component
+          of macOS that draws the window), which macOS keeps in your Library
+          folder under the app's identifier,
+          <code>dev.cosmocrew.pelerin.desktop</code>.
+        </li>
+      </ul>
+      <p>
+        When you drag the app to the Bin, only the app itself is removed. The
+        <code>Pelerin</code> folder in <code>~/Library/Application Support</code>,
+        the two Keychain items and the browser data can stay behind. You can
+        delete the folder in Finder and the two items in Keychain Access
+        (search for <code>dev.cosmocrew.pelerin.desktop</code>) at any time. We do not
+        read them.
+      </p>
+
+      <h2>7. Microsoft, Windows and Apple</h2>
+      <h3>On Windows</h3>
       <ul>
         <li>
           <strong>Microsoft Edge WebView2 Runtime.</strong> The app needs this
@@ -210,6 +253,31 @@ import { CONTACT_EMAIL } from '../../lib/site';
         </li>
       </ul>
 
+      <h3>On a Mac</h3>
+      <ul>
+        <li>
+          <strong>Where the app comes from.</strong> Nesili for Mac is a
+          notarised app in a disk image (DMG) that you download from Luvita. It
+          is not distributed through an app store, so no store gives us
+          installation or failure reports. macOS may check the app with Apple
+          when you first open it; that is macOS's own behaviour and we do not
+          control it.
+        </li>
+        <li>
+          <strong>WebKit.</strong> The app uses the WebKit component built into
+          macOS to draw its window. It is an Apple product with its own
+          behaviour. We do not control it.
+        </li>
+        <li>
+          <strong>Crash reports.</strong> If the app stops unexpectedly, macOS
+          may keep a crash report on your Mac and, if you have allowed it under
+          <em>System Settings → Privacy &amp; Security → Analytics &amp;
+          Improvements</em>, share it with Apple. Such a report could include
+          information that was in the app's memory at that moment. If you handle
+          sensitive text, check those settings.
+        </li>
+      </ul>
+
       <h2>8. What you do with masked text</h2>
       <p>
         Nesili keeps raw identifiers on your computer and materially reduces the
@@ -229,8 +297,8 @@ import { CONTACT_EMAIL } from '../../lib/site';
         checks the signature with a public verification key built into the app;
         the signing key itself is never in the app. No system is perfectly
         secure, and the
-        files listed in section 6 are protected only as well as your own Windows
-        account and disk.
+        files listed in section 6 are protected only as well as your own Windows or
+        Mac account and disk.
       </p>
 
       <h2>10. Your rights</h2>
