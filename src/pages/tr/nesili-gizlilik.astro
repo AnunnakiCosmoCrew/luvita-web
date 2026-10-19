@@ -16,7 +16,7 @@ import { CONTACT_EMAIL } from '../../lib/site';
 
   <section class="container">
     <Prose>
-      <p>Sürüm 0.2 · Son güncelleme: 6 Ekim 2026</p>
+      <p>Sürüm 0.3 · Son güncelleme: 19 Ekim 2026</p>
 
       <h2>1. Biz kimiz</h2>
       <p>
@@ -148,8 +148,10 @@ import { CONTACT_EMAIL } from '../../lib/site';
       <h2>6. Bilgisayarınızda ne kalır</h2>
       <p>
         Uygulama bilgisayarınıza birkaç dosya yazar. Bunlar yapıştırdığınız metni
-        veya özgün değerleri içermez.
+        veya özgün değerleri içermez. Nerede olduklarını sisteminiz belirler: önce
+        Windows, sonra Mac.
       </p>
+      <h3>Windows'ta</h3>
       <ul>
         <li>
           <strong>Yer tutucu kaydı</strong>
@@ -187,7 +189,47 @@ import { CONTACT_EMAIL } from '../../lib/site';
         bunları okumayız.
       </p>
 
-      <h2>7. Microsoft ve Windows</h2>
+      <h3>Mac'te</h3>
+      <ul>
+        <li>
+          <strong>Yer tutucu kaydı ve kullanım sayacı</strong>
+          <code>~/Library/Application Support/Pelerin/audit/</code> altında: kayıt
+          <code>…/audit/&lt;hesap klasörü&gt;/records.jsonl</code>, kullanım sayacı
+          ise <code>…/audit/usage/counters.json</code> dosyasıdır. Yukarıda
+          anlatılanlarla aynı şeyleri içerirler. Klasörü yalnızca kendi
+          kullanıcı hesabınız okuyabilir.
+        </li>
+        <li>
+          <strong>Girişiniz, macOS Anahtar Zinciri'nde:</strong> cihaz kimlik
+          bilgisi ve son imzalı lisans, <code>dev.cosmocrew.pelerin.desktop</code>
+          adı altında iki öğe olarak. Uygulamanın kendi veri dosyalarında değil,
+          Anahtar Zinciri'nde tutulurlar. Çıkış yapmak bunları siler; çıkış
+          yapmadan uygulamayı kaldırırsanız geride kalabilirler ve yöneticiniz
+          bilgisayarın erişimini sonlandırabilir.
+        </li>
+        <li>
+          Geçici çalışma dosyaları, Mac'inizin geçici klasöründe: adı
+          <code>pd</code> ile başlayan bir klasör. Uygulamayı kapattığınızda
+          uygulama onu siler; uygulama beklenmedik biçimde kapanırsa macOS geçici
+          klasörü temizleyene kadar kalabilir.
+        </li>
+        <li>
+          Pencerenin tarayıcı verisi (pencereyi çizen, macOS'in WebKit
+          bileşeninin önbelleği ve ayarları). macOS bunu kendi Kitaplık
+          klasörünüzde saklar.
+        </li>
+      </ul>
+      <p>
+        Uygulamayı Çöp Sepeti'ne sürüklediğinizde yalnızca uygulamanın kendisi
+        silinir. <code>~/Library/Application Support</code> içindeki
+        <code>Pelerin</code> klasörü, iki Anahtar Zinciri öğesi ve tarayıcı
+        verisi geride kalabilir. Klasörü Finder'da, iki öğeyi Anahtar Zinciri
+        Erişimi'nde (<code>dev.cosmocrew.pelerin.desktop</code> diye aratın) istediğiniz
+        zaman kendiniz silebilirsiniz. Biz bunları okumayız.
+      </p>
+
+      <h2>7. Microsoft, Windows ve Apple</h2>
+      <h3>Windows'ta</h3>
       <ul>
         <li>
           <strong>Microsoft Edge WebView2 Runtime.</strong> Uygulama penceresini
@@ -213,6 +255,31 @@ import { CONTACT_EMAIL } from '../../lib/site';
         </li>
       </ul>
 
+      <h3>Mac'te</h3>
+      <ul>
+        <li>
+          <strong>Uygulama nereden gelir.</strong> Mac için Nesili, Luvita'dan
+          indirdiğiniz, noter onaylı (notarised) bir disk imajı (DMG) içindeki
+          uygulamadır. Bir uygulama mağazası üzerinden dağıtılmaz; bu yüzden
+          hiçbir mağaza bize kurulum veya hata raporu vermez. macOS, uygulamayı
+          ilk açtığınızda Apple ile kontrol edebilir; bu macOS'in kendi
+          davranışıdır ve biz kontrol etmeyiz.
+        </li>
+        <li>
+          <strong>WebKit.</strong> Uygulama penceresini çizmek için macOS'in
+          içindeki WebKit bileşenini kullanır. Kendi davranışı olan bir Apple
+          ürünüdür. Bunu biz kontrol etmeyiz.
+        </li>
+        <li>
+          <strong>Çökme raporları.</strong> Uygulama beklenmedik biçimde
+          kapanırsa macOS Mac'inizde bir çökme raporu saklayabilir ve
+          <em>Sistem Ayarları → Gizlilik ve Güvenlik → Analiz ve İyileştirmeler</em>
+          altında izin verdiyseniz Apple ile paylaşabilir. Böyle bir rapor, o anda
+          uygulamanın belleğinde bulunan bilgileri içerebilir. Hassas metinlerle
+          çalışıyorsanız bu ayarları kontrol edin.
+        </li>
+      </ul>
+
       <h2>8. Maskelenmiş metinle ne yaptığınız</h2>
       <p>
         Nesili ham tanımlayıcıları bilgisayarınızda tutar ve dışarıya
@@ -232,8 +299,8 @@ import { CONTACT_EMAIL } from '../../lib/site';
         imzalanmış lisanslara güvenir. İmzayı, uygulamanın içine gömülü bir açık
         doğrulama anahtarıyla denetler; imzalama anahtarının kendisi hiçbir
         zaman uygulamada bulunmaz. Hiçbir sistem tamamen güvenli değildir; 6.
-        bölümdeki dosyalar yalnızca kendi Windows
-        hesabınızın ve diskinizin sağladığı kadar korunur.
+        bölümdeki dosyalar yalnızca kendi Windows veya
+        Mac hesabınızın ve diskinizin sağladığı kadar korunur.
       </p>
 
       <h2>10. Haklarınız</h2>
