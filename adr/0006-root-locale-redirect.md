@@ -32,7 +32,10 @@ trap the visitor on a bouncing root).
 
 This is the single sanctioned exception to the site's zero-JS rule. The script
 sets no cookie, makes no external request and loads no library, so the privacy
-promise on the KVKK/privacy pages ("no cookies, no tracking") stays true. It is
+promise on the KVKK/privacy pages ("no cookies, no tracking") stays true.
+(Note 2026-10-26, LW-54: that promise now reads "no cookies of our own, no
+client-side analytics", with visits counted server-side by Cloudflare. The
+script above still sets no cookie and makes no external request.) It is
 progressive enhancement: a client with JS disabled, or a crawler or verifier
 that fetches the URL without running scripts, never executes it and still
 receives the full identity card and the `Organization` JSON-LD. adr/0005's
