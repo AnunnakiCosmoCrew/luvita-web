@@ -189,7 +189,7 @@
         "dist/**/*.html",
         "dist/**/*.css"
       ],
-      "why": "CLAUDE.md: no analytics, no fonts, no CDN embeds; the privacy pages promise no cookies and no tracking."
+      "why": "CLAUDE.md: no client-side analytics, no fonts, no CDN embeds; the privacy pages promise no cookies and no tracking scripts (visits are counted server-side from Cloudflare zone analytics only, LW-54)."
     },
     {
       "id": "no-internal-product-names",
