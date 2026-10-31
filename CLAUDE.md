@@ -75,3 +75,56 @@ configuration and the DNS records.
 - ADRs live in `adr/` in this repo (site-scoped decisions only).
 - Company identity constants (address, e-mail, MERSİS) live in
   `src/lib/site.ts` — single source of truth for the footer and contact page.
+
+## Design brief
+
+Read before changing any visible UI (the `frontend-design` skill in
+`.claude/skills/` applies; this brief and the hard rules above win over it).
+The source of truth is `src/styles/tokens.css` — use its variables, never raw
+values in components.
+
+- **Character:** calm, near-monochrome, one restrained corporate accent. A
+  bank officer or a verifier is the reader: sober and trustworthy, not
+  decorative.
+- **Colour:** accent deep teal `--c-accent` (`#0f7b6c`; `#3cb8a4` in dark);
+  warm off-white `--c-bg` (`#fafaf8`), charcoal ink `--c-ink` (`#1a1b20`);
+  surfaces `--c-surface`/`--c-surface-2`; muted status dot `--c-ok`. Light by
+  default, dark via `prefers-color-scheme` only (no toggle, no JS).
+- **Type:** system stacks only — `--font-sans` for body, `--font-display`
+  (Iowan Old Style / Palatino / Georgia serif) for headings, `--font-mono`.
+  Scale `--fs-300`…`--fs-900` (~1.2 modular) plus fluid `--fs-hero`; line
+  heights `--lh-tight` / `--lh-body`. **No web fonts, no font CDN.**
+- **Layout:** spacing `--sp-1`…`--sp-9`, radii `--radius-sm/--radius/--radius-lg`,
+  widths `--maxw` (64rem) and `--maxw-prose` (42rem), `--shadow-card`, motion
+  `--ease`/`--dur`. Keep it responsive down to 390 px with no horizontal scroll.
+- **Hard rules apply to design too:** no external requests (images, icons,
+  fonts, embeds), no client-side JS beyond the root redirect script, no solar
+  imagery, no services-style sections, no address or city in visible copy.
+- Design changes need a founder look (`Founder check: product` or `public`).
+
+## Brand and copy
+
+Brand names, attribution strings, claims and voice rules live in
+`AnunnakiCosmoCrew/project-templates/brand/BRAND.md`. Read it live, from the
+repository, before writing or changing any copy
+(`https://github.com/AnunnakiCosmoCrew/project-templates/blob/main/brand/BRAND.md`);
+do not copy its rules here. This file's hard rules win where they are stricter.
+
+## Cloud preview notes
+
+For the `preview-check` skill (`.claude/skills/preview-check/`) after any
+visible UI change. `npm run dev` may be refused in auto mode, so build and
+serve the static output yourself:
+
+1. `npm run build` (output in `dist/`; `base` is `/`, so no sub-path).
+2. Start `npm run preview -- --host 127.0.0.1` in the background, log to the
+   scratchpad. Astro's default port is **4321**; read the real port from the
+   log, as it moves up if 4321 is taken.
+3. Routes: `/` (root identity card — the only page with a script), `/tr/`,
+   `/en/`, and the localized pairs `/tr/urunler/` ↔ `/en/products/`,
+   `/tr/planlar/` ↔ `/en/plans/`, `/tr/hakkimizda/` ↔ `/en/about/`,
+   `/tr/iletisim/` ↔ `/en/contact/`, `/tr/gizlilik/` ↔ `/en/privacy/`,
+   `/tr/kvkk-aydinlatma/`, `/tr/nesili-gizlilik/` ↔ `/en/nesili-privacy/`,
+   and `/404.html`.
+4. Expect zero failed requests and zero console errors; any external request
+   is a regression. Stop the server when done.

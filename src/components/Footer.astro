@@ -115,8 +115,12 @@ const links = (
     font-size: var(--fs-400);
   }
 
-  .footer-nav a:hover {
+  .footer-nav a:hover,
+  .footer-nav a:focus-visible {
     color: var(--c-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--c-accent);
+    text-underline-offset: var(--sp-1);
   }
 
   .footer-legal {
