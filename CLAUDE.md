@@ -33,8 +33,13 @@ configuration and the DNS records.
   engagement-process band, or copy soliciting client projects — that framing
   is what got the company misclassified as an agency. Turnkey work can still
   be accepted; it is simply never advertised here.
-- **Zero client-side JS, no external requests.** No analytics, no fonts, no
-  CDN embeds. Privacy pages promise "no cookies, no tracking" — keep it true.
+- **Zero client-side JS, no external requests.** No client-side analytics,
+  no fonts, no CDN embeds. The privacy pages promise no cookies and no
+  analytics or tracking scripts in the browser — keep it true. Visits are
+  counted only server-side, from Cloudflare's zone HTTP analytics on the
+  proxied luvita.tr records (aggregate counts by path, referrer and country;
+  founder, 2026-10-26, LW-54), and the privacy and KVKK pages say so. Adding
+  any client-side analytics still needs a privacy-copy change first.
   The **one** sanctioned exception is the root page's inline locale-redirect
   script (`src/pages/index.astro`, adr/0006): it sets no cookie, makes no
   external request and loads no library. Every other page stays zero-JS — a

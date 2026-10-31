@@ -71,8 +71,12 @@ change needs no template edits.
 ### DNS
 
 Nameservers are delegated to Cloudflare; records point at GitHub Pages with the
-Cloudflare proxy **off** (grey cloud) so Pages can issue and renew its
-Let's Encrypt certificate:
+Cloudflare proxy **on** (orange cloud) and SSL/TLS mode **Full** since
+2026-10-26 (LW-54), so Cloudflare's server-side zone analytics can count visits
+without any script in the page. Behind the proxy, Pages may fail to renew its
+Let's Encrypt certificate; mode Full (not Full strict) keeps the site up if it
+lapses. The privacy pages name Cloudflare; switching the proxy off again means
+changing them back first. Records:
 
 | Type | Name | Value |
 | --- | --- | --- |
