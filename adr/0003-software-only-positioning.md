@@ -44,6 +44,15 @@ install energy systems". This stays inside the decision above:
   performs installations. What it claims is true: we build the software.
 - No solar hardware, panel, or installation-service copy anywhere.
 
+### Withdrawn 2026-11-15
+
+Luvi Engine is no longer listed (LW-63, founder decision). Development stopped
+on 2026-10-09, and this site's rule is that product status must be truthful:
+a card saying "in development" was no longer true. The card, its icon and the
+wording that named it were removed; the products page now counts two products
+in development. The decision above is unchanged. If the product returns, it is
+listed again under the three conditions of the 2026-08-09 update.
+
 ## Update 2026-09-24 — the trade name is legal identity, not a footer-only string
 
 The original decision said the full trade name appears "only in the footer

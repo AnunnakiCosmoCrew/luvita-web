@@ -17,7 +17,6 @@ import { COSMOCREW_URL, UMAY_URL } from '../lib/site';
 import { TRIAL_DAYS } from '../lib/pelerin-plans';
 import umayIcon from '../assets/icons/umay.png';
 import cosmocrewIcon from '../assets/icons/cosmocrew.svg';
-import luviEngineIcon from '../assets/icons/luvi-engine.svg';
 import pelerinIcon from '../assets/icons/pelerin.svg';
 
 export type ProductStatus = 'live' | 'in-development';
@@ -81,24 +80,6 @@ export const products: Product[] = [
         tagline: 'Our apps brand',
         description:
           'Our apps ship under the CosmoCrew brand: SliceFocus, LexiPower and With Handlebars. Products taken from idea to launch — and kept alive for years.',
-      },
-    },
-  },
-  {
-    key: 'luvi-engine',
-    name: 'Luvi Engine',
-    status: 'in-development',
-    icon: luviEngineIcon,
-    copy: {
-      tr: {
-        tagline: 'Saha keşif ve teklif motoru',
-        description:
-          'Enerji sistemleri kuran ekipler için, sahada internet olmadan çalışan bir keşif ve teklif uygulaması: saniyeler içinde aralık tahmini, dakikalar içinde iki dilli PDF teklif. Türkiye’ye özgü tarife ve teşvik kuralları hesap motoruna gömülüdür. Geliştirme aşamasında.',
-      },
-      en: {
-        tagline: 'Field survey & quotation engine',
-        description:
-          'An offline-first survey and quoting app for teams that install energy systems: a ballpark range in seconds, a firmed bilingual PDF quote in minutes. Türkiye-specific tariff and incentive rules are built into the calculation engine. Currently in development.',
       },
     },
   },
