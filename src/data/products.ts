@@ -26,10 +26,29 @@ export interface ProductCopy {
   description: string;
 }
 
+/** A real screen of the product (DESIGN.md section 5). Never invented. */
+export interface ProductScreen {
+  src: ImageMetadata;
+  /** What the screen shows, per locale. */
+  alt: Record<Locale, string>;
+}
+
 export interface Product {
   key: string;
   name: string;
   status: ProductStatus;
+  /**
+   * The state shown in the product's state line on the home page
+   * (DESIGN.md section 6). Must agree with `status`: an in-development
+   * product says so here too. The release date is added from
+   * src/data/releases.json, never written here.
+   */
+  state: Record<Locale, string>;
+  /**
+   * A real screen for the home page board. Absent until one exists: the board
+   * then shows the product's mark large in its place, never an empty frame.
+   */
+  screen?: ProductScreen;
   icon?: ImageMetadata;
   /**
    * Public link (App Store, product site). A link does not imply 'live' — an
@@ -49,6 +68,10 @@ export const products: Product[] = [
     key: 'umay',
     name: 'Umay',
     status: 'in-development',
+    state: {
+      en: 'In development · demo on request',
+      tr: 'Geliştirme aşamasında · demo istenebilir',
+    },
     icon: umayIcon,
     url: UMAY_URL,
     copy: {
@@ -68,6 +91,10 @@ export const products: Product[] = [
     key: 'cosmocrew',
     name: 'CosmoCrew',
     status: 'live',
+    state: {
+      en: 'Three apps live',
+      tr: 'Üç uygulama yayında',
+    },
     icon: cosmocrewIcon,
     url: COSMOCREW_URL,
     copy: {
@@ -94,6 +121,10 @@ export const products: Product[] = [
     key: 'pelerin',
     name: 'Nesili',
     status: 'in-development',
+    state: {
+      en: 'In pilot on Windows',
+      tr: "Windows'ta pilot aşamasında",
+    },
     icon: pelerinIcon,
     copy: {
       tr: {

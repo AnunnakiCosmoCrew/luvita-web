@@ -29,6 +29,9 @@ export const LEGAL_NAME =
  */
 export const LOCATION = 'Bodrum, Muğla / Türkiye';
 
+/** Founding month (registration), YYYY-MM. Also `foundingDate` in the JSON-LD. */
+export const FOUNDING_DATE = '2026-08';
+
 /** Public contact e-mail (Zoho mailbox alias on the luvita.tr domain). */
 export const CONTACT_EMAIL = 'contact@luvita.tr';
 

@@ -34,9 +34,8 @@ configuration and the DNS records.
   is what got the company misclassified as an agency. Turnkey work can still
   be accepted; it is simply never advertised here.
 - **Zero client-side JS, no external requests.** No client-side analytics,
-  no font CDN or any other remote font, no CDN embeds. (The live site uses
-  system fonts only. The rebuild serves its own font files from this site,
-  adr/0007; that is not an external request.) The privacy pages promise no cookies and no
+  no font CDN or any other remote font, no CDN embeds. (The site serves its
+  own font files, adr/0007; that is not an external request.) The privacy pages promise no cookies and no
   analytics or tracking scripts in the browser — keep it true. Visits are
   counted only server-side, from Cloudflare's zone HTTP analytics on the
   proxied luvita.tr records (aggregate counts by path, referrer and country;
@@ -80,41 +79,50 @@ configuration and the DNS records.
 
 ## Design brief
 
-**A rebuild is planned (LW-65, adr/0007).** Its target is [`DESIGN.md`](DESIGN.md):
-read that file before any redesign work. Until the rebuild lands, this section
-describes the live site and `src/styles/tokens.css` stays the source of truth.
-Small fixes follow the live rules below; the rebuild follows `DESIGN.md`.
+The live site follows round 2 (LW-67, adr/0007); [`DESIGN.md`](DESIGN.md) is
+the full specification and `src/styles/tokens.css` the source of truth for
+values. Read both before changing any visible UI (the `frontend-design` skill
+in `.claude/skills/` applies; this brief and the hard rules above win over it).
+Use the token variables, never raw values in components.
 
-**The bullets below describe the live site only.** In the rebuild three of them
-are replaced, and a rebuild must not be rejected for breaking them:
-
-- Accent: moss green, not teal; white background (`DESIGN.md` section 8).
-- Type: one self-hosted family plus a mono, not system stacks; still no font
-  CDN and no external request (`DESIGN.md` section 7).
-- Character: products first on the first screen, with real screens and a state
-  line; no longer "near-monochrome cards" (`DESIGN.md` sections 4 to 6).
-
-The hard rules above apply to both.
-
-Read before changing any visible UI (the `frontend-design` skill in
-`.claude/skills/` applies; this brief and the hard rules above win over it).
-The source of truth is `src/styles/tokens.css` — use its variables, never raw
-values in components.
-
-- **Character:** calm, near-monochrome, one restrained corporate accent. A
-  bank officer or a verifier is the reader: sober and trustworthy, not
-  decorative.
-- **Colour:** accent deep teal `--c-accent` (`#0f7b6c`; `#3cb8a4` in dark);
-  warm off-white `--c-bg` (`#fafaf8`), charcoal ink `--c-ink` (`#1a1b20`);
-  surfaces `--c-surface`/`--c-surface-2`; muted status dot `--c-ok`. Light by
-  default, dark via `prefers-color-scheme` only (no toggle, no JS).
-- **Type:** system stacks only — `--font-sans` for body, `--font-display`
-  (Iowan Old Style / Palatino / Georgia serif) for headings, `--font-mono`.
-  Scale `--fs-300`…`--fs-900` (~1.2 modular) plus fluid `--fs-hero`; line
-  heights `--lh-tight` / `--lh-body`. **Live site: no web fonts. Never a font CDN.**
-- **Layout:** spacing `--sp-1`…`--sp-9`, radii `--radius-sm/--radius/--radius-lg`,
-  widths `--maxw` (64rem) and `--maxw-prose` (42rem), `--shadow-card`, motion
-  `--ease`/`--dur`. Keep it responsive down to 390 px with no horizontal scroll.
+- **Character:** products first. The home page shows all three products on the
+  first screen, each with its drawn mark, its state line, the problem it
+  solves, a real screen (or, until one exists, its mark large; never an empty
+  frame) and one text link; then one section per product and the company
+  block. Simple, familiar structure; what is Luvita's own sits in the content
+  and the marks. Avoid every template sign in `DESIGN.md` section 10 (no boxes
+  with shadows, no pill badges, no gradients or glow, no centred slogan block
+  with two buttons, no scroll animations).
+- **Colour:** white `--c-bg`, ink `--c-ink`, soft `--c-ink-soft` and muted
+  `--c-muted` text, `--c-rule`, quiet surface `--c-well`, and one accent, moss
+  `--c-accent` (`#3c5a45`; `#9cc0a6` in dark), used on the marks and link
+  underlines only. Light by default, dark via `prefers-color-scheme` only (no
+  switch, no JS). Measured contrast is recorded in `tokens.css`; body text
+  stays at 4.5:1 or more.
+- **Type:** self-hosted only (adr/0007): one family for headings and text
+  (`--font-sans`, Bricolage Grotesque) and one mono (`--font-mono`, IBM Plex
+  Mono) for state lines, dates and the masked example, never for running text.
+  Files, sources and licences: `src/assets/fonts/`; `@font-face` rules:
+  `src/styles/fonts.css`. **Never a font CDN.** The typeface and the wordmark
+  are still open: the family is one token and the wordmark one component
+  (`src/components/Wordmark.astro`), so either can change without a redesign.
+- **Marks:** one inline SVG per product in `src/components/ProductMark.astro`,
+  one line weight, `currentColor`, shown in the accent.
+- **State line:** `<state> · improved <date>`. The state comes from `state` in
+  `src/data/products.ts`, the date from `src/data/releases.json` (updated in
+  each product's release pull request, never typed in for the page). A date
+  older than 120 days is hidden at build time (`src/lib/state-line.ts`; "today"
+  is fixed with `LUVITA_TODAY=YYYY-MM-DD`; `npm test`, also run by
+  `npm run check`). Holding the rule between merges needs the scheduled daily
+  build in `DESIGN.md` section 6, a separate founder-tier workflow change.
+- **Copy:** the home page copy lives in `src/data/home.ts`, both locales.
+- **Layout:** spacing `--sp-1`…`--sp-9`, widths `--maxw` and `--maxw-prose`,
+  rules `--rule-strong` / `--rule-thin`, motion `--ease`/`--dur`. Responsive
+  down to 390 px with no horizontal scroll; at 1280 × 720 the whole board is
+  visible without scrolling.
+- **Other pages** (products, plans, about, contact, privacy) use the new tokens
+  and fonts but keep their structure until they are designed (`DESIGN.md`
+  section 12); the old token names stay as aliases for them.
 - **Hard rules apply to design too:** no external requests (images, icons,
   fonts, embeds), no client-side JS beyond the root redirect script, no solar
   imagery, no services-style sections, no address or city in visible copy.
