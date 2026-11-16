@@ -78,6 +78,13 @@ configuration and the DNS records.
 
 ## Design brief
 
+**A rebuild is planned (LW-65, adr/0007).** Its target is [`DESIGN.md`](DESIGN.md):
+read that file before any redesign work. Until the rebuild lands, this section
+describes the live site and `src/styles/tokens.css` stays the source of truth.
+Small fixes follow the live rules below; the rebuild follows `DESIGN.md`. With
+the rebuild, "no web fonts" becomes "self-hosted fonts only" (still no font
+CDN and no external request).
+
 Read before changing any visible UI (the `frontend-design` skill in
 `.claude/skills/` applies; this brief and the hard rules above win over it).
 The source of truth is `src/styles/tokens.css` — use its variables, never raw
