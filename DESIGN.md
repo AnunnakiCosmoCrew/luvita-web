@@ -113,6 +113,12 @@ Format: `<state> · <where> · improved <date>`, for example
   file that the product's release process updates. Nobody types a date by hand.
 - A date older than 120 days is not shown; the line then carries the state
   only. A stale date costs as much trust as a fresh one earns.
+- **How the 120-day rule is enforced.** The site is static and ships no script,
+  so the age of a date can only be judged when the site is built. The rebuild
+  therefore adds a scheduled daily build and deploy (a `schedule` trigger in
+  `deploy.yml`, next to the push trigger), so a date can never outlive the
+  limit by more than a day. The build reads "today" from one place, so a test
+  can fix it. The workflow change is a founder-tier change (`security`).
 - A version number appears only for a product the reader can install.
 - No log of releases on the home page. The reader values "alive and stable",
   not how often something ships.
@@ -127,6 +133,11 @@ Format: `<state> · <where> · improved <date>`, for example
 - Font files are self-hosted WOFF2 in the repository, subset to Latin and Latin
   Extended, with `font-display: swap` and a system fallback of similar width.
   Confirm each font's licence in its own repository before adding the files.
+- The privacy pages need no change for this. Checked on 2026-11-16: the English
+  privacy page, the Turkish privacy page and the KVKK notice promise no cookies,
+  no tracking scripts and no third-party embeds, and say nothing about fonts. A
+  font file served by the site itself is not a third-party embed. Re-check the
+  three pages in the rebuild.
 - Mono is never used for running text; it reads more slowly.
 - Turkish: every Turkish page sets `lang="tr"`. Before release, check words
   with "fi" (for example "fiyat") and upper-cased headings with İ and ı in the
@@ -181,10 +192,11 @@ draft for the founder to correct**; "atölye" is the proposed word for
 | Heading | Three products, made, tested and kept running by the same workshop. | Üç ürün. Hepsini aynı atölye yapıyor, sınıyor ve çalışır durumda tutuyor. |
 | Umay, problem | Your callers wait for a person, because the bot cannot finish the job. | Arayan müşteriniz yine bir insanı bekliyor, çünkü bot işi bitiremiyor. |
 | Umay, state | In development · demo on request | Geliştirme aşamasında · demo istenebilir |
-| Umay, description | AI customer service that is ready on day one. It answers every call, speaks natural Turkish, and resolves what your current bot hands to a person. When you need it changed, you call us. It never pretends to be a person. | İlk günden hazır yapay zekâ müşteri hizmeti. Her çağrıyı yanıtlar, doğal Türkçe konuşur ve bugünkü botunuzun insana devrettiği işi kendisi sonuçlandırır. Bir şeyin değişmesi gerektiğinde bizi ararsınız. Kendini asla insan gibi tanıtmaz. |
-| Umay, fixes | Always free. If Umay gets something wrong, we find the cause and correct it. | Her zaman ücretsiz. Umay bir şeyi yanlış yaparsa nedenini bulur ve düzeltiriz. |
-| Umay, changes | Changes to what Umay already handles are included in your plan, up to its limit. | Umay'ın hâlihazırda yürüttüğü işlerdeki değişiklikler, planınızın sınırı içinde ücrete dahildir. |
-| Umay, new work | A new department, language or system connection is priced separately, before we start. | Yeni bir bölüm, dil ya da sistem bağlantısı ayrıca fiyatlandırılır; fiyatı işe başlamadan önce söyleriz. |
+| Umay, description | Umay is in development: AI customer service built to be ready on day one. It is being built to answer every call, speak natural Turkish, and resolve what your current bot hands to a person. When you need it changed, you will call us. It will never pretend to be a person. A demo is available on request. | Umay geliştirme aşamasında: ilk günden hazır olacak biçimde tasarlanan yapay zekâ müşteri hizmeti. Her çağrıyı yanıtlamak, doğal Türkçe konuşmak ve bugünkü botunuzun insana devrettiği işi kendisi sonuçlandırmak üzere geliştiriliyor. Bir şeyin değişmesi gerektiğinde bizi arayacaksınız. Kendini asla insan gibi tanıtmayacak. Demo talep edebilirsiniz. |
+| Umay, rows heading | What the service will include | Hizmet neleri kapsayacak |
+| Umay, fixes | Always free. If Umay gets something wrong, we will find the cause and correct it. | Her zaman ücretsiz. Umay bir şeyi yanlış yaparsa nedenini bulup düzelteceğiz. |
+| Umay, changes | Changes to what Umay already handles will be included in your plan, up to its limit. | Umay'ın yürüttüğü işlerdeki değişiklikler, planınızın sınırı içinde ücrete dahil olacak. |
+| Umay, new work | A new department, language or system connection will be priced separately, before we start. | Yeni bir bölüm, dil ya da sistem bağlantısı ayrıca fiyatlandırılacak; fiyatı işe başlamadan önce söyleyeceğiz. |
 | Umay, link | Ask for a demo | Demo isteyin |
 | Nesili, problem | You want to use AI on customer data, and you were told no. | Müşteri verisiyle yapay zekâ kullanmak istediniz, size "olmaz" dendi. |
 | Nesili, state | In pilot on Windows | Windows'ta pilot aşamasında |
@@ -207,6 +219,18 @@ Notes on this copy:
   rebuild does not release either.
 - "priced separately, before we start" is proposed wording; the constitution
   says only that new work is priced separately.
+- **Umay is written as a product in development**, in the description itself
+  and in the rows, not only in the state line: the hard rule on truthful
+  product status asks for that, and this page is read by banks. When Umay
+  ships, the copy moves to the present tense together with its `status` in
+  `src/data/products.ts`, in the same change.
+- "made by people who use them every day" is a claim about the makers. It comes
+  from the constitution; the founder confirms it is true of each of the three
+  apps before it ships. If it is not, the sentence ends at "themselves".
+- `BRAND.md` says a heading needs a verb, with one approved exception. The
+  heading here has participles only ("made, tested and kept running"). Either
+  `BRAND.md` records it as the new approved line when it is brought in line
+  with the constitution, or the heading is reworded. Founder's call.
 
 ## 10. Template signs to avoid
 
@@ -244,8 +268,11 @@ Words:
   root page.
 - Keyboard walk of the home page in both locales; visible focus everywhere.
 - Both themes checked at 390 px, 768 px and 1280 px.
-- The date lines are filled from data, and the 120-day rule is tested with an
-  old date.
+- The date lines are filled from data. The 120-day rule is tested with a fixed
+  "today": one build with a date 119 days old shows it, one with a date 121
+  days old hides it.
+- The scheduled daily build exists and has run at least once, so the rule also
+  holds when nothing is merged for months.
 - **The blind check.** Two or three people who do not know the company see the
   home page for five seconds, without the founder in the room, and answer:
   "What does this company do?", "Who do you think made this page, and what
@@ -257,6 +284,9 @@ Words:
 1. The final typeface and a drawn wordmark.
 2. A real Umay screen (a recorded call).
 3. The Turkish copy, to be corrected by the founder.
-4. Where the release dates come from for each product, and who updates them.
-5. The other pages (products, plans, about, contact) follow these rules; their
+4. Where the release dates come from for each product, and who updates them;
+   and the founder's approval of the scheduled daily build.
+5. Whether "made by people who use them every day" is true of all three apps.
+6. The heading and the "a heading needs a verb" rule in `BRAND.md`.
+7. The other pages (products, plans, about, contact) follow these rules; their
    structure is not designed yet.

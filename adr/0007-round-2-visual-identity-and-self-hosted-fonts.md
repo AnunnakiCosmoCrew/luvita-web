@@ -49,7 +49,11 @@ not to ship.
 - The site gains font files to maintain (subsetting, licence, fallbacks) and a
   few tens of kilobytes on first load.
 - The date lines need a data source that releases update; a hand-typed date is
-  not allowed, and a date older than 120 days is hidden.
+  not allowed, and a date older than 120 days is hidden. Because the site is
+  static and script-free, that rule needs a scheduled daily build and deploy
+  to hold between merges.
+- Until Umay ships, its copy is written as a product in development, in the
+  description itself and not only in the state line.
 - The accent changes from teal to moss, so every token in `tokens.css` is
   revisited in the rebuild.
 - The final typeface and a drawn wordmark are still open; the family must be a
