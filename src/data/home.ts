@@ -15,8 +15,11 @@
  * - Nesili: never state or imply that no personal data crosses a border or
  *   that the customer's KVKK Article 9 duties go away (BRAND.md, claim floor).
  *   The wording follows what the product does today: Nesili Desktop, on the
- *   user's own computer. No speed figures; the example uses invented data
- *   (a TC Kimlik number with a failing checksum, an IBAN with check digits 00).
+ *   user's own computer, and it names only the identifiers the live product
+ *   card names (products.ts). "Makes them easier to meet" is BRAND.md's own
+ *   wording of the claim floor. No speed figures; the example uses invented data
+ *   (a TC Kimlik number with a failing checksum, an IBAN with check digits 00,
+ *   an unassigned phone number).
  * - CosmoCrew: "made by people who use them every day" is left out until the
  *   founder confirms it of all three apps (DESIGN.md section 12, point 5).
  */
@@ -73,9 +76,9 @@ export interface HomeCopy {
 /** The masked example: one Turkish sentence, before and after (invented data). */
 export const NESILI_EXAMPLE = {
   before:
-    'Selin Arıkan (T.C. 12345678901) iadesinin TR00 0001 2345 6789 0123 4567 89 numaralı hesaba yatırılmasını istiyor.',
+    'Müşteri (T.C. 12345678901) iadesinin TR00 0001 2345 6789 0123 4567 89 numaralı hesaba yatırılmasını istiyor; telefonu 0555 000 00 00.',
   after:
-    '[AD_1] (T.C. [TCKN_1]) iadesinin [IBAN_1] numaralı hesaba yatırılmasını istiyor.',
+    'Müşteri (T.C. [TCKN_1]) iadesinin [IBAN_1] numaralı hesaba yatırılmasını istiyor; telefonu [TEL_1].',
 } as const;
 
 /** CosmoCrew's three apps (names and lines as in BRAND.md). */
@@ -152,7 +155,7 @@ export const home: Record<Locale, HomeCopy> = {
     },
     nesili: {
       description:
-        'Nesili runs on your own computer and replaces names, ID numbers, IBANs and addresses in Turkish text before it reaches the AI model. The raw personal identifiers stay with you. Your legal duties for sending data abroad remain, and Nesili makes them easier to meet.',
+        'Nesili runs on your own computer and replaces TC Kimlik numbers, IBANs, phone numbers and addresses in Turkish text before it reaches the AI model. The raw personal identifiers stay with you. Your legal duties for sending data abroad remain, and Nesili makes them easier to meet.',
       exampleLabels: ['What your colleague writes', 'What the AI model receives'],
     },
     cosmocrew: {
@@ -215,7 +218,7 @@ export const home: Record<Locale, HomeCopy> = {
     },
     nesili: {
       description:
-        "Nesili kendi bilgisayarınızda çalışır; Türkçe metindeki adları, kimlik numaralarını, IBAN'ları ve adresleri, metin yapay zekâ modeline ulaşmadan önce değiştirir. Ham kişisel bilgiler sizde kalır. Yurt dışına veri aktarımına ilişkin yasal yükümlülükleriniz sürer; Nesili bunları yerine getirmeyi kolaylaştırır.",
+        "Nesili kendi bilgisayarınızda çalışır; Türkçe metindeki TC Kimlik numaralarını, IBAN'ları, telefon numaralarını ve adresleri, metin yapay zekâ modeline ulaşmadan önce değiştirir. Ham kişisel bilgiler sizde kalır. Yurt dışına veri aktarımına ilişkin yasal yükümlülükleriniz sürer; Nesili bunları yerine getirmeyi kolaylaştırır.",
       exampleLabels: ['Çalışanınızın yazdığı', 'Yapay zekâ modeline giden'],
     },
     cosmocrew: {
