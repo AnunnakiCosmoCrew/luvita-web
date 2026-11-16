@@ -34,7 +34,9 @@ configuration and the DNS records.
   is what got the company misclassified as an agency. Turnkey work can still
   be accepted; it is simply never advertised here.
 - **Zero client-side JS, no external requests.** No client-side analytics,
-  no fonts, no CDN embeds. The privacy pages promise no cookies and no
+  no font CDN or any other remote font, no CDN embeds. (The live site uses
+  system fonts only. The rebuild serves its own font files from this site,
+  adr/0007; that is not an external request.) The privacy pages promise no cookies and no
   analytics or tracking scripts in the browser — keep it true. Visits are
   counted only server-side, from Cloudflare's zone HTTP analytics on the
   proxied luvita.tr records (aggregate counts by path, referrer and country;
@@ -78,6 +80,22 @@ configuration and the DNS records.
 
 ## Design brief
 
+**A rebuild is planned (LW-65, adr/0007).** Its target is [`DESIGN.md`](DESIGN.md):
+read that file before any redesign work. Until the rebuild lands, this section
+describes the live site and `src/styles/tokens.css` stays the source of truth.
+Small fixes follow the live rules below; the rebuild follows `DESIGN.md`.
+
+**The bullets below describe the live site only.** In the rebuild three of them
+are replaced, and a rebuild must not be rejected for breaking them:
+
+- Accent: moss green, not teal; white background (`DESIGN.md` section 8).
+- Type: one self-hosted family plus a mono, not system stacks; still no font
+  CDN and no external request (`DESIGN.md` section 7).
+- Character: products first on the first screen, with real screens and a state
+  line; no longer "near-monochrome cards" (`DESIGN.md` sections 4 to 6).
+
+The hard rules above apply to both.
+
 Read before changing any visible UI (the `frontend-design` skill in
 `.claude/skills/` applies; this brief and the hard rules above win over it).
 The source of truth is `src/styles/tokens.css` — use its variables, never raw
@@ -93,7 +111,7 @@ values in components.
 - **Type:** system stacks only — `--font-sans` for body, `--font-display`
   (Iowan Old Style / Palatino / Georgia serif) for headings, `--font-mono`.
   Scale `--fs-300`…`--fs-900` (~1.2 modular) plus fluid `--fs-hero`; line
-  heights `--lh-tight` / `--lh-body`. **No web fonts, no font CDN.**
+  heights `--lh-tight` / `--lh-body`. **Live site: no web fonts. Never a font CDN.**
 - **Layout:** spacing `--sp-1`…`--sp-9`, radii `--radius-sm/--radius/--radius-lg`,
   widths `--maxw` (64rem) and `--maxw-prose` (42rem), `--shadow-card`, motion
   `--ease`/`--dur`. Keep it responsive down to 390 px with no horizontal scroll.
