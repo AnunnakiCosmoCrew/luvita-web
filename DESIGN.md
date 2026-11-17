@@ -104,14 +104,15 @@ call replaces it when one exists (section 12, open point 2).
   frames drawn around a screen, no invented interface. The one stand-in is a
   product's own sample that says on its face it uses fictional data: Umay's
   sample call from umayconnect.org (LW-82), until a recorded call exists.
-- **One mark per product.** Nesili and CosmoCrew have drawn marks in the same
-  line weight, drawn from the simplest true form of what the product does: a
-  line of text with two parts covered (Nesili), a day as a circle cut into
-  slices (CosmoCrew). They are inline SVG using `currentColor`, shown in the
-  accent colour. Umay shows its brand icon "Two voices" instead, filled in ink
-  and moss (founder, 2026-11-17, LW-80; it replaced a drawing of two speech
-  bubbles). Its shapes and rules are in `luvita-docs/brand/README.md`. Marks
-  identify the product; they never replace the screen.
+- **One mark per product.** Nesili has a drawn mark from the simplest true
+  form of what it does, a line of text with two parts covered, as inline SVG
+  using `currentColor` in the accent colour. Umay and CosmoCrew show their
+  brand marks instead (founder, 2026-11-17): Umay's icon "Two voices", filled
+  in ink and moss (LW-80; it replaced a drawing of two speech bubbles), and
+  CosmoCrew's raven "Glide", in CosmoCrew's own ink and lamp colours (LW-84;
+  it replaced a circle cut into slices). Their shapes, colours and rules are in
+  `luvita-docs/brand/README.md`. Marks identify the product; they never
+  replace the screen.
 - The philosophy behind the forms is never named or illustrated on the page.
 - Images live in the repository and are served by the site. Every image has
   alt text that says what the screen shows.

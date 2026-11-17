@@ -3,17 +3,20 @@
  * One mark per product (DESIGN.md section 5), inline SVG:
  *   umay       the brand icon "Two voices" (founder, 2026-11-17): two opening
  *              quotation marks as eyes over a half-disc smile, filled in ink
- *              and moss. Shapes are luvita-docs/brand/umay-icon.svg, unchanged;
- *              read luvita-docs/brand/README.md before touching them, and never
- *              swap, mirror, rotate or recolour them here. The moss eye is the
- *              right-hand one. Used at 32 px and up; at 24 px and below the
- *              brand's small drawing (umay-favicon.svg) would be needed instead.
- *   pelerin    (Nesili) a line of text with two parts covered
- *   cosmocrew  a day as a circle cut into slices
- * The Nesili and CosmoCrew marks are drawings in one line weight, using
- * `currentColor`, shown in the accent colour. The marks identify a product;
- * they never replace a real screen, except as the documented fallback while a
- * product has no screen yet.
+ *              and moss. Shapes are luvita-docs/brand/umay-icon.svg, unchanged.
+ *              The moss eye is the right-hand one.
+ *   cosmocrew  the brand mark "Glide" (founder, 2026-11-17, LW-84): a raven in
+ *              flight, flying right, in CosmoCrew's own ink and lamp colours
+ *              (not Luvita's). Shapes are luvita-docs/brand/cosmocrew-mark.svg,
+ *              unchanged; the viewBox adds the brand's clear space (one eighth
+ *              of the width on every side).
+ *   pelerin    (Nesili) a line of text with two parts covered, a drawing in one
+ *              line weight, `currentColor`, shown in the accent colour.
+ * Read luvita-docs/brand/README.md before touching a brand mark, and never
+ * swap, mirror, rotate or recolour one here. Both brand marks are used at
+ * 32 px and up; at 24 px and below the brands' small drawings would be needed.
+ * The marks identify a product; they never replace a real screen, except as
+ * the documented fallback while a product has no screen yet.
  */
 interface Props {
   product: string;
@@ -22,10 +25,16 @@ interface Props {
 }
 
 const { product, size = 40, class: className } = Astro.props;
+
+// A product without a mark would leave an empty slot on the board; fail the
+// build instead (a new or renamed key in products.ts needs a mark here).
+if (!['umay', 'cosmocrew', 'pelerin'].includes(product)) {
+  throw new Error(`ProductMark: no mark for product "${product}"`);
+}
 ---
 
 {
-  product === 'umay' ? (
+  product === 'umay' && (
     <svg
       class:list={['product-mark', 'product-mark-umay', className]}
       viewBox="0 0 32 32"
@@ -48,7 +57,28 @@ const { product, size = 40, class: className } = Astro.props;
       </g>
       <path class="ink" d="M7 21.5A9 9 0 0 0 25 21.5Z" />
     </svg>
-  ) : (
+  )
+}
+{
+  product === 'cosmocrew' && (
+    <svg
+      class:list={['product-mark', 'product-mark-cosmocrew', className]}
+      viewBox="-4 -4 40 40"
+      width={size}
+      height={size}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        class="bird"
+        d="M31.5 13.5L27 10.5L24 10L21.5 11.5L12 5L2 2L5 5.5L1 6L4.5 9L1.5 10L13 15L8.5 18.5L3 19.5L0.5 23.5L5 26L10.5 22.5L17 20.5L24 27.5L30.5 30.5L26.5 22.5L23.5 17.5L25 15.5L24.5 14.5L27.5 14.5Z"
+      />
+      <circle class="eye" cx="24.6" cy="12.2" r="1" />
+    </svg>
+  )
+}
+{
+  product === 'pelerin' && (
     <svg
       class:list={['product-mark', className]}
       viewBox="0 0 40 40"
@@ -62,27 +92,10 @@ const { product, size = 40, class: className } = Astro.props;
       aria-hidden="true"
       focusable="false"
     >
-      {
-        product === 'pelerin' && (
-          <>
-            <path d="M3 20h4" />
-            <rect x="10" y="15" width="9" height="10" rx="1.5" fill="currentColor" />
-            <path d="M22 20h3" />
-            <rect x="28" y="15" width="9" height="10" rx="1.5" fill="currentColor" />
-          </>
-        )
-      }
-      {
-        product === 'cosmocrew' && (
-          <>
-            <circle cx="20" cy="20" r="16.5" />
-            <path d="M20 20V3.5" />
-            <path d="M20 20l14.3 8.25" />
-            <path d="M20 20l-11.7 11.7" />
-            <path d="M20 20L4.1 15.7" />
-          </>
-        )
-      }
+      <path d="M3 20h4" />
+      <rect x="10" y="15" width="9" height="10" rx="1.5" fill="currentColor" />
+      <path d="M22 20h3" />
+      <rect x="28" y="15" width="9" height="10" rx="1.5" fill="currentColor" />
     </svg>
   )
 }
@@ -101,5 +114,25 @@ const { product, size = 40, class: className } = Astro.props;
 
   .product-mark-umay .accent {
     fill: var(--c-accent);
+  }
+
+  /* CosmoCrew keeps its own colours (luvita-docs/brand/README.md, "Colour");
+     they are brand values, not site tokens, so they live here. */
+  .product-mark-cosmocrew .bird {
+    fill: #131920;
+  }
+
+  .product-mark-cosmocrew .eye {
+    fill: #75501a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .product-mark-cosmocrew .bird {
+      fill: #e7e4dc;
+    }
+
+    .product-mark-cosmocrew .eye {
+      fill: #e9c9a0;
+    }
   }
 </style>
