@@ -119,10 +119,11 @@ Use the token variables, never raw values in components.
   - `public/og.png` (1200 x 630) is the icon and the name on white, nothing
     else. Any sentence added to it is copy and needs a founder look.
 - **Marks:** one inline SVG per product in `src/components/ProductMark.astro`.
-  Nesili and CosmoCrew: one line weight, `currentColor`, shown in the accent.
-  Umay: its brand icon "Two voices" (founder, 2026-11-17), filled with
-  `--c-ink` and `--c-accent`; never redraw, mirror or recolour it here
-  (`luvita-docs/brand/README.md`).
+  Nesili: one line weight, `currentColor`, shown in the accent. Umay: its
+  brand icon "Two voices" (founder, 2026-11-17), filled with `--c-ink` and
+  `--c-accent`. CosmoCrew: its raven "Glide" (founder, 2026-11-17, LW-84), in
+  CosmoCrew's own colours, set in that component. Never redraw, mirror,
+  rotate or recolour a brand mark here (`luvita-docs/brand/README.md`).
 - **State line:** `<state> · improved <month year>`. The state comes from `state` in
   `src/data/products.ts`, the date from `src/data/releases.json` (updated in
   each product's release pull request, never typed in for the page). A date
