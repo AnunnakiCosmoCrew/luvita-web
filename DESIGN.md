@@ -281,6 +281,8 @@ of truth: `src/pages/en/about.astro` and `src/pages/tr/hakkimizda.astro`.
 - **Vision:** one sentence.
 - **Founder:** named, in two factual sentences, on this page only. No photo,
   no story, no employer names, no "founder-led" and no "by the same hands".
+  His name links to his LinkedIn profile, so a reader can verify the
+  sentence (founder, 2026-11-17). It is the site's only link to a person.
   Every other page keeps speaking as "we".
 - **Not on this page:** a list of technologies or skills (it reads as a
   services offer, adr/0004) and anything on how Luvita builds.
