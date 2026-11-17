@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Umay">
+  <!-- Umay icon "Two voices" (luvita-docs/brand/umay-icon.svg and umay-icon-dark.svg,
+       shapes unchanged). Switches with the system light/dark setting, as the site does. -->
+  <style>
+    .i { fill: #111413 } .a { fill: #3C5A45 }
+    @media (prefers-color-scheme: dark) { .i { fill: #ECEDE9 } .a { fill: #9CC0A6 } }
+  </style>
+  <g transform="translate(5.4 0.2) scale(0.66)">
+    <g transform="rotate(180 16 14)">
+      <path d="M2 9.5A6.5 6.5 0 0 1 15 9.5V16A9 9 0 0 1 6 25V20A4 4 0 0 0 8.5 16A6.5 6.5 0 0 1 2 9.5Z" class="a"/>
+      <path d="M17 9.5A6.5 6.5 0 0 1 30 9.5V16A9 9 0 0 1 21 25V20A4 4 0 0 0 23.5 16A6.5 6.5 0 0 1 17 9.5Z" class="i"/>
+    </g>
+  </g>
+  <path d="M7 21.5A9 9 0 0 0 25 21.5Z" class="i"/>
+</svg>

@@ -6,16 +6,17 @@
  * read by enterprise prospects, so no product may be implied to exist before
  * it does.
  *
- * Every product carries a mark: the real brand mark where one exists,
- * otherwise a simple house-designed placeholder mark (full-bleed colored tile,
- * like Umay's). Icons live in src/assets/icons (astro:assets); ProductCard
+ * Every product carries a mark: the real brand mark where one exists
+ * (Umay's "Two voices" and CosmoCrew's raven, from luvita-docs/brand),
+ * otherwise a simple house-designed placeholder mark (full-bleed colored
+ * tile). Icons live in src/assets/icons (astro:assets); ProductCard
  * still falls back to a letter monogram if `icon` is omitted.
  */
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n';
 import { COSMOCREW_URL, UMAY_URL } from '../lib/site';
 import { TRIAL_DAYS } from '../lib/pelerin-plans';
-import umayIcon from '../assets/icons/umay.png';
+import umayIcon from '../assets/icons/umay.svg';
 import cosmocrewIcon from '../assets/icons/cosmocrew.svg';
 import pelerinIcon from '../assets/icons/pelerin.svg';
 import nesiliScreen from '../assets/screens/nesili-split-view.jpg';
