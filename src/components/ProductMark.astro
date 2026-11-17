@@ -25,6 +25,12 @@ interface Props {
 }
 
 const { product, size = 40, class: className } = Astro.props;
+
+// A product without a mark would leave an empty slot on the board; fail the
+// build instead (a new or renamed key in products.ts needs a mark here).
+if (!['umay', 'cosmocrew', 'pelerin'].includes(product)) {
+  throw new Error(`ProductMark: no mark for product "${product}"`);
+}
 ---
 
 {
