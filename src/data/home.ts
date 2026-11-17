@@ -1,9 +1,10 @@
 /**
  * Home page copy, both locales (DESIGN.md section 9).
  *
- * English is the settled wording. Turkish is the draft from DESIGN.md for the
- * founder to correct in review (LW-67); "atölye" is the proposed word for
- * "workshop".
+ * The founder settled every line in both languages on 2026-11-17 (LW-67). The
+ * two languages are written separately: the Turkish is not a translation of
+ * the English, and in a few places they say different things on purpose (the
+ * Umay line, the company block). Do not "align" one to the other.
  *
  * Product states come from src/data/products.ts and release dates from
  * src/data/releases.json; neither is written here.
@@ -21,6 +22,8 @@
  *   (a TC Kimlik number with a failing checksum, an IBAN with check digits 00,
  *   an unassigned phone number).
  * - CosmoCrew: no sentence says that we use the apps ourselves (founder, LW-67).
+ * - No sentence counts the products ("three products") or criticises what a
+ *   company does today (founder, LW-67).
  */
 import type { Locale } from '../i18n';
 
@@ -32,7 +35,11 @@ export interface HomeLink {
 }
 
 export interface HomeProductCopy {
-  problem: string;
+  /**
+   * The line under the state on the board. CosmoCrew has none: its column
+   * shows the three app names there instead.
+   */
+  problem?: string;
   link: HomeLink;
 }
 
@@ -45,6 +52,10 @@ export interface CosmoCrewApp {
 export interface HomeCopy {
   title: string;
   description: string;
+  /**
+   * The page's one `h1`. It is a label for screen readers and search, never
+   * shown: the page has no heading sentence (founder, LW-67).
+   */
   heading: string;
   boardLabel: string;
   jumpLabel: string;
@@ -63,7 +74,10 @@ export interface HomeCopy {
     appState: string;
   };
   company: {
-    heading: string;
+    /** Read to screen readers when the block has no visible heading. */
+    sectionLabel: string;
+    /** The visible heading, or null: the Turkish block has none. */
+    heading: string | null;
     paragraph: string;
     identityLabel: string;
     founded: string;
@@ -72,12 +86,16 @@ export interface HomeCopy {
   };
 }
 
-/** The masked example: one Turkish sentence, before and after (invented data). */
+/**
+ * The masked example: one Turkish sentence, before and after (invented data).
+ * The labels are written the way the app writes them (see its screenshot on
+ * the board): a type and a number.
+ */
 export const NESILI_EXAMPLE = {
   before:
     'Müşteri (T.C. 12345678901) iadesinin TR00 0001 2345 6789 0123 4567 89 numaralı hesaba yatırılmasını istiyor; telefonu 0555 000 00 00.',
   after:
-    'Müşteri (T.C. [TCKN_1]) iadesinin [IBAN_1] numaralı hesaba yatırılmasını istiyor; telefonu [TEL_1].',
+    'Müşteri (T.C. [TCKN_6197]) iadesinin [IBAN_3736] numaralı hesaba yatırılmasını istiyor; telefonu [PHONE_5846].',
 } as const;
 
 /** CosmoCrew's three apps (names and lines as in BRAND.md). */
@@ -103,39 +121,36 @@ export const COSMOCREW_APPS: CosmoCrewApp[] = [
     url: 'https://withhandlebars.com/',
     line: {
       en: 'A fretboard explorer for guitar chords and scales.',
-      tr: 'Gitar akorları ve gamları için klavye gezgini.',
+      tr: 'Gitar perdelerinde akorları ve gamları gösteren uygulama.',
     },
   },
 ];
 
 export const home: Record<Locale, HomeCopy> = {
   en: {
-    title: 'Luvita — Software product company',
+    title: 'Luvita',
     description:
-      'Luvita makes three products, Umay, Nesili and the CosmoCrew apps, and keeps them running long after they ship.',
-    heading:
-      'Three products, made, tested and kept running by the same workshop.',
+      'Luvita makes Umay, Nesili and the CosmoCrew apps, and stays with them for years.',
+    heading: 'Luvita products',
     boardLabel: 'Our products',
     jumpLabel: 'Products on this page',
     products: {
       umay: {
-        problem:
-          'Your callers wait for a person, because the bot cannot finish the job.',
-        link: { text: 'Ask for a demo', internal: 'contact' },
+        problem: 'Give every caller an answer on the first call, at any hour.',
+        // The live demo request form on Umay's own site.
+        link: { text: 'Ask for a demo', href: 'https://umayconnect.org/en/#slotReq' },
       },
       pelerin: {
-        problem: 'You want to use AI on customer data, and you were told no.',
+        problem: 'Protect your customers\' details when your team uses AI.',
         link: { text: 'Ask about the pilot', internal: 'contact' },
       },
       cosmocrew: {
-        problem:
-          'You open your phone without deciding to, and the day is gone.',
         link: { text: 'Visit cosmocrew.dev', href: 'https://cosmocrew.dev/' },
       },
     },
     umay: {
       description:
-        'Umay is in development: AI customer service built to be ready on day one. It is being built to answer every call, speak natural Turkish, and resolve what your current bot hands to a person. When you need it changed, you will call us. It will never pretend to be a person. A demo is available on request.',
+        'Umay is in development: AI customer service built to be ready on day one. It is being built to answer every call, speak natural Turkish, and settle the caller\'s request in the same call. When you need it changed, you will call us. It will never pretend to be a person. You can try the demo in your own time.',
       rowsHeading: 'What the service will include',
       rows: [
         {
@@ -154,17 +169,18 @@ export const home: Record<Locale, HomeCopy> = {
     },
     nesili: {
       description:
-        'Nesili runs on your own computer and replaces TC Kimlik numbers, IBANs, phone numbers and addresses in Turkish text before it reaches the AI model. The raw personal identifiers stay with you. Your legal duties for sending data abroad remain, and Nesili makes them easier to meet.',
-      exampleLabels: ['What your colleague writes', 'What the AI model receives'],
+        'Nesili runs on your own computer and masks TC Kimlik numbers, IBANs, phone numbers and addresses in Turkish text before it reaches the AI model. The raw personal identifiers stay with you. Your legal duties for sending data abroad remain, and Nesili makes them easier to meet.',
+      exampleLabels: ['What your team writes', 'What the AI model receives'],
     },
     cosmocrew: {
       description: 'Our apps for people working on themselves.',
       appState: 'Live on the App Store',
     },
     company: {
-      heading: 'Software for the next decade.',
+      sectionLabel: 'Company',
+      heading: 'Software built to run for decades.',
       paragraph:
-        'We make a few products and stay with them. Each one is built for a problem someone has today, and each one is still looked after long after the day it ships.',
+        'We make software for real problems, and we stay with it for years. Each product is built for a problem someone has today, and each one is still looked after long after the day it ships.',
       identityLabel: 'Company details',
       founded: 'Founded',
       contact: 'Contact',
@@ -172,33 +188,30 @@ export const home: Record<Locale, HomeCopy> = {
     },
   },
   tr: {
-    title: 'Luvita — Yazılım ürünleri şirketi',
+    title: 'Luvita',
     description:
-      'Luvita üç ürün yapıyor (Umay, Nesili ve CosmoCrew uygulamaları) ve onları yayından çok sonra da çalışır durumda tutuyor.',
-    heading:
-      'Üç ürün. Hepsini aynı atölye yapıyor, sınıyor ve çalışır durumda tutuyor.',
+      "Luvita; Umay'ı, Nesili'yi ve CosmoCrew uygulamalarını yapıyor ve yıllarca arkasında duruyor.",
+    heading: 'Luvita ürünleri',
     boardLabel: 'Ürünlerimiz',
     jumpLabel: 'Bu sayfadaki ürünler',
     products: {
       umay: {
         problem:
-          'Arayan müşteriniz yine bir insanı bekliyor, çünkü bot işi bitiremiyor.',
-        link: { text: 'Demo isteyin', internal: 'iletisim' },
+          'Her çağrı günün her saatinde, doğal bir Türkçeyle yanıtlansın.',
+        link: { text: 'Demo isteyin', href: 'https://umayconnect.org/#slotReq' },
       },
       pelerin: {
         problem:
-          'Müşteri verisiyle yapay zekâ kullanmak istediniz, size "olmaz" dendi.',
+          'Ekibiniz yapay zekâ kullanırken müşteri bilgilerini koruyun.',
         link: { text: 'Pilot hakkında sorun', internal: 'iletisim' },
       },
       cosmocrew: {
-        problem:
-          'Telefonu, karar vermeden elinize alıyorsunuz; gün de öyle geçip gidiyor.',
         link: { text: "cosmocrew.dev'e gidin", href: 'https://cosmocrew.dev/' },
       },
     },
     umay: {
       description:
-        'Umay geliştirme aşamasında: ilk günden hazır olacak biçimde tasarlanan yapay zekâ müşteri hizmeti. Her çağrıyı yanıtlamak, doğal Türkçe konuşmak ve bugünkü botunuzun insana devrettiği işi kendisi sonuçlandırmak üzere geliştiriliyor. Bir şeyin değişmesi gerektiğinde bizi arayacaksınız. Kendini asla insan gibi tanıtmayacak. Demo talep edebilirsiniz.',
+        'Umay geliştirme aşamasında: ilk günden hazır olacak biçimde tasarlanan yapay zekâ müşteri hizmeti. Her çağrıyı yanıtlamak, doğal Türkçe konuşmak ve arayanın işini aynı görüşmede sonuçlandırmak üzere geliştiriliyor. Bir şeyin değişmesi gerektiğinde bizi arayacaksınız. Kendini hiçbir zaman insan olarak tanıtmayacak. Demoyu kendi zamanınızda deneyebilirsiniz.',
       rowsHeading: 'Hizmet neleri kapsayacak',
       rows: [
         {
@@ -207,7 +220,7 @@ export const home: Record<Locale, HomeCopy> = {
         },
         {
           label: 'Değişiklikler',
-          text: "Umay'ın yürüttüğü işlerdeki değişiklikler, planınızın sınırı içinde ücrete dahil olacak.",
+          text: "Umay'ın zaten yaptığı işlerdeki değişiklikler planınıza dahil olacak; üst sınırı planınız belirleyecek.",
         },
         {
           label: 'Yeni işler',
@@ -217,17 +230,19 @@ export const home: Record<Locale, HomeCopy> = {
     },
     nesili: {
       description:
-        "Nesili kendi bilgisayarınızda çalışır; Türkçe metindeki TC Kimlik numaralarını, IBAN'ları, telefon numaralarını ve adresleri, metin yapay zekâ modeline ulaşmadan önce değiştirir. Ham kişisel bilgiler sizde kalır. Yurt dışına veri aktarımına ilişkin yasal yükümlülükleriniz sürer; Nesili bunları yerine getirmeyi kolaylaştırır.",
-      exampleLabels: ['Çalışanınızın yazdığı', 'Yapay zekâ modeline giden'],
+        "Nesili kendi bilgisayarınızda çalışır; Türkçe metindeki TC Kimlik numaralarını, IBAN'ları, telefon numaralarını ve adresleri, metin yapay zekâ modeline ulaşmadan önce maskeler. Ham kimlik bilgileri bilgisayarınızda kalır. Yurt dışına veri aktarımına ilişkin yasal yükümlülükleriniz devam eder; Nesili bunları yerine getirmeyi kolaylaştırır.",
+      exampleLabels: ['Ekibinizin yazdığı metin', 'Yapay zekâ modeline giden metin'],
     },
     cosmocrew: {
-      description: 'Kendileri üzerinde çalışan insanlar için uygulamalarımız.',
+      description: 'Kendini geliştirmek isteyenler için uygulamalarımız.',
       appState: "App Store'da yayında",
     },
     company: {
-      heading: 'Sıradaki on yıl için yazılım.',
+      sectionLabel: 'Şirket',
+      // No visible heading in Turkish, and one sentence (founder, LW-67).
+      heading: null,
       paragraph:
-        'Az sayıda ürün yapıyor ve onların başında kalıyoruz. Her biri, birinin bugün yaşadığı bir sorun için yapıldı; her birine, yayınlandığı günden çok sonra da bakılıyor.',
+        'Ürünlerin her biri gerçek bir ihtiyaçtan doğdu; hepsinin yıllarca arkasındayız.',
       identityLabel: 'Şirket bilgileri',
       founded: 'Kuruluş',
       contact: 'İletişim',

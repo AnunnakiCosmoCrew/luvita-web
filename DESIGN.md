@@ -63,13 +63,16 @@ In order:
 
 1. **Header.** Wordmark left; Products, Company, Contact and the language link
    right. No button-styled link.
-2. **One sentence** (the `h1`), at most two lines at desktop width, about 34 px.
-   It says what the company is. It is not a slogan block and has no button.
+2. **No heading sentence** (founder, 2026-11-17). The page opens on the board.
+   The `h1` is a label for screen readers and search only, never shown:
+   "Luvita products" / "Luvita ürünleri". It is a label, not a headline, so
+   the `BRAND.md` rule that a headline needs a verb does not apply to it.
 3. **The board.** Three columns under one 2 px rule, separated by 1 px vertical
    rules, with no boxes, shadows or rounded panels. Each column, top to bottom:
    - the product's drawn mark (40 px) and its name;
    - the state line, in the mono face, muted;
-   - the problem sentence, about 20 px, medium weight;
+   - the product's line, about 20 px, medium weight. CosmoCrew has no line:
+     the three app names stand there, each a link to its app;
    - a real screen, 16:10, cropped from the top left;
    - one text link.
    At 1280 × 720 the whole board is visible without scrolling. On a phone the
@@ -82,8 +85,9 @@ In order:
      masking, as static text.
    - CosmoCrew: one sentence, then the three apps as rows (icon, name, one
      line, state line), then the link to cosmocrew.dev.
-5. **Company.** The closing line, one paragraph, and the identity block: short
-   company name, founding year, contact address, link to registry details.
+5. **Company.** A heading and a paragraph in English; one sentence and no
+   visible heading in Turkish. Then the identity block: short company name,
+   founding year, contact address, link to registry details.
 6. **Footer.** As today (legal block, privacy, company details).
 
 Order of products: Umay, Nesili, CosmoCrew. If Umay still has no real screen
@@ -169,8 +173,17 @@ no glow, no tinted section backgrounds.
 ## 9. Voice and copy
 
 "We" is the workshop. Plain, specific, calm. No founder story and no founder
-photo. The line that carries the company: "Made, tested and kept running by the
-same workshop." Never "studio". "Laboratory" is retired for new copy.
+photo. Never "studio". "Laboratory" is retired for new copy.
+
+Rules the founder set while settling the copy (2026-11-17):
+
+- **The two languages are written separately.** The Turkish is not a
+  translation of the English, and they may say different things. A line that
+  sounds translated is rewritten in Turkish.
+- No sentence counts the products ("three products"); the number will change.
+- No industry label: the page title is "Luvita" alone.
+- No sentence criticises what a company does today.
+- No sentence says that we use the apps ourselves.
 
 The site does not describe how Luvita builds. AI is named only where it is what
 a product is or does (Umay is an AI agent; Nesili protects data sent to AI).
@@ -184,38 +197,44 @@ data only.
 
 ### Home page copy
 
-English is settled wording from the constitution and round 2. **Turkish is a
-draft for the founder to correct**; "atölye" is the proposed word for
-"workshop".
+Settled by the founder, line by line, on 2026-11-17. The source of truth is
+`src/data/home.ts` and `src/data/products.ts`; this table is a reading copy.
 
-| Place | English | Turkish (draft) |
+| Place | English | Turkish |
 | --- | --- | --- |
-| Heading | Three products, made, tested and kept running by the same workshop. | Üç ürün. Hepsini aynı atölye yapıyor, sınıyor ve çalışır durumda tutuyor. |
-| Umay, problem | Your callers wait for a person, because the bot cannot finish the job. | Arayan müşteriniz yine bir insanı bekliyor, çünkü bot işi bitiremiyor. |
+| Page title | Luvita | Luvita |
+| Search description | Luvita makes Umay, Nesili and the CosmoCrew apps, and stays with them for years. | Luvita; Umay'ı, Nesili'yi ve CosmoCrew uygulamalarını yapıyor ve yıllarca arkasında duruyor. |
+| `h1` (not shown) | Luvita products | Luvita ürünleri |
+| Nesili, state | In pilot on Windows and Mac | Windows ve Mac'te pilot aşamasında |
+| Nesili, line | Protect your customers' details when your team uses AI. | Ekibiniz yapay zekâ kullanırken müşteri bilgilerini koruyun. |
+| Nesili, link | Ask about the pilot | Pilot hakkında sorun |
+| Nesili, description | Nesili runs on your own computer and masks TC Kimlik numbers, IBANs, phone numbers and addresses in Turkish text before it reaches the AI model. The raw personal identifiers stay with you. Your legal duties for sending data abroad remain, and Nesili makes them easier to meet. | Nesili kendi bilgisayarınızda çalışır; Türkçe metindeki TC Kimlik numaralarını, IBAN'ları, telefon numaralarını ve adresleri, metin yapay zekâ modeline ulaşmadan önce maskeler. Ham kimlik bilgileri bilgisayarınızda kalır. Yurt dışına veri aktarımına ilişkin yasal yükümlülükleriniz devam eder; Nesili bunları yerine getirmeyi kolaylaştırır. |
+| Nesili, example labels | What your team writes / What the AI model receives | Ekibinizin yazdığı metin / Yapay zekâ modeline giden metin |
 | Umay, state | In development · demo on request | Geliştirme aşamasında · demo istenebilir |
-| Umay, description | Umay is in development: AI customer service built to be ready on day one. It is being built to answer every call, speak natural Turkish, and resolve what your current bot hands to a person. When you need it changed, you will call us. It will never pretend to be a person. A demo is available on request. | Umay geliştirme aşamasında: ilk günden hazır olacak biçimde tasarlanan yapay zekâ müşteri hizmeti. Her çağrıyı yanıtlamak, doğal Türkçe konuşmak ve bugünkü botunuzun insana devrettiği işi kendisi sonuçlandırmak üzere geliştiriliyor. Bir şeyin değişmesi gerektiğinde bizi arayacaksınız. Kendini asla insan gibi tanıtmayacak. Demo talep edebilirsiniz. |
+| Umay, line | Give every caller an answer on the first call, at any hour. | Her çağrı günün her saatinde, doğal bir Türkçeyle yanıtlansın. |
+| Umay, link | Ask for a demo (to `umayconnect.org/en/#slotReq`) | Demo isteyin (to `umayconnect.org/#slotReq`) |
+| Umay, description | Umay is in development: AI customer service built to be ready on day one. It is being built to answer every call, speak natural Turkish, and settle the caller's request in the same call. When you need it changed, you will call us. It will never pretend to be a person. You can try the demo in your own time. | Umay geliştirme aşamasında: ilk günden hazır olacak biçimde tasarlanan yapay zekâ müşteri hizmeti. Her çağrıyı yanıtlamak, doğal Türkçe konuşmak ve arayanın işini aynı görüşmede sonuçlandırmak üzere geliştiriliyor. Bir şeyin değişmesi gerektiğinde bizi arayacaksınız. Kendini hiçbir zaman insan olarak tanıtmayacak. Demoyu kendi zamanınızda deneyebilirsiniz. |
 | Umay, rows heading | What the service will include | Hizmet neleri kapsayacak |
 | Umay, fixes | Always free. If Umay gets something wrong, we will find the cause and correct it. | Her zaman ücretsiz. Umay bir şeyi yanlış yaparsa nedenini bulup düzelteceğiz. |
-| Umay, changes | Changes to what Umay already handles will be included in your plan, up to its limit. | Umay'ın yürüttüğü işlerdeki değişiklikler, planınızın sınırı içinde ücrete dahil olacak. |
+| Umay, changes | Changes to what Umay already handles will be included in your plan, up to its limit. | Umay'ın zaten yaptığı işlerdeki değişiklikler planınıza dahil olacak; üst sınırı planınız belirleyecek. |
 | Umay, new work | A new department, language or system connection will be priced separately, before we start. | Yeni bir bölüm, dil ya da sistem bağlantısı ayrıca fiyatlandırılacak; fiyatı işe başlamadan önce söyleyeceğiz. |
-| Umay, link | Ask for a demo | Demo isteyin |
-| Nesili, problem | You want to use AI on customer data, and you were told no. | Müşteri verisiyle yapay zekâ kullanmak istediniz, size "olmaz" dendi. |
-| Nesili, state | In pilot on Windows | Windows'ta pilot aşamasında |
-| Nesili, description | Nesili runs inside your company and replaces names, ID numbers, IBANs and addresses in Turkish text before it reaches the AI model. The raw personal identifiers stay with you. Your legal duties for sending data abroad remain, and Nesili makes them easier to meet. | Nesili şirketinizin içinde çalışır; Türkçe metindeki adları, kimlik numaralarını, IBAN'ları ve adresleri, metin yapay zekâ modeline ulaşmadan önce değiştirir. Ham kişisel bilgiler sizde kalır. Yurt dışına veri aktarımına ilişkin yasal yükümlülükleriniz sürer; Nesili bunları yerine getirmeyi kolaylaştırır. |
-| Nesili, example labels | What your colleague writes / What the AI model receives | Çalışanınızın yazdığı / Yapay zekâ modeline giden |
-| Nesili, link | Ask about the pilot | Pilot hakkında sorun |
-| CosmoCrew, problem | You open your phone without deciding to, and the day is gone. | Telefonu, karar vermeden elinize alıyorsunuz; gün de öyle geçip gidiyor. |
 | CosmoCrew, state | Three apps live | Üç uygulama yayında |
-| CosmoCrew, description | Our apps for people working on themselves. | Kendileri üzerinde çalışan insanlar için uygulamalarımız. |
+| CosmoCrew, line | (none: the three app names) | (none: the three app names) |
 | CosmoCrew, link | Visit cosmocrew.dev | cosmocrew.dev'e gidin |
-| Closing line | Software for the next decade. | Sıradaki on yıl için yazılım. |
-| Closing paragraph | We make a few products and stay with them. Each one is built for a problem someone has today, and each one is still looked after long after the day it ships. | Az sayıda ürün yapıyor ve onların başında kalıyoruz. Her biri, birinin bugün yaşadığı bir sorun için yapıldı; her birine, yayınlandığı günden çok sonra da bakılıyor. |
+| CosmoCrew, description | Our apps for people working on themselves. | Kendini geliştirmek isteyenler için uygulamalarımız. |
+| SliceFocus | A 24-hour radial planner with a focus timer. | Odak sayaçlı, 24 saatlik dairesel planlayıcı. |
+| LexiPower | A vocabulary notebook with spaced repetition. | Aralıklı tekrarla çalışan kelime defteri. |
+| With Handlebars | A fretboard explorer for guitar chords and scales. | Gitar perdelerinde akorları ve gamları gösteren uygulama. |
+| Company, heading | Software built to run for decades. | (none) |
+| Company, text | We make software for real problems, and we stay with it for years. Each product is built for a problem someone has today, and each one is still looked after long after the day it ships. | Ürünlerin her biri gerçek bir ihtiyaçtan doğdu; hepsinin yıllarca arkasındayız. |
 
 Notes on this copy:
 
-- The Nesili description here says "inside your company"; the live card says
-  "on your own computer", which is what the pilot does today. Use whichever is
-  true of the product on the day the page ships.
+- Nesili's line is about safe use, not about being told no. The claim floor is
+  unchanged: no promise that nothing leaks, and the description's last
+  sentence stays in every version.
+- The masked example uses the app's own label form (`[TCKN_6197]`,
+  `[IBAN_3736]`, `[PHONE_5846]`), as in its screenshot on the board.
 - The Nesili card and the plans page are held together (luvita-web#39). The
   rebuild does not release either.
 - "priced separately, before we start" is proposed wording; the constitution
@@ -225,12 +244,10 @@ Notes on this copy:
   product status asks for that, and this page is read by banks. When Umay
   ships, the copy moves to the present tense together with its `status` in
   `src/data/products.ts`, in the same change.
-- No sentence says that we use the apps ourselves; the founder dropped that
-  claim (LW-67).
-- `BRAND.md` says a heading needs a verb, with one approved exception. The
-  heading here has participles only ("made, tested and kept running"). Either
-  `BRAND.md` records it as the new approved line when it is brought in line
-  with the constitution, or the heading is reworded. Founder's call.
+- "Kendini geliştirmek" was on the `BRAND.md` list of Turkish words we do not
+  use; the founder lifted that rule (project-templates#76).
+- The root identity page (`/`) keeps its own title and wording: it is written
+  for a verifier, not for a visitor (adr/0005).
 
 ## 10. Template signs to avoid
 
@@ -283,10 +300,10 @@ Words:
 
 1. The final typeface and a drawn wordmark.
 2. A real Umay screen (a recorded call).
-3. The Turkish copy, to be corrected by the founder.
+3. (Closed, LW-67: the founder settled the copy in both languages.)
 4. Where the release dates come from for each product, and who updates them;
    and the founder's approval of the scheduled daily build.
 5. (Closed, LW-67: the "made by people who use them every day" claim is dropped.)
-6. The heading and the "a heading needs a verb" rule in `BRAND.md`.
+6. (Closed, LW-67: the page has no heading sentence.)
 7. The other pages (products, plans, about, contact) follow these rules; their
    structure is not designed yet.

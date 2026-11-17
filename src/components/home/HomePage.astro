@@ -3,8 +3,9 @@
  * The home page, round 2 (DESIGN.md section 4, adr/0007). Both locales render
  * this component; copy lives in src/data/home.ts.
  *
- * Order: the one-sentence heading, the board (all three products on the first
- * screen), one section per product, the company block. Product states come
+ * Order: the board (every product on the first screen), one section per
+ * product, the company block. There is no heading sentence (founder, LW-67):
+ * the page's `h1` is a label for screen readers and search only. Product states come
  * from src/data/products.ts and release dates from src/data/releases.json; the
  * 120-day rule is applied at build time (src/lib/state-line.ts).
  */
@@ -62,7 +63,7 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
 
 <div class="home">
   <div class="container">
-    <h1 class="home-heading">{copy.heading}</h1>
+    <h1 class="visually-hidden">{copy.heading}</h1>
 
     <nav class="jump" aria-label={copy.jumpLabel}>
       <ul>
@@ -89,7 +90,20 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
                 <h2>{product.name}</h2>
               </div>
               <p class="state mono">{line(product)}</p>
-              <p class="problem">{p.problem}</p>
+              {p.problem ? (
+                <p class="problem">{p.problem}</p>
+              ) : (
+                // CosmoCrew has no sentence: the three app names stand there.
+                <ul class="problem app-names" aria-label={copy.cosmocrew.description}>
+                  {COSMOCREW_APPS.map((app) => (
+                    <li>
+                      <a class="text-link" href={app.url} rel="noopener noreferrer">
+                        {app.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <div class:list={['screen', { 'screen-mark': !product.screen }]}>
                 {product.screen ? (
                   <Image
@@ -209,7 +223,11 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
   <section class="container" aria-labelledby="company-heading">
     <div class="company">
     <div class="product-aside">
-      <h2 id="company-heading">{copy.company.heading}</h2>
+      {copy.company.heading ? (
+        <h2 id="company-heading">{copy.company.heading}</h2>
+      ) : (
+        <h2 id="company-heading" class="visually-hidden">{copy.company.sectionLabel}</h2>
+      )}
     </div>
     <div class="product-body">
       <p class="body-lead">{copy.company.paragraph}</p>
@@ -237,14 +255,6 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
 </div>
 
 <style>
-  .home-heading {
-    font-size: var(--fs-hero);
-    line-height: var(--lh-snug);
-    font-weight: 600;
-    max-width: 34ch;
-    margin-bottom: var(--sp-6);
-  }
-
   /* Phone only: the three names reachable on the first screen. */
   .jump {
     display: none;
@@ -308,6 +318,23 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
     line-height: var(--lh-snug);
     color: var(--c-ink);
     min-height: calc(3 * var(--lh-snug) * 1em);
+  }
+
+  /* CosmoCrew's column: the three app names where the others have a sentence. */
+  .app-names {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0 0.5em;
+    list-style: none;
+    padding: 0;
+  }
+
+  /* The dot follows a name, so a wrapped line never starts with one. */
+  .app-names li:not(:last-child)::after {
+    content: '\00b7';
+    margin-left: 0.5em;
+    color: var(--c-muted);
   }
 
   /* A real screen, 16:10, cropped from the top left. Without one, the
