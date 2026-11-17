@@ -125,7 +125,7 @@ export const home: Record<Locale, HomeCopy> = {
       },
       pelerin: {
         problem: 'You want to use AI on customer data, and you were told no.',
-        link: { text: 'Start a trial', internal: 'plans' },
+        link: { text: 'Ask about the pilot', internal: 'contact' },
       },
       cosmocrew: {
         problem:
@@ -188,7 +188,7 @@ export const home: Record<Locale, HomeCopy> = {
       pelerin: {
         problem:
           'Müşteri verisiyle yapay zekâ kullanmak istediniz, size "olmaz" dendi.',
-        link: { text: 'Denemeye başlayın', internal: 'planlar' },
+        link: { text: 'Pilot hakkında sorun', internal: 'iletisim' },
       },
       cosmocrew: {
         problem:

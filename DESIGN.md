@@ -203,7 +203,7 @@ draft for the founder to correct**; "atölye" is the proposed word for
 | Nesili, state | In pilot on Windows | Windows'ta pilot aşamasında |
 | Nesili, description | Nesili runs inside your company and replaces names, ID numbers, IBANs and addresses in Turkish text before it reaches the AI model. The raw personal identifiers stay with you. Your legal duties for sending data abroad remain, and Nesili makes them easier to meet. | Nesili şirketinizin içinde çalışır; Türkçe metindeki adları, kimlik numaralarını, IBAN'ları ve adresleri, metin yapay zekâ modeline ulaşmadan önce değiştirir. Ham kişisel bilgiler sizde kalır. Yurt dışına veri aktarımına ilişkin yasal yükümlülükleriniz sürer; Nesili bunları yerine getirmeyi kolaylaştırır. |
 | Nesili, example labels | What your colleague writes / What the AI model receives | Çalışanınızın yazdığı / Yapay zekâ modeline giden |
-| Nesili, link | Start a trial | Denemeye başlayın |
+| Nesili, link | Ask about the pilot | Pilot hakkında sorun |
 | CosmoCrew, problem | You open your phone without deciding to, and the day is gone. | Telefonu, karar vermeden elinize alıyorsunuz; gün de öyle geçip gidiyor. |
 | CosmoCrew, state | Three apps live | Üç uygulama yayında |
 | CosmoCrew, description | Our apps for people working on themselves. | Kendileri üzerinde çalışan insanlar için uygulamalarımız. |
