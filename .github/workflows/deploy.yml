@@ -4,6 +4,10 @@ on:
   # Build and deploy on every push to main.
   push:
     branches: [main]
+  # Rebuild once a day so a release date older than 120 days drops off the
+  # page even when nothing is merged (DESIGN.md section 6).
+  schedule:
+    - cron: '17 3 * * *'
   # Allow manual runs from the Actions tab.
   workflow_dispatch:
 
