@@ -30,7 +30,11 @@ export interface ProductCopy {
   description: string;
 }
 
-/** A real screen of the product (DESIGN.md section 5). Never invented. */
+/**
+ * A captured screen of the product (DESIGN.md section 5): a real screen, or
+ * the product's own clearly labelled sample with fictional data (Umay's
+ * sample call, until a recorded call exists). Never drawn or generated.
+ */
 export interface ProductScreen {
   src: ImageMetadata;
   /** What the screen shows, per locale. */
@@ -49,7 +53,8 @@ export interface Product {
    */
   state: Record<Locale, string>;
   /**
-   * A real screen for the home page board. Absent until one exists: the board
+   * A screen for the home page board (see ProductScreen). Absent until one
+   * exists: the board
    * then shows the product's mark large in its place, never an empty frame.
    */
   screen?: ProductScreen;

@@ -101,7 +101,9 @@ call replaces it when one exists (section 12, open point 2).
 ## 5. How a product is shown
 
 - **Real screens only.** No stock pictures, no generated pictures, no device
-  frames drawn around a screen, no invented interface.
+  frames drawn around a screen, no invented interface. The one stand-in is a
+  product's own sample that says on its face it uses fictional data: Umay's
+  sample call from umayconnect.org (LW-82), until a recorded call exists.
 - **One mark per product.** Nesili and CosmoCrew have drawn marks in the same
   line weight, drawn from the simplest true form of what the product does: a
   line of text with two parts covered (Nesili), a day as a circle cut into
