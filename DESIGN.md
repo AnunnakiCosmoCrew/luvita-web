@@ -99,11 +99,14 @@ place of a screen. An empty frame never ships.
 
 - **Real screens only.** No stock pictures, no generated pictures, no device
   frames drawn around a screen, no invented interface.
-- **One drawn mark per product**, all in the same line weight, drawn from the
-  simplest true form of what the product does: two voices taking turns (Umay),
-  a line of text with two parts covered (Nesili), a day as a circle cut into
-  slices (CosmoCrew). Marks are inline SVG using `currentColor`, shown in the
-  accent colour. They identify the product; they never replace the screen.
+- **One mark per product.** Nesili and CosmoCrew have drawn marks in the same
+  line weight, drawn from the simplest true form of what the product does: a
+  line of text with two parts covered (Nesili), a day as a circle cut into
+  slices (CosmoCrew). They are inline SVG using `currentColor`, shown in the
+  accent colour. Umay shows its brand icon "Two voices" instead, filled in ink
+  and moss (founder, 2026-11-17, LW-80; it replaced a drawing of two speech
+  bubbles). Its shapes and rules are in `luvita-docs/brand/README.md`. Marks
+  identify the product; they never replace the screen.
 - The philosophy behind the forms is never named or illustrated on the page.
 - Images live in the repository and are served by the site. Every image has
   alt text that says what the screen shows.
