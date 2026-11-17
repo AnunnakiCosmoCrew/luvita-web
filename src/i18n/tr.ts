@@ -38,7 +38,7 @@ export const tr: Dictionary = {
   skipToContent: 'İçeriğe geç',
   nav: {
     products: 'Ürünler',
-    about: 'Şirket',
+    about: 'Hakkında',
     contact: 'İletişim',
     home: 'Luvita — ana sayfa',
     primary: 'Ana gezinme',
@@ -53,7 +53,7 @@ export const tr: Dictionary = {
     tagline: 'Kendi yazılım ürünlerini geliştiren bağımsız bir şirket.',
     nav: 'Alt gezinme',
     products: 'Ürünler',
-    about: 'Hakkımızda',
+    about: 'Hakkında',
     contact: 'İletişim',
     privacy: 'Gizlilik',
     kvkk: 'KVKK Aydınlatma Metni',

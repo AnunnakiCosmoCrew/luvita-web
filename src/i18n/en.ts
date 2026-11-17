@@ -5,7 +5,7 @@ export const en: Dictionary = {
   skipToContent: 'Skip to content',
   nav: {
     products: 'Products',
-    about: 'Company',
+    about: 'About',
     contact: 'Contact',
     home: 'Luvita — home',
     primary: 'Primary',
