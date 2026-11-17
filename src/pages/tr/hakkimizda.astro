@@ -4,7 +4,9 @@ import Prose from '../../components/Prose.astro';
 import { localizedPath } from '../../i18n';
 
 // Şirket sayfası (LW-74). Metni kurucu 2026-11-17'de onayladı; İngilizce
-// sayfanın çevirisi değildir, ayrı yazılmıştır (DESIGN.md bölüm 9). Kurucunun
+// sayfanın çevirisi değildir, ayrı yazılmıştır (DESIGN.md bölüm 9). Başlık,
+// kurucunun istediği fikri taşır: teknolojiyi baştan icat etmek değil, var
+// olanla gerçek sorunları çözen ürünler geliştirmek. Kurucunun
 // adı yalnızca burada, iki cümleyle geçer: fotoğraf, hikâye ve işveren adı
 // yok.
 ---
@@ -12,31 +14,28 @@ import { localizedPath } from '../../i18n';
 <BaseLayout
   locale="tr"
   title="Şirket — Luvita"
-  description="Luvita, yeni bilimi ve teknolojiyi insanların işinde kullandığı araçlara dönüştürür: Umay, Nesili ve CosmoCrew uygulamaları."
+  description="Luvita, var olan teknolojiyle gerçek sorunları çözen ürünler geliştirir: Umay, Nesili ve CosmoCrew uygulamaları."
   paths={{ tr: 'hakkimizda', en: 'about' }}
 >
   <section class="container company-page">
-    <h1>
-      Yeni bilimi ve teknolojiyi, insanların işinde kullandığı araçlara
-      dönüştürüyoruz.
-    </h1>
+    <h1>Var olan teknolojiyle, gerçek sorunları çözen ürünler geliştiriyoruz.</h1>
 
     <Prose>
       <p>
-        Luvita yazılım ürünleri yapar ve onları çalışır durumda tutar. Her
-        ürün, araştırmanın ya da yeni teknolojinin mümkün kıldığı bir şeyi,
-        bir insanın ya da bir şirketin her gün kullanabileceği bir araca
-        çevirir. Geliştirme aşamasındaki Umay, yapay zekâyı doğal bir
+        Luvita yazılım ürünleri geliştirir; yayınladıktan sonra da
+        güncellemelerle ve bulut hizmetleriyle destekler. Her ürün,
+        araştırmanın ya da yeni teknolojinin mümkün kıldığı bir şeyi, bir
+        insanın ya da bir şirketin her gün kullanabileceği bir araca çevirir. Geliştirme aşamasındaki Umay, yapay zekâyı doğal bir
         Türkçeyle müşteri hizmetleri çağrılarına taşıyor. Pilot aşamasındaki
-        Nesili, bir ekibin yapay zekâ kullanırken metindeki ham kimlik
-        bilgilerini kendi bilgisayarında tutmasını sağlıyor. CosmoCrew
-        uygulamaları SliceFocus ve LexiPower ise odaklanma ve hafıza üzerine
-        araştırmalara dayanıyor.
+        Nesili, bir ekibin dışarı çıkmasını istemediği bilgileri (kişisel
+        bilgiler, müşteri ve dosya numaraları gibi) metin yapay zekâya
+        gitmeden önce maskeliyor; ham bilgiler ekibin kendi bilgisayarında
+        kalıyor. CosmoCrew uygulamaları SliceFocus ve LexiPower ise odaklanma
+        ve hafıza üzerine araştırmalara dayanıyor.
       </p>
       <p>
-        Yaptıklarımız insanların gününün öyle bir parçası olsun ki, bir sabah
-        yerinde bulamadıklarında eksikliğini hissetsinler. Başardığımızı o
-        zaman anlayacağız.
+        Bir ürünümüz yarın ortadan kalksa yokluğu aranıyorsa, işimizi yapmışız
+        demektir.
       </p>
       <p>
         Luvita&rsquo;yı 2026&rsquo;da Mert Ertuğrul kurdu. Öncesinde on yılı
