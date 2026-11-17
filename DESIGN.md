@@ -262,7 +262,8 @@ Notes on this copy:
 
 ### Company page
 
-The page behind "Company" / "Şirket" in the header (LW-74, wording approved by
+The page behind "About" / "Hakkında" in the header and the footer (LW-74; the
+label changed from "Company" / "Şirket" in LW-78; wording approved by
 the founder on 2026-11-17; the two languages are written separately). Source
 of truth: `src/pages/en/about.astro` and `src/pages/tr/hakkimizda.astro`.
 
