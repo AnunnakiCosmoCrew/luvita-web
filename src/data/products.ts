@@ -18,6 +18,8 @@ import { TRIAL_DAYS } from '../lib/pelerin-plans';
 import umayIcon from '../assets/icons/umay.png';
 import cosmocrewIcon from '../assets/icons/cosmocrew.svg';
 import pelerinIcon from '../assets/icons/pelerin.svg';
+import nesiliScreen from '../assets/screens/nesili-split-view.jpg';
+import sliceFocusScreen from '../assets/screens/slicefocus-mac.png';
 
 export type ProductStatus = 'live' | 'in-development';
 
@@ -95,6 +97,14 @@ export const products: Product[] = [
       en: 'Three apps live',
       tr: 'Üç uygulama yayında',
     },
+    // SliceFocus stands for the three apps here; cosmocrew.dev shows each one.
+    screen: {
+      src: sliceFocusScreen,
+      alt: {
+        en: 'SliceFocus on a Mac: Wednesday, 24 June laid out as coloured slices on one 24-hour circle, with Night Sleep as the largest slice and a red hand at 09:46.',
+        tr: "Mac'te SliceFocus: 24 Haziran Çarşamba, 24 saatlik tek bir daire üzerinde renkli dilimler hâlinde; en büyük dilim gece uykusu, kırmızı ibre 09:46'da.",
+      },
+    },
     icon: cosmocrewIcon,
     url: COSMOCREW_URL,
     copy: {
@@ -124,6 +134,15 @@ export const products: Product[] = [
     state: {
       en: 'In pilot on Windows',
       tr: "Windows'ta pilot aşamasında",
+    },
+    // Every name and number in this screen is invented (see
+    // src/assets/screens/README.md for where it comes from).
+    screen: {
+      src: nesiliScreen,
+      alt: {
+        en: 'Nesili Desktop in split view. Left: a note with an invented name, phone number and policy number, and under it the answer with those details put back. Right: the same note in an AI chat window, with labels in place of each detail.',
+        tr: 'Nesili Masaüstü bölünmüş görünümde. Solda: uydurma ad, telefon ve poliçe numarası içeren bir not ve altında bu bilgilerin geri konduğu yanıt. Sağda: aynı not bir yapay zekâ sohbet penceresinde, her bilginin yerinde bir etiketle.',
+      },
     },
     icon: pelerinIcon,
     copy: {
