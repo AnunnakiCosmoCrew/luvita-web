@@ -1,61 +1,58 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
 import Prose from '../../components/Prose.astro';
+import { localizedPath } from '../../i18n';
+
+// The Company page (LW-74). Wording approved by the founder on 2026-11-17;
+// the Turkish page is written separately, not translated (DESIGN.md
+// section 9). The founder is named here, in two factual sentences, and
+// nowhere else on the site: no photo, no story, no employer names.
 ---
 
 <BaseLayout
   locale="en"
-  title="About — Luvita"
-  description="Luvita is an independent software product company, founder-led, with an engineering practice formed in banking and enterprise systems."
+  title="Company — Luvita"
+  description="Luvita turns new science and technology into tools people work with: Umay, Nesili and the CosmoCrew apps."
   paths={{ tr: 'hakkimizda', en: 'about' }}
 >
-  <Hero
-    eyebrow="About"
-    title="We answer to our own roadmap."
-    lead="We build software products of our own, with working habits formed in banking and enterprise systems."
-  />
+  <section class="container company-page">
+    <h1>We turn new science and technology into tools people work with.</h1>
 
-  <section class="container">
     <Prose>
       <p>
-        Luvita is an independent software company: we build, ship and maintain
-        products of our own. Most of our background is in banking and
-        enterprise systems, and our working habits were formed there.
+        Luvita makes software products and keeps them running. Each one takes
+        something that research or new technology has made possible and turns
+        it into a tool a person or a company can use every day. Umay, in
+        development, brings AI to customer service calls in natural Turkish.
+        Nesili lets a team use AI while the raw identity details in their text
+        stay on their own computer. The CosmoCrew apps SliceFocus and LexiPower
+        build on research into focus and memory.
       </p>
       <p>
-        Luvita is founder-led — every product is engineered end to end by the
-        same hands, from the first commit to the maintenance years later. Our founder has more than a
-        decade of experience in banking and finance: at Türk Eximbank, at
-        Channel Capital Advisors in London, and most recently at ING. Our core competencies are
-        Java/Spring Boot backend systems, cross-platform applications with
-        Flutter, and cloud architectures.
+        We will know it has worked when what we build is so much a part of
+        people&rsquo;s days that they would miss it the morning it was gone.
       </p>
       <p>
-        Our apps ship under the <strong>CosmoCrew</strong> brand: SliceFocus,
-        LexiPower and With Handlebars are all live and actively maintained.
-        Our focus going forward is growing products of our own, starting
-        with <strong>Umay</strong> and <strong>Nesili</strong>.
+        Luvita was founded in 2026 by Mert Ertuğrul. Before that he worked for
+        more than a decade in banking and finance, in Istanbul and London.
       </p>
-      <h2>How we work</h2>
-      <ul>
-        <li>
-          Significant architecture decisions are written down, so the
-          reasoning behind them can be traced years later.
-        </li>
-        <li>
-          Testing and automation are set up on day one, not bolted on at the
-          end.
-        </li>
-        <li>
-          Once a product is live, it stays under our care — every app we have
-          shipped is proof of that.
-        </li>
-        <li>
-          We say where a product stands, what is missing and what it will
-          take — as it is.
-        </li>
-      </ul>
+      <p>
+        The products, and where each one stands today, are on the
+        <a href={localizedPath('en')}>home page</a>.
+      </p>
     </Prose>
   </section>
 </BaseLayout>
+
+<style>
+  .company-page {
+    padding-block: var(--sp-5) var(--sp-6);
+  }
+
+  h1 {
+    font-size: var(--fs-hero);
+    line-height: var(--lh-snug);
+    max-width: 26ch;
+    margin-block: var(--sp-4) var(--sp-6);
+  }
+</style>

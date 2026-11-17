@@ -1,62 +1,64 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
 import Prose from '../../components/Prose.astro';
+import { localizedPath } from '../../i18n';
+
+// Şirket sayfası (LW-74). Metni kurucu 2026-11-17'de onayladı; İngilizce
+// sayfanın çevirisi değildir, ayrı yazılmıştır (DESIGN.md bölüm 9). Kurucunun
+// adı yalnızca burada, iki cümleyle geçer: fotoğraf, hikâye ve işveren adı
+// yok.
 ---
 
 <BaseLayout
   locale="tr"
-  title="Hakkımızda — Luvita"
-  description="Luvita, kurucusunun mühendisliğinde çalışan bağımsız bir yazılım ürünleri şirketidir; mühendislik pratiği bankacılık ve kurumsal sistemlerden gelir."
+  title="Şirket — Luvita"
+  description="Luvita, yeni bilimi ve teknolojiyi insanların işinde kullandığı araçlara dönüştürür: Umay, Nesili ve CosmoCrew uygulamaları."
   paths={{ tr: 'hakkimizda', en: 'about' }}
 >
-  <Hero
-    eyebrow="Hakkımızda"
-    title="Kendi yol haritamıza çalışıyoruz."
-    lead="Kendi yazılım ürünlerimizi geliştiriyoruz; çalışma alışkanlıklarımız bankacılık ve kurumsal sistemlerde şekillendi."
-  />
+  <section class="container company-page">
+    <h1>
+      Yeni bilimi ve teknolojiyi, insanların işinde kullandığı araçlara
+      dönüştürüyoruz.
+    </h1>
 
-  <section class="container">
     <Prose>
       <p>
-        Luvita, kendi ürünlerini geliştiren, yayınlayan ve yaşatan bağımsız
-        bir yazılım şirketidir. İşimizin ağırlığı bankacılık ve kurumsal iş
-        süreçlerinden geliyor; çalışma alışkanlıklarımız da orada şekillendi.
+        Luvita yazılım ürünleri yapar ve onları çalışır durumda tutar. Her
+        ürün, araştırmanın ya da yeni teknolojinin mümkün kıldığı bir şeyi,
+        bir insanın ya da bir şirketin her gün kullanabileceği bir araca
+        çevirir. Geliştirme aşamasındaki Umay, yapay zekâyı doğal bir
+        Türkçeyle müşteri hizmetleri çağrılarına taşıyor. Nesili, bir ekibin
+        yapay zekâ kullanırken metindeki ham kimlik bilgilerini kendi
+        bilgisayarında tutmasını sağlıyor. CosmoCrew uygulamaları SliceFocus
+        ve LexiPower ise odaklanma ve hafıza üzerine araştırmalara dayanıyor.
       </p>
       <p>
-        Luvita, kurucusunun mühendisliğinde çalışan bir şirkettir; her ürün
-        ilk satırından yıllar sonraki bakımına kadar aynı elden çıkar.
-        Kurucumuz, bankacılık ve finans
-        alanında on yılın üzerinde deneyime sahiptir: Türk Eximbank’ta,
-        Londra’da Channel Capital Advisors’ta ve son olarak ING’de. Ana yetkinlik alanlarımız
-        Java/Spring Boot arka uç sistemleri, Flutter ile çoklu platform
-        uygulamalar ve bulut mimarileridir.
+        Yaptıklarımız insanların gününün öyle bir parçası olsun ki, bir sabah
+        yerinde bulamadıklarında eksikliğini hissetsinler. Başardığımızı o
+        zaman anlayacağız.
       </p>
       <p>
-        Uygulamalarımızı <strong>CosmoCrew</strong> markası altında
-        yayınlıyoruz: SliceFocus, LexiPower ve With Handlebars’ın hepsi
-        yayında ve bakımları sürüyor. Önümüzdeki dönemde odağımız,
-        başta <strong>Umay</strong> ve <strong>Nesili</strong> olmak üzere
-        kendi ürünlerimizi büyütmek.
+        Luvita&rsquo;yı 2026&rsquo;da Mert Ertuğrul kurdu. Öncesinde on yılı
+        aşkın süre İstanbul ve Londra&rsquo;da bankacılık ve finans sektöründe
+        çalıştı.
       </p>
-      <h2>Nasıl çalışıyoruz</h2>
-      <ul>
-        <li>
-          Önemli mimari kararları yazılı olarak belgeleriz; bir kararın neden
-          alındığı yıllar sonra da izlenebilir.
-        </li>
-        <li>
-          Test ve otomasyon işin sonuna bırakılmaz; ilk günden kurulur.
-        </li>
-        <li>
-          Bir ürün yayına çıktıktan sonra bakımı bizde kalır; yayındaki her
-          ürünümüz bunun örneğidir.
-        </li>
-        <li>
-          Bir ürünün nerede olduğunu, neyin eksik olduğunu ve neyin
-          gerektiğini olduğu gibi söyleriz.
-        </li>
-      </ul>
+      <p>
+        Ürünler ve her birinin bugünkü durumu
+        <a href={localizedPath('tr')}>ana sayfada</a>.
+      </p>
     </Prose>
   </section>
 </BaseLayout>
+
+<style>
+  .company-page {
+    padding-block: var(--sp-5) var(--sp-6);
+  }
+
+  h1 {
+    font-size: var(--fs-hero);
+    line-height: var(--lh-snug);
+    max-width: 26ch;
+    margin-block: var(--sp-4) var(--sp-6);
+  }
+</style>

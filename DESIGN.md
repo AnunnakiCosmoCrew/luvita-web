@@ -260,6 +260,26 @@ Notes on this copy:
 - The root identity page (`/`) keeps its own title and wording: it is written
   for a verifier, not for a visitor (adr/0005).
 
+### Company page
+
+The page behind "Company" / "Şirket" in the header (LW-74, wording approved by
+the founder on 2026-11-17; the two languages are written separately). Source
+of truth: `src/pages/en/about.astro` and `src/pages/tr/hakkimizda.astro`.
+
+- **Heading:** the mission in plain words. No "Mission" or "Vision" labels.
+- **Summary:** what Luvita makes, naming Umay (as in development), Nesili and
+  the CosmoCrew apps. It may say "makes software products" here; the home
+  page does not.
+- **Vision:** one sentence.
+- **Founder:** named, in two factual sentences, on this page only. No photo,
+  no story, no employer names, no "founder-led" and no "by the same hands".
+  Every other page keeps speaking as "we".
+- **Not on this page:** a list of technologies or skills (it reads as a
+  services offer, adr/0004) and anything on how Luvita builds.
+- Why this shape: visitors look for a plain summary at the top of a company
+  page and for who is behind the company (research note
+  `notes/luvita/2026-11-17-mission-and-vision-on-the-company-site.md`).
+
 ## 10. Template signs to avoid
 
 A page fails review if it shows any of these. The first four are the defaults
