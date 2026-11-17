@@ -105,8 +105,10 @@ place of a screen. An empty frame never ships.
 
 ## 6. Proof of upkeep: the state line
 
-Format: `<state> · <where> · improved <date>`, for example
-"In pilot on Windows · improved 9 Nov 2026".
+Format: `<state> · <where> · improved <month year>`, for example
+"In pilot on Windows · improved Nov 2026" (Turkish: "güncellendi Kasım 2026").
+The day is never shown; the full date stays in the data file and the
+120-day rule is computed from it.
 
 - The state comes from `src/data/products.ts`. The date comes from a small data
   file that the product's release process updates. Nobody types a date by hand.
@@ -204,7 +206,7 @@ draft for the founder to correct**; "atölye" is the proposed word for
 | Nesili, link | Start a trial | Denemeye başlayın |
 | CosmoCrew, problem | You open your phone without deciding to, and the day is gone. | Telefonu, karar vermeden elinize alıyorsunuz; gün de öyle geçip gidiyor. |
 | CosmoCrew, state | Three apps live | Üç uygulama yayında |
-| CosmoCrew, description | Our apps for people working on themselves, made by people who use them every day. | Kendini geliştirmek için çalışan insanlara yönelik uygulamalarımız. Onları her gün kullanan insanlar yapıyor. |
+| CosmoCrew, description | Our apps for people working on themselves. | Kendileri üzerinde çalışan insanlar için uygulamalarımız. |
 | CosmoCrew, link | Visit cosmocrew.dev | cosmocrew.dev'e gidin |
 | Closing line | Software for the next decade. | Sıradaki on yıl için yazılım. |
 | Closing paragraph | We make a few products and stay with them. Each one is built for a problem someone has today, and each one is still looked after long after the day it ships. | Az sayıda ürün yapıyor ve onların başında kalıyoruz. Her biri, birinin bugün yaşadığı bir sorun için yapıldı; her birine, yayınlandığı günden çok sonra da bakılıyor. |
@@ -223,9 +225,8 @@ Notes on this copy:
   product status asks for that, and this page is read by banks. When Umay
   ships, the copy moves to the present tense together with its `status` in
   `src/data/products.ts`, in the same change.
-- "made by people who use them every day" is a claim about the makers. It comes
-  from the constitution; the founder confirms it is true of each of the three
-  apps before it ships. If it is not, the sentence ends at "themselves".
+- No sentence says that we use the apps ourselves; the founder dropped that
+  claim (LW-67).
 - `BRAND.md` says a heading needs a verb, with one approved exception. The
   heading here has participles only ("made, tested and kept running"). Either
   `BRAND.md` records it as the new approved line when it is brought in line
@@ -285,7 +286,7 @@ Words:
 3. The Turkish copy, to be corrected by the founder.
 4. Where the release dates come from for each product, and who updates them;
    and the founder's approval of the scheduled daily build.
-5. Whether "made by people who use them every day" is true of all three apps.
+5. (Closed, LW-67: the "made by people who use them every day" claim is dropped.)
 6. The heading and the "a heading needs a verb" rule in `BRAND.md`.
 7. The other pages (products, plans, about, contact) follow these rules; their
    structure is not designed yet.

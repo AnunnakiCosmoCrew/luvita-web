@@ -20,8 +20,7 @@
  *   wording of the claim floor. No speed figures; the example uses invented data
  *   (a TC Kimlik number with a failing checksum, an IBAN with check digits 00,
  *   an unassigned phone number).
- * - CosmoCrew: "made by people who use them every day" is left out until the
- *   founder confirms it of all three apps (DESIGN.md section 12, point 5).
+ * - CosmoCrew: no sentence says that we use the apps ourselves (founder, LW-67).
  */
 import type { Locale } from '../i18n';
 

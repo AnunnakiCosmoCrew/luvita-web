@@ -120,7 +120,7 @@ Use the token variables, never raw values in components.
     else. Any sentence added to it is copy and needs a founder look.
 - **Marks:** one inline SVG per product in `src/components/ProductMark.astro`,
   one line weight, `currentColor`, shown in the accent.
-- **State line:** `<state> · improved <date>`. The state comes from `state` in
+- **State line:** `<state> · improved <month year>`. The state comes from `state` in
   `src/data/products.ts`, the date from `src/data/releases.json` (updated in
   each product's release pull request, never typed in for the page). A date
   older than 120 days is hidden at build time (`src/lib/state-line.ts`; "today"

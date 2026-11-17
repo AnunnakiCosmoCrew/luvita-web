@@ -1,6 +1,6 @@
 /**
  * The state line beside each product name (DESIGN.md section 6):
- * `<state> · <where> · improved <date>`.
+ * `<state> · <where> · improved <month year>`.
  *
  * The state comes from `src/data/products.ts`; the date comes from
  * `src/data/releases.json`, which each product's release pull request updates.
@@ -73,7 +73,7 @@ export function isDateShown(
 
 const MONTHS: Record<StateLocale, string[]> = {
   en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  tr: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+  tr: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
 };
 
 const IMPROVED: Record<StateLocale, string> = {
@@ -81,10 +81,13 @@ const IMPROVED: Record<StateLocale, string> = {
   tr: 'güncellendi',
 };
 
-/** "9 Nov 2026" / "9 Kas 2026". */
-export function formatDay(isoDate: string, locale: StateLocale): string {
+/**
+ * "Nov 2026" / "Kasım 2026". The page never shows the day (founder, LW-67);
+ * the full date stays in the data and drives the 120-day rule.
+ */
+export function formatMonth(isoDate: string, locale: StateLocale): string {
   const d = parseIsoDate(isoDate);
-  return `${d.getUTCDate()} ${MONTHS[locale][d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+  return `${MONTHS[locale][d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
 /** The parts of a state line, ready to join with " · ". */
@@ -96,7 +99,7 @@ export function stateLineParts(
 ): string[] {
   const parts = [state];
   if (isoDate && isDateShown(isoDate, today)) {
-    parts.push(`${IMPROVED[locale]} ${formatDay(isoDate, locale)}`);
+    parts.push(`${IMPROVED[locale]} ${formatMonth(isoDate, locale)}`);
   }
   return parts;
 }

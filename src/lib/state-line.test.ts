@@ -22,7 +22,7 @@ test('a date 119 days old is shown', () => {
   assert.equal(isDateShown('2026-07-20', today), true);
   assert.equal(
     stateLine('In pilot on Windows', '2026-07-20', today, 'en'),
-    'In pilot on Windows · improved 20 Jul 2026'
+    'In pilot on Windows · improved Jul 2026'
   );
 });
 
@@ -47,10 +47,10 @@ test('a future date is not shown', () => {
   assert.equal(isDateShown('2026-11-17', today), false);
 });
 
-test('Turkish month names', () => {
+test('Turkish month names, no day', () => {
   assert.equal(
     stateLine("Windows'ta pilot aşamasında", '2026-11-09', today, 'tr'),
-    "Windows'ta pilot aşamasında · güncellendi 9 Kas 2026"
+    "Windows'ta pilot aşamasında · güncellendi Kasım 2026"
   );
 });
 
