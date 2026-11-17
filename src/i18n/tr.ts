@@ -38,7 +38,7 @@ export const tr: Dictionary = {
   skipToContent: 'İçeriğe geç',
   nav: {
     products: 'Ürünler',
-    about: 'Hakkımızda',
+    about: 'Şirket',
     contact: 'İletişim',
     home: 'Luvita — ana sayfa',
     primary: 'Ana gezinme',

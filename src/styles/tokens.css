@@ -1,23 +1,36 @@
 /**
- * Design tokens — calm, near-monochrome, with a single restrained corporate
- * accent (deep teal). Light theme by default; dark via prefers-color-scheme.
+ * Design tokens — round 2 (DESIGN.md section 8, adr/0007).
+ *
+ * White and moss green; one accent only, used on the product marks and on
+ * link underlines. Light by default, dark follows prefers-color-scheme (no
+ * switch: the site ships no script). Neither theme is the lesser one.
+ *
+ * Measured contrast (WCAG 2.x relative luminance), on background / on well:
+ *   light  ink 18.5 / 16.9   soft 13.1 / 12.0   muted 7.7 / 7.0   accent 7.7 / 7.0
+ *   dark   ink 15.9 / 14.6   soft 11.7 / 10.8   muted 7.2 / 6.7   accent 9.4 / 8.6
+ * Every text token clears 4.5:1 on both surfaces. Re-measure on any change.
+ *
+ * The older token names (--c-surface, --c-border, --font-display, ...) stay as
+ * aliases so the pages that keep their structure pick up the new look.
  */
 :root {
-  /* Accent — the one corporate note */
-  --c-accent: #0f7b6c;
-  --c-accent-hover: #0c6357;
+  /* Colour (light) */
+  --c-bg: #ffffff;
+  --c-ink: #111413;
+  --c-ink-soft: #2b3230; /* soft text */
+  --c-muted: #4d5552; /* muted text: state lines, meta */
+  --c-rule: #cfd4d1;
+  --c-accent: #3c5a45; /* moss */
+  --c-accent-hover: #2e4636;
   --c-accent-contrast: #ffffff;
+  --c-well: #f3f5f3; /* quiet surface */
 
-  /* Surfaces & ink (light) */
-  --c-bg: #fafaf8; /* warm off-white, not pure white */
-  --c-surface: #ffffff;
-  --c-surface-2: #f3f3ef;
-  --c-ink: #1a1b20; /* near-black charcoal */
-  --c-ink-soft: #494b55; /* secondary text */
-  --c-muted: #80828d; /* tertiary / meta */
-  --c-border: #e7e7e2;
-  --c-ring: #0f7b6c;
-  --c-ok: #3f9d72; /* muted "live" status dot */
+  /* Aliases kept for the pages outside the rebuild */
+  --c-surface: var(--c-bg);
+  --c-surface-2: var(--c-well);
+  --c-border: var(--c-rule);
+  --c-ring: var(--c-accent);
+  --c-ok: var(--c-accent);
 
   /* Type scale (~1.2 modular) */
   --fs-300: 0.833rem;
@@ -27,17 +40,22 @@
   --fs-700: 1.728rem;
   --fs-800: 2.074rem;
   --fs-900: 2.488rem;
-  --fs-hero: clamp(2.6rem, 4.5vw + 1rem, 4rem);
+  --fs-hero: clamp(1.75rem, 1.2vw + 1.25rem, 2.125rem); /* ~34px at desktop */
+  --fs-problem: 1.25rem; /* the problem sentence on the board, ~20px */
   --lh-tight: 1.15;
-  --lh-body: 1.65;
+  --lh-snug: 1.3;
+  --lh-body: 1.6;
 
-  /* Fonts — fast system stack (no web-font download) */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-display: 'Iowan Old Style', 'Palatino Nova', Palatino, 'Book Antiqua',
-    Georgia, 'Times New Roman', serif;
-  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas,
+  /*
+   * Fonts — self-hosted (src/styles/fonts.css). One text family, one mono.
+   * The family is this single token: changing the typeface changes it and
+   * the @font-face rules, nothing else. Fallbacks are of similar width.
+   */
+  --font-sans: 'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas,
     monospace;
+  --font-display: var(--font-sans);
 
   /* Spacing scale */
   --sp-1: 0.25rem;
@@ -50,35 +68,34 @@
   --sp-8: 4rem;
   --sp-9: 6rem;
 
+  /* Rules */
+  --rule-strong: 2px;
+  --rule-thin: 1px;
+
   /* Radius / widths / shadow / motion */
-  --radius-sm: 6px;
-  --radius: 12px;
-  --radius-lg: 20px;
-  --maxw: 64rem;
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 8px;
+  --maxw: 76rem;
   --maxw-prose: 42rem;
-  --shadow-card: 0 1px 2px rgba(20, 20, 30, 0.04),
-    0 8px 24px rgba(20, 20, 30, 0.06);
+  --shadow-card: none; /* no soft-shadow panels (DESIGN.md section 10) */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --dur: 240ms;
+  --dur: 200ms;
 
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-bg: #0e0f13; /* deep charcoal, faint blue undertone */
-    --c-surface: #16171d;
-    --c-surface-2: #1c1e26;
-    --c-ink: #ececef;
-    --c-ink-soft: #b6b8c2;
-    --c-muted: #7c7e8a;
-    --c-border: #262833;
-    --c-accent: #3cb8a4; /* lifted for AA contrast on dark */
-    --c-accent-hover: #55d0bc;
-    --c-accent-contrast: #08201c;
-    --c-ring: #3cb8a4;
-    --c-ok: #5cc596;
-    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.45);
+    --c-bg: #101312;
+    --c-ink: #ecede9;
+    --c-ink-soft: #c9cec9;
+    --c-muted: #9ba39f;
+    --c-rule: #2a302d;
+    --c-accent: #9cc0a6;
+    --c-accent-hover: #b9d6c1;
+    --c-accent-contrast: #101312;
+    --c-well: #181c1a;
 
     color-scheme: dark;
   }

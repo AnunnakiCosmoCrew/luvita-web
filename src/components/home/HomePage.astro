@@ -1,0 +1,538 @@
+---
+/**
+ * The home page, round 2 (DESIGN.md section 4, adr/0007). Both locales render
+ * this component; copy lives in src/data/home.ts.
+ *
+ * Order: the board (every product on the first screen), one section per
+ * product, the company block. There is no heading sentence (founder, LW-67):
+ * the page's `h1` is a label for screen readers and search only. Product states come
+ * from src/data/products.ts and release dates from src/data/releases.json; the
+ * 120-day rule is applied at build time (src/lib/state-line.ts).
+ */
+import { Image } from 'astro:assets';
+import ProductMark from '../ProductMark.astro';
+import { products, type Product } from '../../data/products';
+import { home, NESILI_EXAMPLE, COSMOCREW_APPS, type HomeLink } from '../../data/home';
+import releases from '../../data/releases.json';
+import { buildToday, stateLine } from '../../lib/state-line';
+import { localizedPath, type Locale } from '../../i18n';
+import { BRAND, CONTACT_EMAIL, FOUNDING_DATE } from '../../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = home[locale];
+const today = buildToday();
+
+type HomeKey = keyof typeof copy.products;
+const HOME_ORDER: HomeKey[] = ['umay', 'pelerin', 'cosmocrew'];
+
+const byKey = new Map(products.map((p) => [p.key, p]));
+let shown = HOME_ORDER.map((key) => {
+  const product = byKey.get(key);
+  if (!product) throw new Error(`Home page: no product "${key}" in products.ts`);
+  return product;
+});
+// DESIGN.md section 4: while Umay has no real screen, Nesili goes first.
+if (!byKey.get('umay')?.screen) {
+  shown = [
+    ...shown.filter((p) => p.key === 'pelerin'),
+    ...shown.filter((p) => p.key !== 'pelerin'),
+  ];
+}
+
+const releaseDates = releases as unknown as Record<string, string | null>;
+const line = (product: Product) =>
+  stateLine(product.state[locale], releaseDates[product.key], today, locale);
+
+/** Public anchor ids: product names, never internal keys. */
+const anchor = (product: Product) => product.name.toLowerCase();
+
+const hrefOf = (link: HomeLink) =>
+  link.internal !== undefined ? localizedPath(locale, link.internal) : link.href;
+const isExternal = (link: HomeLink) => link.internal === undefined;
+
+const umay = byKey.get('umay')!;
+const nesili = byKey.get('pelerin')!;
+const cosmocrew = byKey.get('cosmocrew')!;
+const sectionOrder = shown;
+const foundedYear = FOUNDING_DATE.slice(0, 4);
+---
+
+<div class="home">
+  <div class="container">
+    <h1 class="visually-hidden">{copy.heading}</h1>
+
+    <nav class="jump" aria-label={copy.jumpLabel}>
+      <ul>
+        {
+          shown.map((product) => (
+            <li>
+              <a class="text-link" href={`#${anchor(product)}`}>
+                {product.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <section class="board" aria-label={copy.boardLabel}>
+      {
+        shown.map((product) => {
+          const p = copy.products[product.key as HomeKey];
+          return (
+            <article class="board-col">
+              <div class="board-name">
+                <ProductMark product={product.key} size={40} class="mark" />
+                <h2>{product.name}</h2>
+              </div>
+              <p class="state mono">{line(product)}</p>
+              {p.problem ? (
+                <p class="problem">{p.problem}</p>
+              ) : (
+                // CosmoCrew has no sentence: the three app names stand there.
+                <ul class="problem app-names">
+                  {COSMOCREW_APPS.map((app) => (
+                    <li>
+                      <a class="text-link" href={app.url} rel="noopener noreferrer">
+                        {app.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div class:list={['screen', { 'screen-mark': !product.screen }]}>
+                {product.screen ? (
+                  <Image
+                    src={product.screen.src}
+                    alt={product.screen.alt[locale]}
+                    widths={[400, 800]}
+                    sizes="(max-width: 48rem) 100vw, 24rem"
+                  />
+                ) : (
+                  <ProductMark product={product.key} size={112} class="mark mark-large" />
+                )}
+              </div>
+              <p class="board-link">
+                <a
+                  class="text-link"
+                  href={hrefOf(p.link)}
+                  rel={isExternal(p.link) ? 'noopener noreferrer' : undefined}
+                >
+                  {p.link.text}
+                </a>
+              </p>
+            </article>
+          );
+        })
+      }
+    </section>
+  </div>
+
+  {
+    sectionOrder.map((product) => (
+      <section
+        class="container"
+        id={anchor(product)}
+        aria-labelledby={`${anchor(product)}-name`}
+      >
+        <div class="product-section">
+        <div class="product-aside">
+          <div class="board-name">
+            <ProductMark product={product.key} size={32} class="mark" />
+            <h2 id={`${anchor(product)}-name`}>{product.name}</h2>
+          </div>
+          <p class="state mono">{line(product)}</p>
+        </div>
+
+        <div class="product-body">
+          {product === umay && (
+            <>
+              <p class="body-lead">{copy.umay.description}</p>
+              <h3>{copy.umay.rowsHeading}</h3>
+              <dl class="rows">
+                {copy.umay.rows.map((row) => (
+                  <div class="row">
+                    <dt>{row.label}</dt>
+                    <dd>{row.text}</dd>
+                  </div>
+                ))}
+              </dl>
+            </>
+          )}
+
+          {product === nesili && (
+            <>
+              <p class="body-lead">{copy.nesili.description}</p>
+              <dl class="example">
+                <div class="row">
+                  <dt>{copy.nesili.exampleLabels[0]}</dt>
+                  <dd class="mono" lang="tr">{NESILI_EXAMPLE.before}</dd>
+                </div>
+                <div class="row">
+                  <dt>{copy.nesili.exampleLabels[1]}</dt>
+                  <dd class="mono" lang="tr">{NESILI_EXAMPLE.after}</dd>
+                </div>
+              </dl>
+            </>
+          )}
+
+          {product === cosmocrew && (
+            <>
+              <p class="body-lead">{copy.cosmocrew.description}</p>
+              <ul class="rows apps">
+                {COSMOCREW_APPS.map((app) => (
+                  <li class="row">
+                    <a
+                      class="text-link app-name"
+                      href={app.url}
+                      rel="noopener noreferrer"
+                    >
+                      {app.name}
+                    </a>
+                    <span class="app-line">{app.line[locale]}</span>
+                    <span class="state mono">{copy.cosmocrew.appState}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          <p class="section-link">
+            <a
+              class="text-link"
+              href={hrefOf(copy.products[product.key as HomeKey].link)}
+              rel={
+                isExternal(copy.products[product.key as HomeKey].link)
+                  ? 'noopener noreferrer'
+                  : undefined
+              }
+            >
+              {copy.products[product.key as HomeKey].link.text}
+            </a>
+          </p>
+        </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="container" aria-labelledby="company-heading">
+    <div class="company">
+    <div class="product-aside">
+      {copy.company.heading ? (
+        <h2 id="company-heading">{copy.company.heading}</h2>
+      ) : (
+        <h2 id="company-heading" class="visually-hidden">{copy.company.sectionLabel}</h2>
+      )}
+    </div>
+    <div class="product-body">
+      <p class="body-lead">{copy.company.paragraph}</p>
+      <dl class="identity" aria-label={copy.company.identityLabel}>
+        <div class="row">
+          <dt class="visually-hidden">{copy.company.identityLabel}</dt>
+          <dd class="identity-name">{BRAND}</dd>
+        </div>
+        <div class="row">
+          <dt>{copy.company.founded}</dt>
+          <dd>{foundedYear}</dd>
+        </div>
+        <div class="row">
+          <dt>{copy.company.contact}</dt>
+          <dd><a class="text-link" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></dd>
+        </div>
+        <div class="row">
+          <dt class="visually-hidden">{copy.company.registry}</dt>
+          <dd><a class="text-link" href="#company-details">{copy.company.registry}</a></dd>
+        </div>
+      </dl>
+    </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  /* Phone only: the three names reachable on the first screen. */
+  .jump {
+    display: none;
+  }
+
+  .jump ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2) var(--sp-5);
+    list-style: none;
+    padding: 0;
+  }
+
+  /* ---------- The board ---------- */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: var(--rule-strong) solid var(--c-ink);
+  }
+
+  .board-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-5) var(--sp-5) var(--sp-2);
+    min-width: 0;
+  }
+
+  .board-col:first-child {
+    padding-left: 0;
+  }
+
+  .board-col:last-child {
+    padding-right: 0;
+  }
+
+  .board-col + .board-col {
+    border-left: var(--rule-thin) solid var(--c-rule);
+  }
+
+  .board-name {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+
+  .board-name h2 {
+    font-size: var(--fs-600);
+    font-weight: 650;
+  }
+
+
+  .state {
+    color: var(--c-muted);
+    line-height: var(--lh-snug);
+  }
+
+  .problem {
+    font-size: var(--fs-problem);
+    font-weight: 500;
+    line-height: var(--lh-snug);
+    color: var(--c-ink);
+    min-height: calc(3 * var(--lh-snug) * 1em);
+  }
+
+  /* CosmoCrew's column: the three app names where the others have a sentence. */
+  .app-names {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0 0.5em;
+    list-style: none;
+    padding: 0;
+  }
+
+  /* The dot follows a name, so a wrapped line never starts with one. */
+  .app-names li:not(:last-child)::after {
+    content: '\00b7';
+    margin-left: 0.5em;
+    color: var(--c-muted);
+  }
+
+  /* A real screen, 16:10, cropped from the top left. Without one, the
+     product's mark large: never an empty frame. */
+  .screen {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: var(--c-well);
+    display: grid;
+    place-items: center;
+    margin-top: auto;
+  }
+
+  .screen :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
+
+  .screen :global(.mark-large) {
+    width: 34%;
+    height: auto;
+  }
+
+  .board-link {
+    padding-block: var(--sp-1);
+  }
+
+  /* ---------- One section per product ---------- */
+  .product-section,
+  .company {
+    display: grid;
+    grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+    gap: var(--sp-6);
+    padding-block: var(--sp-7);
+    border-top: var(--rule-thin) solid var(--c-rule);
+  }
+
+  .home > .container:first-child {
+    padding-bottom: var(--sp-7);
+  }
+
+  .home > section.container {
+    margin-top: 0;
+  }
+
+  .product-aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .product-aside h2 {
+    font-size: var(--fs-600);
+  }
+
+  .product-body {
+    max-width: var(--maxw-prose);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
+  }
+
+  .body-lead {
+    font-size: var(--fs-500);
+    color: var(--c-ink-soft);
+    line-height: var(--lh-body);
+  }
+
+  .product-body h3 {
+    font-size: var(--fs-500);
+    font-weight: 600;
+    margin-bottom: calc(-1 * var(--sp-2));
+  }
+
+  .rows {
+    list-style: none;
+    padding: 0;
+    border-top: var(--rule-thin) solid var(--c-rule);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
+    gap: var(--sp-2) var(--sp-5);
+    padding-block: var(--sp-3);
+    border-bottom: var(--rule-thin) solid var(--c-rule);
+  }
+
+  .row dt {
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+
+  .row dd {
+    color: var(--c-ink-soft);
+  }
+
+  .example {
+    border-top: var(--rule-thin) solid var(--c-rule);
+  }
+
+  .example .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .example dt {
+    font-weight: 500;
+    color: var(--c-muted);
+  }
+
+  .example dd {
+    color: var(--c-ink);
+    line-height: var(--lh-body);
+    overflow-wrap: anywhere;
+  }
+
+  .apps .row {
+    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr) auto;
+    align-items: baseline;
+  }
+
+  .app-line {
+    color: var(--c-ink-soft);
+  }
+
+  .identity {
+    border-top: var(--rule-thin) solid var(--c-rule);
+  }
+
+  .identity .row {
+    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
+  }
+
+  .identity-name {
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  .company h2 {
+    font-size: var(--fs-700);
+    line-height: var(--lh-snug);
+  }
+
+  /* ---------- Narrower screens ---------- */
+  @media (max-width: 60rem) {
+    .apps .row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--sp-1);
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .jump {
+      display: block;
+      margin-bottom: var(--sp-5);
+    }
+
+    .board {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .board-col,
+    .board-col:first-child,
+    .board-col:last-child {
+      padding: var(--sp-5) 0;
+    }
+
+    .board-col + .board-col {
+      border-left: 0;
+      border-top: var(--rule-thin) solid var(--c-rule);
+    }
+
+    .problem {
+      min-height: 0;
+    }
+
+    /* Stacked, the mark fallback needs no 16:10 block; real screens keep it. */
+    .screen-mark {
+      aspect-ratio: 3 / 1;
+    }
+
+    .screen :global(.mark-large) {
+      width: auto;
+      height: 60%;
+    }
+
+    .product-section,
+    .company {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--sp-4);
+    }
+
+    .row,
+    .identity .row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--sp-1);
+    }
+  }
+</style>

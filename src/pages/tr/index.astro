@@ -1,67 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
-import Button from '../../components/Button.astro';
-import ProductCard from '../../components/ProductCard.astro';
-import { localizedPath } from '../../i18n';
-import { products } from '../../data/products';
+import HomePage from '../../components/home/HomePage.astro';
+import { home } from '../../data/home';
+
+const copy = home.tr;
 ---
 
 <BaseLayout
   locale="tr"
-  title="Luvita — Yazılım ürünleri şirketi"
-  description="Luvita, kendi yazılım ürünlerini geliştiren bağımsız bir şirkettir. Ürünlerini tasarlar, yayınlar ve bakımını üstlenir; mühendislik pratiği bankacılık ve kurumsal sistemlerden gelir."
+  title={copy.title}
+  description={copy.description}
   paths={{ tr: '', en: '' }}
 >
-  <Hero
-    eyebrow="Bağımsız bir yazılım laboratuvarı"
-    title="Sıradaki on yıl için yazılım."
-    lead="Bankacılık ve kurumsal sistemlerde şekillenen mühendislik pratiğimizi kendi ürünlerimize uyguluyoruz: tasarımdan yayına, yıllar süren bakıma."
-  >
-    <Fragment slot="actions">
-      <Button href={localizedPath('tr', 'urunler')}>Ürünlerimizi görün</Button>
-      <Button href={localizedPath('tr', 'iletisim')} variant="secondary">
-        Bize ulaşın
-      </Button>
-    </Fragment>
-  </Hero>
-
-  <section class="container">
-    <div class="section-head">
-      <p class="eyebrow">Ürünler</p>
-      <h2>Üç ürün: biri yayında, ikisi geliştirmede</h2>
-      <p class="lead">
-        App Store’da yayında olan ürünlerimiz, tasarımdan yayına uçtan uca
-        yazılım üretebildiğimizin kanıtı; geliştirmekte olduklarımız ise
-        nereye baktığımızı gösteriyor.
-      </p>
-    </div>
-    <div class="product-grid">
-      {products.map((product) => <ProductCard product={product} locale="tr" />)}
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="cta-panel">
-      <h2>Ürünlerimizi konuşalım</h2>
-      <p class="lead">
-        Ürünlerimizden birini kurumunuzda kullanmayı düşünüyor ya da yol
-        haritamızı merak ediyorsanız yazın; her e-postaya dönüş yapıyoruz.
-      </p>
-      <Button href={localizedPath('tr', 'iletisim')}>İletişime geçin</Button>
-    </div>
-  </section>
+  <HomePage locale="tr" />
 </BaseLayout>
-
-<style>
-  .cta-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--sp-4);
-    padding: var(--sp-6);
-    background-color: var(--c-surface-2);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius-lg);
-  }
-</style>
