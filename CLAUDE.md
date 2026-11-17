@@ -106,6 +106,18 @@ Use the token variables, never raw values in components.
   `src/styles/fonts.css`. **Never a font CDN.** The typeface and the wordmark
   are still open: the family is one token and the wordmark one component
   (`src/components/Wordmark.astro`), so either can change without a redesign.
+- **Luvita icon:** the mark "Seat" (founder, 2026-11-17). Its drawing, colours
+  and rules live in `luvita-docs/brand/README.md`; read that before touching
+  it and never redraw, round, rotate or recolour it here.
+  - On a page it appears only in `Wordmark.astro`, always beside the name
+    (header and footer), filled with `--c-ink` and `--c-accent`.
+  - `public/favicon.svg` is the brand's small drawing, copied unchanged.
+  - `public/favicon-96.png`, `apple-touch-icon.png`, `icon-192.png` and
+    `icon-512.png` are the full mark on white, made with
+    `rsvg-convert -w N -h N -b white luvita-icon.svg`; `site.webmanifest`
+    lists the last two.
+  - `public/og.png` (1200 x 630) is the icon and the name on white, nothing
+    else. Any sentence added to it is copy and needs a founder look.
 - **Marks:** one inline SVG per product in `src/components/ProductMark.astro`,
   one line weight, `currentColor`, shown in the accent.
 - **State line:** `<state> · improved <date>`. The state comes from `state` in

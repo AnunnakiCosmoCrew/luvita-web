@@ -1,18 +1,62 @@
 ---
 /**
- * The Luvita wordmark. A text wordmark until a drawn one exists (DESIGN.md
- * section 12): replacing this one component replaces it everywhere.
+ * The Luvita lockup: the icon ("Seat", chosen by the founder on 2026-11-17)
+ * and the name. Replacing this one component replaces it everywhere.
+ *
+ * The icon's drawing, colours and rules are in `luvita-docs/brand/README.md`;
+ * the two shapes below are that file's `luvita-icon.svg`, unchanged. Do not
+ * redraw, round, rotate or recolour it. It takes the ink and accent tokens, so
+ * it follows the light and dark themes by itself.
+ *
+ * The lockup is provisional (DESIGN.md section 12: typeface and a drawn
+ * wordmark are still open). Until then, per the brand rules: the name in the
+ * heading face at about the height of the icon's block, one gap-width from it.
+ * The drawing is 32 units with the block on 3..29, so:
+ *   - box 1.35em   -> block about 1.1em, and above the 24 px limit under
+ *                     which the small favicon drawing must be used instead;
+ *   - margin-left  -> pulls the block's edge, not the box's, onto the content
+ *                     edge (3 units of built-in margin);
+ *   - gap          -> 1 unit, which with the 3 built-in makes the 4-unit
+ *                     clear space.
  */
 ---
 
-<span class="wordmark">Luvita</span>
+<span class="wordmark">
+  <svg class="wordmark-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <path class="block" d="M3 3H12.06A12 12 0 0 0 29 19.94V29H3Z"></path>
+    <circle class="disc" cx="21" cy="11" r="8"></circle>
+  </svg>
+  <span class="wordmark-name">Luvita</span>
+</span>
 
 <style>
   .wordmark {
+    --icon-box: 1.35em;
+    --icon-unit: calc(var(--icon-box) / 32);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--icon-unit);
     font-family: var(--font-sans);
     font-size: var(--fs-500);
     font-weight: 700;
     letter-spacing: -0.02em;
+    line-height: 1;
     color: var(--c-ink);
+  }
+
+  .wordmark-icon {
+    flex: none;
+    width: var(--icon-box);
+    height: var(--icon-box);
+    margin-left: calc(-3 * var(--icon-unit));
+  }
+
+  .block {
+    fill: var(--c-ink);
+  }
+
+  .disc {
+    fill: var(--c-accent);
   }
 </style>
