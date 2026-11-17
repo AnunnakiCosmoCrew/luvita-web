@@ -93,12 +93,17 @@ In order:
 
 Order of products: Umay, Nesili, CosmoCrew. If Umay still has no real screen
 when the rebuild ships, Nesili goes first and Umay shows its mark large in
-place of a screen. An empty frame never ships.
+place of a screen. An empty frame never ships. Since LW-82 (founder,
+2026-11-17) Umay's frame shows the sample call from umayconnect.org, a test
+call with fictional data labelled as such, so Umay is first again; a recorded
+call replaces it when one exists (section 12, open point 2).
 
 ## 5. How a product is shown
 
 - **Real screens only.** No stock pictures, no generated pictures, no device
-  frames drawn around a screen, no invented interface.
+  frames drawn around a screen, no invented interface. The one stand-in is a
+  product's own sample that says on its face it uses fictional data: Umay's
+  sample call from umayconnect.org (LW-82), until a recorded call exists.
 - **One mark per product.** Nesili and CosmoCrew have drawn marks in the same
   line weight, drawn from the simplest true form of what the product does: a
   line of text with two parts covered (Nesili), a day as a circle cut into
@@ -344,7 +349,8 @@ Words:
 ## 12. Open points
 
 1. The final typeface and a drawn wordmark.
-2. A real Umay screen (a recorded call).
+2. A real Umay screen (a recorded call). Until then the board shows the
+   sample call from umayconnect.org (LW-82).
 3. (Closed, LW-67: the founder settled the copy in both languages.)
 4. Where the release dates come from for each product, and who updates them;
    and the founder's approval of the scheduled daily build.

@@ -34,7 +34,8 @@ let shown = HOME_ORDER.map((key) => {
   if (!product) throw new Error(`Home page: no product "${key}" in products.ts`);
   return product;
 });
-// DESIGN.md section 4: while Umay has no real screen, Nesili goes first.
+// DESIGN.md section 4: while Umay has no screen (today its sample call from
+// umayconnect.org, LW-82), Nesili goes first.
 if (!byKey.get('umay')?.screen) {
   shown = [
     ...shown.filter((p) => p.key === 'pelerin'),
