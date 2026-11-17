@@ -86,8 +86,9 @@ In order:
    - CosmoCrew: one sentence, then the three apps as rows (icon, name, one
      line, state line), then the link to cosmocrew.dev.
 5. **Company.** A heading and a paragraph in English; one sentence and no
-   visible heading in Turkish. Then the identity block: short company name,
-   founding year, contact address, link to registry details.
+   visible heading in Turkish. Nothing else: the company's legal details
+   (trade name, contact address, MERSİS and trade registry numbers) are in the
+   footer just below, so the block does not repeat them (founder, 2026-11-17).
 6. **Footer.** As today (legal block, privacy, company details).
 
 Order of products: Umay, Nesili, CosmoCrew. If Umay still has no real screen

@@ -79,10 +79,6 @@ export interface HomeCopy {
     /** The visible heading, or null: the Turkish block has none. */
     heading: string | null;
     paragraph: string;
-    identityLabel: string;
-    founded: string;
-    contact: string;
-    registry: string;
   };
 }
 
@@ -181,10 +177,6 @@ export const home: Record<Locale, HomeCopy> = {
       heading: 'Software built to run for decades.',
       paragraph:
         'We make software for real problems, and we stay with it for years. Each product is built for a problem someone has today, and each one is still looked after long after the day it ships.',
-      identityLabel: 'Company details',
-      founded: 'Founded',
-      contact: 'Contact',
-      registry: 'Registry details',
     },
   },
   tr: {
@@ -243,10 +235,6 @@ export const home: Record<Locale, HomeCopy> = {
       heading: null,
       paragraph:
         'Ürünlerin her biri gerçek bir ihtiyaçtan doğdu; hepsinin yıllarca arkasındayız.',
-      identityLabel: 'Şirket bilgileri',
-      founded: 'Kuruluş',
-      contact: 'İletişim',
-      registry: 'Sicil bilgileri',
     },
   },
 };

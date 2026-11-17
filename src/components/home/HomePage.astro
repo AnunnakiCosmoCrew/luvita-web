@@ -16,7 +16,6 @@ import { home, NESILI_EXAMPLE, COSMOCREW_APPS, type HomeLink } from '../../data/
 import releases from '../../data/releases.json';
 import { buildToday, stateLine } from '../../lib/state-line';
 import { localizedPath, type Locale } from '../../i18n';
-import { BRAND, CONTACT_EMAIL, FOUNDING_DATE } from '../../lib/site';
 
 interface Props {
   locale: Locale;
@@ -58,7 +57,6 @@ const umay = byKey.get('umay')!;
 const nesili = byKey.get('pelerin')!;
 const cosmocrew = byKey.get('cosmocrew')!;
 const sectionOrder = shown;
-const foundedYear = FOUNDING_DATE.slice(0, 4);
 ---
 
 <div class="home">
@@ -231,24 +229,6 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
     </div>
     <div class="product-body">
       <p class="body-lead">{copy.company.paragraph}</p>
-      <dl class="identity" aria-label={copy.company.identityLabel}>
-        <div class="row">
-          <dt class="visually-hidden">{copy.company.identityLabel}</dt>
-          <dd class="identity-name">{BRAND}</dd>
-        </div>
-        <div class="row">
-          <dt>{copy.company.founded}</dt>
-          <dd>{foundedYear}</dd>
-        </div>
-        <div class="row">
-          <dt>{copy.company.contact}</dt>
-          <dd><a class="text-link" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></dd>
-        </div>
-        <div class="row">
-          <dt class="visually-hidden">{copy.company.registry}</dt>
-          <dd><a class="text-link" href="#company-details">{copy.company.registry}</a></dd>
-        </div>
-      </dl>
     </div>
     </div>
   </section>
@@ -462,19 +442,6 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
     color: var(--c-ink-soft);
   }
 
-  .identity {
-    border-top: var(--rule-thin) solid var(--c-rule);
-  }
-
-  .identity .row {
-    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
-  }
-
-  .identity-name {
-    font-weight: 700;
-    color: var(--c-ink);
-  }
-
   .company h2 {
     font-size: var(--fs-700);
     line-height: var(--lh-snug);
@@ -529,8 +496,7 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
       gap: var(--sp-4);
     }
 
-    .row,
-    .identity .row {
+    .row {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--sp-1);
     }
