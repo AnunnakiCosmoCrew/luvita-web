@@ -21,6 +21,7 @@ import cosmocrewIcon from '../assets/icons/cosmocrew.svg';
 import pelerinIcon from '../assets/icons/pelerin.svg';
 import nesiliScreen from '../assets/screens/nesili-split-view.jpg';
 import sliceFocusScreen from '../assets/screens/slicefocus-mac.png';
+import umayScreen from '../assets/screens/umay-sample-call.png';
 
 export type ProductStatus = 'live' | 'in-development';
 
@@ -74,6 +75,17 @@ export const products: Product[] = [
     state: {
       en: 'In development · demo on request',
       tr: 'Geliştirme aşamasında · demo istenebilir',
+    },
+    // The sample call from umayconnect.org: a test call with fictional data,
+    // written to show what the demo does, not a recording (see
+    // src/assets/screens/README.md). Replace it with a recorded call when one
+    // exists (DESIGN.md section 12, open point 2).
+    screen: {
+      src: umayScreen,
+      alt: {
+        en: 'Umay\'s sample call, in Turkish, from umayconnect.org, marked as a test call with fictional data. Umay answers for a car service, says it is an AI assistant, offers Thursday at 14:00, reads the caller\'s phone number and plate back digit by digit for confirmation, and books the appointment.',
+        tr: "umayconnect.org'daki örnek Umay görüşmesi; test görüşmesi, veriler kurgusal. Umay bir oto servis adına yanıt veriyor, yapay zekâ asistanı olduğunu söylüyor, perşembe 14.00'ü öneriyor, arayanın telefonunu ve plakasını tek tek okuyup onay alıyor ve randevuyu oluşturuyor.",
+      },
     },
     icon: umayIcon,
     url: UMAY_URL,
