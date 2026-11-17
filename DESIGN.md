@@ -121,9 +121,19 @@ The day is never shown; the full date stays in the data file and the
 - **How the 120-day rule is enforced.** The site is static and ships no script,
   so the age of a date can only be judged when the site is built. The rebuild
   therefore adds a scheduled daily build and deploy (a `schedule` trigger in
-  `deploy.yml`, next to the push trigger), so a date can never outlive the
-  limit by more than a day. The build reads "today" from one place, so a test
-  can fix it. The workflow change is a founder-tier change (`security`).
+  `deploy.yml`, next to the push trigger), so a date outlives the limit by at
+  most a day while the schedule runs. The build reads "today" from one place,
+  so a test can fix it. The workflow change is a founder-tier change
+  (`security`).
+- **GitHub pauses the schedule in a quiet repository.** In a public repository
+  GitHub disables scheduled workflows after 60 days with no activity
+  ([GitHub docs](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/disabling-and-enabling-a-workflow)).
+  The founder chose to document this rather than add a keep-alive job
+  (2026-11-17). If it happens, a date can stay on the page past 120 days until
+  the schedule is switched back on. To switch it on: the repository's
+  **Actions** tab → **Deploy to GitHub Pages** in the left sidebar →
+  **Enable workflow**, then **Run workflow** once so the page is rebuilt that
+  day.
 - A version number appears only for a product the reader can install.
 - No log of releases on the home page. The reader values "alive and stable",
   not how often something ships.
