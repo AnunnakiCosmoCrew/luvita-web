@@ -94,7 +94,7 @@ const foundedYear = FOUNDING_DATE.slice(0, 4);
                 <p class="problem">{p.problem}</p>
               ) : (
                 // CosmoCrew has no sentence: the three app names stand there.
-                <ul class="problem app-names" aria-label={copy.cosmocrew.description}>
+                <ul class="problem app-names">
                   {COSMOCREW_APPS.map((app) => (
                     <li>
                       <a class="text-link" href={app.url} rel="noopener noreferrer">
