@@ -182,7 +182,7 @@ export const home: Record<Locale, HomeCopy> = {
   tr: {
     title: 'Luvita',
     description:
-      "Luvita; Umay'ı, Nesili'yi ve CosmoCrew uygulamalarını yapıyor ve yıllarca arkasında duruyor.",
+      "Luvita; Umay'ı, Nesili'yi ve CosmoCrew uygulamalarını geliştiriyor ve yıllarca arkasında duruyor.",
     heading: 'Luvita ürünleri',
     boardLabel: 'Ürünlerimiz',
     jumpLabel: 'Bu sayfadaki ürünler',

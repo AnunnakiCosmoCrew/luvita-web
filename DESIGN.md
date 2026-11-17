@@ -214,7 +214,7 @@ Settled by the founder, line by line, on 2026-11-17. The source of truth is
 | Place | English | Turkish |
 | --- | --- | --- |
 | Page title | Luvita | Luvita |
-| Search description | Luvita makes Umay, Nesili and the CosmoCrew apps, and stays with them for years. | Luvita; Umay'ı, Nesili'yi ve CosmoCrew uygulamalarını yapıyor ve yıllarca arkasında duruyor. |
+| Search description | Luvita makes Umay, Nesili and the CosmoCrew apps, and stays with them for years. | Luvita; Umay'ı, Nesili'yi ve CosmoCrew uygulamalarını geliştiriyor ve yıllarca arkasında duruyor. |
 | `h1` (not shown) | Luvita products | Luvita ürünleri |
 | Nesili, state | In pilot on Windows and Mac | Windows ve Mac'te pilot aşamasında |
 | Nesili, line | Protect your customers' details when your team uses AI. | Ekibiniz yapay zekâ kullanırken müşteri bilgilerini koruyun. |
@@ -259,6 +259,36 @@ Notes on this copy:
   use; the founder lifted that rule (project-templates#76).
 - The root identity page (`/`) keeps its own title and wording: it is written
   for a verifier, not for a visitor (adr/0005).
+
+### Company page
+
+The page behind "Company" / "Şirket" in the header (LW-74, wording approved by
+the founder on 2026-11-17; the two languages are written separately). Source
+of truth: `src/pages/en/about.astro` and `src/pages/tr/hakkimizda.astro`.
+
+- **Heading:** the mission in plain words. No "Mission" or "Vision" labels.
+  The Turkish heading says it the founder's way: products that solve real
+  problems, built with technology that already exists, rather than inventing
+  the technology. In Turkish a product is "geliştirilir", not "yapılır", and
+  it is "supported with updates and cloud services", not "kept running".
+- **Summary:** what Luvita makes, naming Umay (as in development), Nesili (as
+  in pilot) and the CosmoCrew apps. Nesili's sentence may say it masks what a
+  team does not want to send out, with examples (personal details, customer
+  and file numbers); it never says "any" or "all" information, because the
+  product masks the kinds it detects and the formats a team defines, and its
+  own page says masking lowers the risk and does not remove it. It may say "makes software products" here; the home
+  page does not.
+- **Vision:** one sentence.
+- **Founder:** named, in two factual sentences, on this page only. No photo,
+  no story, no employer names, no "founder-led" and no "by the same hands".
+  His name links to his LinkedIn profile, so a reader can verify the
+  sentence (founder, 2026-11-17). It is the site's only link to a person.
+  Every other page keeps speaking as "we".
+- **Not on this page:** a list of technologies or skills (it reads as a
+  services offer, adr/0004) and anything on how Luvita builds.
+- Why this shape: visitors look for a plain summary at the top of a company
+  page and for who is behind the company (research note
+  `notes/luvita/2026-11-17-mission-and-vision-on-the-company-site.md`).
 
 ## 10. Template signs to avoid
 
