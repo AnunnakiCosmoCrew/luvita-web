@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Corporate website for Luvita Teknoloji — an independent software product company, with an engineering practice formed in banking and enterprise systems.",
+  "description": "Corporate website for Luvita Teknoloji \u2014 an independent software product company, with an engineering practice formed in banking and enterprise systems.",
   "engines": {
     "node": ">=24"
   },
@@ -12,7 +12,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check && npm run test",
+    "test": "node --test \"src/**/*.test.ts\""
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

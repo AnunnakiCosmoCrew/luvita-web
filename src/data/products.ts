@@ -18,6 +18,8 @@ import { TRIAL_DAYS } from '../lib/pelerin-plans';
 import umayIcon from '../assets/icons/umay.png';
 import cosmocrewIcon from '../assets/icons/cosmocrew.svg';
 import pelerinIcon from '../assets/icons/pelerin.svg';
+import nesiliScreen from '../assets/screens/nesili-split-view.jpg';
+import sliceFocusScreen from '../assets/screens/slicefocus-mac.png';
 
 export type ProductStatus = 'live' | 'in-development';
 
@@ -26,10 +28,29 @@ export interface ProductCopy {
   description: string;
 }
 
+/** A real screen of the product (DESIGN.md section 5). Never invented. */
+export interface ProductScreen {
+  src: ImageMetadata;
+  /** What the screen shows, per locale. */
+  alt: Record<Locale, string>;
+}
+
 export interface Product {
   key: string;
   name: string;
   status: ProductStatus;
+  /**
+   * The state shown in the product's state line on the home page
+   * (DESIGN.md section 6). Must agree with `status`: an in-development
+   * product says so here too. The release date is added from
+   * src/data/releases.json, never written here.
+   */
+  state: Record<Locale, string>;
+  /**
+   * A real screen for the home page board. Absent until one exists: the board
+   * then shows the product's mark large in its place, never an empty frame.
+   */
+  screen?: ProductScreen;
   icon?: ImageMetadata;
   /**
    * Public link (App Store, product site). A link does not imply 'live' — an
@@ -49,6 +70,10 @@ export const products: Product[] = [
     key: 'umay',
     name: 'Umay',
     status: 'in-development',
+    state: {
+      en: 'In development · demo on request',
+      tr: 'Geliştirme aşamasında · demo istenebilir',
+    },
     icon: umayIcon,
     url: UMAY_URL,
     copy: {
@@ -68,6 +93,18 @@ export const products: Product[] = [
     key: 'cosmocrew',
     name: 'CosmoCrew',
     status: 'live',
+    state: {
+      en: 'Three apps live',
+      tr: 'Üç uygulama yayında',
+    },
+    // SliceFocus stands for the three apps here; cosmocrew.dev shows each one.
+    screen: {
+      src: sliceFocusScreen,
+      alt: {
+        en: 'SliceFocus on a Mac: Wednesday, 24 June laid out as coloured slices on one 24-hour circle, with Night Sleep as the largest slice and a red hand at 09:46.',
+        tr: "Mac'te SliceFocus: 24 Haziran Çarşamba, 24 saatlik tek bir daire üzerinde renkli dilimler hâlinde; en büyük dilim gece uykusu, kırmızı ibre 09:46'da.",
+      },
+    },
     icon: cosmocrewIcon,
     url: COSMOCREW_URL,
     copy: {
@@ -94,17 +131,30 @@ export const products: Product[] = [
     key: 'pelerin',
     name: 'Nesili',
     status: 'in-development',
+    state: {
+      en: 'In pilot on Windows and Mac',
+      tr: "Windows ve Mac'te pilot aşamasında",
+    },
+    // Every name and number in this screen is invented (see
+    // src/assets/screens/README.md for where it comes from).
+    screen: {
+      src: nesiliScreen,
+      alt: {
+        en: 'Nesili Desktop in split view. Left: a note with an invented name, phone number and policy number, and under it the answer with those details put back. Right: the same note in an AI chat window, with labels in place of each detail.',
+        tr: 'Nesili Masaüstü bölünmüş görünümde. Solda: uydurma ad, telefon ve poliçe numarası içeren bir not ve altında bu bilgilerin geri konduğu yanıt. Sağda: aynı not bir yapay zekâ sohbet penceresinde, her bilginin yerinde bir etiketle.',
+      },
+    },
     icon: pelerinIcon,
     copy: {
       tr: {
         tagline: 'Türkçe kişisel verileri bilgisayarınızda maskeler',
         description:
-          `Nesili Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki TC Kimlik numarası, IBAN, telefon ve adres gibi bilgileri kendi bilgisayarınızda maskeler; cevabı geri yapıştırdığınızda gerçek değerleri yerine koyar. Ham kimlik bilgileri bilgisayarınızda kalır, gönderdiğiniz metindeki risk belirgin biçimde azalır; KVKK 9. madde kapsamındaki hukuki dayanağınız yine sizindir. Windows için pilot aşamasında; ${TRIAL_DAYS} günlük denemeyle başlar.`,
+          `Nesili Masaüstü, yapay zekâ aracına yapıştıracağınız metindeki TC Kimlik numarası, IBAN, telefon ve adres gibi bilgileri kendi bilgisayarınızda maskeler; cevabı geri yapıştırdığınızda gerçek değerleri yerine koyar. Ham kimlik bilgileri bilgisayarınızda kalır, gönderdiğiniz metindeki risk belirgin biçimde azalır; KVKK 9. madde kapsamındaki hukuki dayanağınız yine sizindir. Windows ve Mac için pilot aşamasında; ${TRIAL_DAYS} günlük denemeyle başlar.`,
       },
       en: {
         tagline: 'Masks Turkish personal data on your own computer',
         description:
-          `Nesili Desktop masks identifiers such as TC Kimlik numbers, IBANs, phone numbers and addresses in text you paste, on your own computer, before you use an AI tool, and restores the real values when you paste the answer back. Raw identifiers stay on your computer and the risk in the text you send drops materially; your own legal basis under KVKK Article 9 remains yours. In pilot on Windows; starts with a ${TRIAL_DAYS}-day trial.`,
+          `Nesili Desktop masks identifiers such as TC Kimlik numbers, IBANs, phone numbers and addresses in text you paste, on your own computer, before you use an AI tool, and restores the real values when you paste the answer back. Raw identifiers stay on your computer and the risk in the text you send drops materially; your own legal basis under KVKK Article 9 remains yours. In pilot on Windows and Mac; starts with a ${TRIAL_DAYS}-day trial.`,
       },
     },
   },

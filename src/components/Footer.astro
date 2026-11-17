@@ -1,5 +1,6 @@
 ---
 import { localizedPath, t, type Locale } from '../i18n';
+import Wordmark from './Wordmark.astro';
 import {
   BRAND,
   LEGAL_NAME,
@@ -47,7 +48,7 @@ const links = (
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <span class="footer-name">{BRAND}</span>
+      <Wordmark />
       <p>{dict.footer.tagline}</p>
     </div>
 
@@ -58,7 +59,7 @@ const links = (
     </nav>
   </div>
 
-  <div class="container footer-legal">
+  <div class="container footer-legal" id="company-details">
     <p class="legal-name">{LEGAL_NAME}</p>
     <p>
       <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
@@ -91,11 +92,6 @@ const links = (
     gap: var(--sp-5) var(--sp-7);
     justify-content: space-between;
     align-items: flex-start;
-  }
-
-  .footer-name {
-    font-weight: 650;
-    color: var(--c-ink);
   }
 
   .footer-brand p {

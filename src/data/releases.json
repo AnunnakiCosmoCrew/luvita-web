@@ -1,0 +1,6 @@
+{
+  "$comment": "Last release date of each product, YYYY-MM-DD, or null when none is recorded. Updated in each product's release pull request, never typed in for the page (DESIGN.md section 6). A date older than 120 days is hidden at build time (src/lib/state-line.ts). Keys match `key` in src/data/products.ts.",
+  "umay": null,
+  "pelerin": "2026-11-09",
+  "cosmocrew": "2026-11-04"
+}

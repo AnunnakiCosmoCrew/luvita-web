@@ -27,6 +27,7 @@ import {
   TRADE_REGISTRY_NO,
   GITHUB_URL,
   COSMOCREW_URL,
+  FOUNDING_DATE,
 } from '../lib/site';
 
 const identifiers = [
@@ -44,10 +45,10 @@ const schema = {
   name: BRAND,
   legalName: LEGAL_NAME,
   url: absoluteUrl(),
-  logo: absoluteUrl('favicon.svg'),
+  logo: absoluteUrl('icon-512.png'),
   image: absoluteUrl('og.png'),
   email: CONTACT_EMAIL,
-  foundingDate: '2026-08',
+  foundingDate: FOUNDING_DATE,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Bodrum',

@@ -1,4 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect x="2" y="2" width="28" height="28" rx="8" fill="#0f7b6c"/>
-  <path d="M12 9.5v11.5h9.5" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- Luvita icon "Seat", small version: redrawn on a 16-pixel grid for sizes of 24 px and below.
+       Wider gap, edges on whole pixels, fills more of the square. Follows the system light/dark setting. -->
+  <style>
+    .b { fill: #111413 } .d { fill: #3C5A45 }
+    @media (prefers-color-scheme: dark) { .b { fill: #ECEDE9 } .d { fill: #9CC0A6 } }
+  </style>
+  <path class="b" d="M1 1H5.54A6.7 6.7 0 0 0 15 10.46V15H1Z"/>
+  <circle class="d" cx="10.5" cy="5.5" r="4.5"/>
 </svg>

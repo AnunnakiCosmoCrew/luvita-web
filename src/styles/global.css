@@ -1,3 +1,4 @@
+@import './fonts.css';
 @import './tokens.css';
 
 /* ---------- Reset ---------- */
@@ -47,13 +48,12 @@ h4 {
   text-wrap: balance;
 }
 
-/* Editorial serif voice for the two display levels; serifs carry less weight
-   and no negative tracking. h3/h4 stay sans so dense card text stays crisp. */
+/* One family for headings and text (DESIGN.md section 7). */
 h1,
 h2 {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: 0;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 h1 {
@@ -70,6 +70,7 @@ p {
   text-wrap: pretty;
 }
 
+/* The accent appears on link underlines (DESIGN.md section 8). */
 a {
   color: var(--c-accent);
   text-decoration: none;
@@ -78,6 +79,25 @@ a {
 
 a:hover {
   color: var(--c-accent-hover);
+}
+
+.text-link {
+  color: var(--c-ink);
+  font-weight: 550;
+  text-decoration: underline;
+  text-decoration-color: var(--c-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+
+.text-link:hover {
+  color: var(--c-accent-hover);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  letter-spacing: 0;
 }
 
 :focus-visible {
@@ -191,4 +211,10 @@ section + section {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Long paths and identifiers in code must wrap, never scroll the page. */
+code {
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
 }
