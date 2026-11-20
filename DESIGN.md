@@ -70,8 +70,9 @@ In order:
 3. **The board.** Three columns under one 2 px rule, separated by 1 px vertical
    rules, with no boxes, shadows or rounded panels. Each column, top to bottom:
    - the product's drawn mark (40 px) and its name. The name is a link to the
-     product's own site (umayconnect.org, nesili.com, cosmocrew.dev; founder,
-     2026-11-20, LW-86);
+     product's own site (umayconnect.org, cosmocrew.dev; founder, 2026-11-20,
+     LW-86). Nesili's links to its section on this page until nesili.com has
+     a public landing page: today it opens on an invitation-only sign-in;
    - the state line, in the mono face, muted;
    - the product's line, about 20 px, medium weight. CosmoCrew has no line:
      the three app names stand there, each a link to its app;

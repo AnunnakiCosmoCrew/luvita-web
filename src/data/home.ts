@@ -43,8 +43,11 @@ export interface HomeProductCopy {
   /**
    * The product's own site, in this locale where it has one. The product's
    * name and screen on the board link here (founder, 2026-11-20, LW-86).
+   * Absent for Nesili: nesili.com opens on an invitation-only sign-in page,
+   * so its name links to its section on this page until the product has a
+   * public landing page.
    */
-  site: string;
+  site?: string;
   link: HomeLink;
 }
 
@@ -144,7 +147,6 @@ export const home: Record<Locale, HomeCopy> = {
       },
       pelerin: {
         problem: 'Protect your customers\' details when your team uses AI.',
-        site: 'https://nesili.com/',
         link: { text: 'Ask about the pilot', internal: 'contact' },
       },
       cosmocrew: {
@@ -204,7 +206,6 @@ export const home: Record<Locale, HomeCopy> = {
       pelerin: {
         problem:
           'Ekibiniz yapay zekâ kullanırken müşteri bilgilerini koruyun.',
-        site: 'https://nesili.com/',
         link: { text: 'Pilot hakkında sorun', internal: 'iletisim' },
       },
       cosmocrew: {
