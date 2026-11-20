@@ -74,8 +74,9 @@ In order:
    - the state line, in the mono face, muted;
    - the product's line, about 20 px, medium weight. CosmoCrew has no line:
      the three app names stand there, each a link to its app;
-   - a real screen, 16:10, cropped from the top left, linked to the same
-     section as the name;
+   - a real screen, 16:10, cropped from the top left. A click on it, or
+     anywhere in the column outside its other links, follows the name's link
+     (one link per product, stretched over the column);
    - one text link.
    At 1280 × 720 the whole board is visible without scrolling. On a phone the
    columns stack; the three product names must still be reachable on the first

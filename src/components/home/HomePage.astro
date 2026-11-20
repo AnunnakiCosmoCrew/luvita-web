@@ -107,13 +107,7 @@ const sectionOrder = shown;
                   ))}
                 </ul>
               )}
-              {/* Same target as the name, so it is skipped in the tab order. */}
-              <a
-                class:list={['screen', { 'screen-mark': !product.screen }]}
-                href={`#${anchor(product)}`}
-                tabindex="-1"
-                aria-label={product.screen ? undefined : product.name}
-              >
+              <div class:list={['screen', { 'screen-mark': !product.screen }]}>
                 {product.screen ? (
                   <Image
                     src={product.screen.src}
@@ -124,7 +118,7 @@ const sectionOrder = shown;
                 ) : (
                   <ProductMark product={product.key} size={112} class="mark mark-large" />
                 )}
-              </a>
+              </div>
               <p class="board-link">
                 <a
                   class="text-link"
@@ -297,10 +291,28 @@ const sectionOrder = shown;
     font-weight: 650;
   }
 
-  /* The name opens the product's section; it reads as a heading until hovered. */
+  /* The name opens the product's section; it reads as a heading until hovered.
+     Its ::after covers the whole column, so the screen is clickable too with
+     one link per product (no second link for the picture). The column's other
+     links sit above it. */
+  .board-col {
+    position: relative;
+  }
+
   .name-link {
     color: inherit;
     text-decoration: none;
+  }
+
+  .name-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .board-col .text-link {
+    position: relative;
+    z-index: 1;
   }
 
   .name-link:hover,
