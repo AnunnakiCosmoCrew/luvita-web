@@ -87,7 +87,7 @@ const sectionOrder = shown;
               <div class="board-name">
                 <ProductMark product={product.key} size={40} class="mark" />
                 <h2>
-                  <a class="name-link" href={`#${anchor(product)}`}>
+                  <a class="name-link" href={p.site} rel="noopener noreferrer">
                     {product.name}
                   </a>
                 </h2>
@@ -291,7 +291,7 @@ const sectionOrder = shown;
     font-weight: 650;
   }
 
-  /* The name opens the product's section; it reads as a heading until hovered.
+  /* The name opens the product's own site; it reads as a heading until hovered.
      Its ::after covers the whole column, so the screen is clickable too with
      one link per product (no second link for the picture). The column's other
      links sit above it. */
