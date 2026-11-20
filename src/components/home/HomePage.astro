@@ -86,7 +86,11 @@ const sectionOrder = shown;
             <article class="board-col">
               <div class="board-name">
                 <ProductMark product={product.key} size={40} class="mark" />
-                <h2>{product.name}</h2>
+                <h2>
+                  <a class="name-link" href={`#${anchor(product)}`}>
+                    {product.name}
+                  </a>
+                </h2>
               </div>
               <p class="state mono">{line(product)}</p>
               {p.problem ? (
@@ -103,7 +107,13 @@ const sectionOrder = shown;
                   ))}
                 </ul>
               )}
-              <div class:list={['screen', { 'screen-mark': !product.screen }]}>
+              {/* Same target as the name, so it is skipped in the tab order. */}
+              <a
+                class:list={['screen', { 'screen-mark': !product.screen }]}
+                href={`#${anchor(product)}`}
+                tabindex="-1"
+                aria-label={product.screen ? undefined : product.name}
+              >
                 {product.screen ? (
                   <Image
                     src={product.screen.src}
@@ -114,7 +124,7 @@ const sectionOrder = shown;
                 ) : (
                   <ProductMark product={product.key} size={112} class="mark mark-large" />
                 )}
-              </div>
+              </a>
               <p class="board-link">
                 <a
                   class="text-link"
@@ -287,6 +297,19 @@ const sectionOrder = shown;
     font-weight: 650;
   }
 
+  /* The name opens the product's section; it reads as a heading until hovered. */
+  .name-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .name-link:hover,
+  .name-link:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--c-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
+  }
 
   .state {
     color: var(--c-muted);
