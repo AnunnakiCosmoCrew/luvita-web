@@ -40,6 +40,14 @@ export interface HomeProductCopy {
    * shows the three app names there instead.
    */
   problem?: string;
+  /**
+   * The product's own site, in this locale where it has one. The product's
+   * name and screen on the board link here (founder, 2026-11-20, LW-86).
+   * Absent for Nesili: nesili.com opens on an invitation-only sign-in page,
+   * so its name links to its section on this page until the product has a
+   * public landing page.
+   */
+  site?: string;
   link: HomeLink;
 }
 
@@ -134,6 +142,7 @@ export const home: Record<Locale, HomeCopy> = {
       umay: {
         problem: 'Give every caller an answer on the first call, at any hour.',
         // The live demo request form on Umay's own site.
+        site: 'https://umayconnect.org/en/',
         link: { text: 'Ask for a demo', href: 'https://umayconnect.org/en/#slotReq' },
       },
       pelerin: {
@@ -141,6 +150,7 @@ export const home: Record<Locale, HomeCopy> = {
         link: { text: 'Ask about the pilot', internal: 'contact' },
       },
       cosmocrew: {
+        site: 'https://cosmocrew.dev/',
         link: { text: 'Visit cosmocrew.dev', href: 'https://cosmocrew.dev/' },
       },
     },
@@ -190,6 +200,7 @@ export const home: Record<Locale, HomeCopy> = {
       umay: {
         problem:
           'Her çağrı günün her saatinde, doğal bir Türkçeyle yanıtlansın.',
+        site: 'https://umayconnect.org/',
         link: { text: 'Demo isteyin', href: 'https://umayconnect.org/#slotReq' },
       },
       pelerin: {
@@ -198,6 +209,7 @@ export const home: Record<Locale, HomeCopy> = {
         link: { text: 'Pilot hakkında sorun', internal: 'iletisim' },
       },
       cosmocrew: {
+        site: 'https://cosmocrew.dev/',
         link: { text: "cosmocrew.dev'e gidin", href: 'https://cosmocrew.dev/' },
       },
     },

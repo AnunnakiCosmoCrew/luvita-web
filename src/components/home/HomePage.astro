@@ -86,7 +86,15 @@ const sectionOrder = shown;
             <article class="board-col">
               <div class="board-name">
                 <ProductMark product={product.key} size={40} class="mark" />
-                <h2>{product.name}</h2>
+                <h2>
+                  <a
+                    class="name-link"
+                    href={p.site ?? `#${anchor(product)}`}
+                    rel={p.site ? 'noopener noreferrer' : undefined}
+                  >
+                    {product.name}
+                  </a>
+                </h2>
               </div>
               <p class="state mono">{line(product)}</p>
               {p.problem ? (
@@ -287,6 +295,37 @@ const sectionOrder = shown;
     font-weight: 650;
   }
 
+  /* The name opens the product's own site (Nesili: its section here); it reads as a heading until hovered.
+     Its ::after covers the whole column, so the screen is clickable too with
+     one link per product (no second link for the picture). The column's other
+     links sit above it. */
+  .board-col {
+    position: relative;
+  }
+
+  .name-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .name-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .board-col .text-link {
+    position: relative;
+    z-index: 1;
+  }
+
+  .name-link:hover,
+  .name-link:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--c-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
+  }
 
   .state {
     color: var(--c-muted);
